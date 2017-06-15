@@ -10,7 +10,7 @@
     "lint": "ng lint",
     "e2e": "ng e2e",
     "dev-ui": "ng serve --proxy-config proxy.config.json",
-    "dev-server": "node_modules/nodemon/bin/nodemon.js server.js"
+    "dev-server": "nodemon server.js"
   },
   "private": true,
   "dependencies": {
