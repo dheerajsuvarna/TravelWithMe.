@@ -1,28 +1,38 @@
+<div id="box1" class="inlined">
+
+
+  <h1 float="right" >Bakri </h1>
 <div>
-<div class="navbar-fixed">
-  <nav id="nav_f" class="default_color" role="navigation">
-    <div class="container">
-      <div class="nav-wrapper">
-        <a [routerLink] ="['/landingPage']" class="brand-logo">Travel With Me</a>
+  <div class="navbar-fixed">
+    <nav id="nav_f" class="default_color" role="navigation">
+      <div class="container">
+        <div class="nav-wrapper">
+          <a [routerLink] ="['/landingPage']" class="brand-logo">Travel With Me</a>
         <ul class="right hide-on-med-and-down">
           <li><a href="#intro">Home</a></li>
-          <li><a href="#work">About</a></li>
-          <li><a href="#team">Team</a></li>
           <li><a href="#contact">Contact</a></li>
-          <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"><a [routerLink] = "['/register']">Register</a></li>
-          <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"><a [routerLink] = "['/login']">Login</a></li>
+          <li><a href="#mytrips" *ngIf="loggedIn" ng-show="false">My Trips</a></li>
+          <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"  *ngIf="!loggedIn" ><a [routerLink] = "['/register']">Signup</a></li>
+          <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"><a [routerLink] = "['/login']"  *ngIf="!loggedIn"  >Login</a></li>
+          <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}" (click)="logout()" *ngIf="loggedIn"><a [routerLink] = "['/logout']"      >Logout</a></li>
+
         </ul>
         <ul id="nav-mobile" class="side-nav">
           <li><a href="#intro">Home</a></li>
-          <li><a href="#work">About</a></li>
-          <li><a href="#team">Team</a></li>
           <li><a href="#contact">Contact</a></li>
-          <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"><a [routerLink] = "['/register']" >Register</a></li>
-          <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"><a [routerLink] = "['/login']">Login</a></li>
+          <li><a href="#mytrips" ng-show="false">My Trips</a></li>
+          <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"  *ngIf="!loggedIn" ><a [routerLink] = "['/register']">Signup</a></li>
+          <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"><a [routerLink] = "['/login']"  *ngIf="!loggedIn"  >Login</a></li>
+          <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}" (click)="logout()"><a [routerLink] = "['/logout']"    *ngIf="loggedIn"  >Logout</a></li>
         </ul>
         <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
-      </div>
+
+        </div>
     </div>
   </nav>
+
 </div>
+
+</div>
+
 </div>
