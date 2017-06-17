@@ -14,8 +14,8 @@ var TripSchema = new Schema({
     type: String,
     requiired: true
   },
-  TripID: {
-    type: Number,
+  TripName: {
+    type: String,
   },
   Budget:{
     type: Number,
@@ -23,7 +23,7 @@ var TripSchema = new Schema({
   },
   user: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'User'
+    ref: 'UserSchema'
   }
 });
 
