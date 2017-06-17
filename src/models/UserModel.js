@@ -19,7 +19,6 @@ var UserSchema = new Schema({
   },
   email_address: {
     type: String,
-    unique: true,
     required: true
   },
   age: {

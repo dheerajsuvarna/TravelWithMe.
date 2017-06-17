@@ -42,13 +42,15 @@ module.exports = {
   create: function (req, res) {
     console.log(req.body, req.headers);
     if (!req.body || !req.body.username || !req.body.password) {
+      console.log("body",req.body.username);
+      console.log("Printing email");
       return res.status(400).send('Incorrect request');
     }
 
     var newUser = new User({
       username: req.body.username,
       password: req.body.password,
-      email_address: req.body.emailaddress,
+      email_address: req.body.email_address,
       age: req.body.age
     });
 
