@@ -11,7 +11,10 @@ import { AuthGuard } from './guards/auth.guard';
 import { AlertService, AuthenticationService, UserService } from './services/index';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
-import { RegisterComponent } from './register/register.component'
+import { RegisterComponent } from './register/register.component';
+import { NavbarComponent } from './navbar/navbar.component';
+import { LandingPageComponent } from './landing-page/landing-page.component';
+//import { TestComponent } from './test/test.component';
 
 @NgModule({
   imports: [
@@ -25,7 +28,10 @@ import { RegisterComponent } from './register/register.component'
     AlertComponent,
     HomeComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    NavbarComponent,
+    LandingPageComponent,
+
   ],
   providers: [
     AuthGuard,
