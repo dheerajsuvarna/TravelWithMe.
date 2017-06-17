@@ -7,8 +7,8 @@ import { RegisterComponent } from './register/register.component'
 import { LandingPageComponent } from './landing-page/landing-page.component'
 
 const appRoutes: Routes = [
-  { path: '', component: LandingPageComponent },
-    //{ path: '', component: HomeComponent, canActivate: [AuthGuard] },
+    { path: '', component: HomeComponent, canActivate: [AuthGuard] },
+    { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
     { path: 'login', component: LoginComponent },
     { path: 'register', component: RegisterComponent },
     { path: 'landingPage', component: LandingPageComponent },
