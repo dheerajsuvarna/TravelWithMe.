@@ -19,29 +19,23 @@ var UserSchema = new Schema({
   },
   email_address: {
     type: String,
-    unique: true,
-    required: true
   },
   age: {
     type: Number,
-    required: true
   },
   gender: {
     type: String,
-    required: true
-
   },
   nationality: {
     type: String,
-    required: true
   },
   firstname: {
     type: String,
-    required: true
+    // required: true
   },
   lastname: {
     type: String,
-    required: true
+    // required: true
   }
 });
 
