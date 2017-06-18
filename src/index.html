@@ -27,9 +27,20 @@
   <!--<script>-->
     <!--System.import('app').catch(function (err) { console.error(err); });-->
   <!--</script>-->
+  <!----><script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+  <!--<script>
+
+    var picArr = ['./assets/backgrounds/1.jpg', './assets/backgrounds/2.jpg', './assets/backgrounds/3.jpg', './assets/backgrounds/4.jpg', './assets/backgrounds/5.jpg' ];
+
+    var myNumber = Math.floor((Math.random() * 5) + 1);
+
+    $(body).ready(function () {
+      $("#backgroundImage").attr('src', picArr[myNumber]);
+    })
+  </script>-->
 </head>
 
-<body>
+<body  style="background: url(./assets/backgrounds/37.jpg) no-repeat;">
 <app>Loading...</app>
 <!--  Scripts-->
 <script src="./assets/min/plugin-min.js"></script>

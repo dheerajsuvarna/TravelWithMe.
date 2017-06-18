@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { User } from '../models/usermodel';
+import { UserService } from '../services/index';
 import {isBoolean} from "util";
 
 @Component({
@@ -8,9 +10,10 @@ import {isBoolean} from "util";
 })
 export class NavbarComponent implements OnInit {
   public  loggedIn;
-
-  constructor() {
-
+  currentUser: User;
+  users: User[] = [];
+  constructor(private userService: UserService) {
+    this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
   }
 
  public logout() {
@@ -22,6 +25,10 @@ export class NavbarComponent implements OnInit {
 
   ngOnInit() {
     this.loggedIn = localStorage.getItem("currentUser")!=null;
+    this.loadAllUsers();
   }
 
+  private loadAllUsers() {
+    this.userService.getAll().subscribe(users => { this.users = users; });
+  }
 }
