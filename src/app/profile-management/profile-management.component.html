@@ -10,12 +10,119 @@
 </script>
 
 <style>
-  label textarea{
-    vertical-align: middle;
+    #basicInfo, #uploadPhoto{
+    margin-right:10px;
+    float:left;
+    margin-left: 40px;
   }
+    #basicInfo{
+      margin-right: 10px;
+    }
+    #aboutBox{
+      float:right;
+      margin-right:43px;
+    }
 </style>
-<div class="col s12 z-depth-4 card-panel" >
+<div class="card" >
   <!-- left column -->
+
+
+  <div id="basicInfo" class="col s12 z-depth-4 card-panel" style="width:45%;">
+    <form class="col s12" name="form" (ngSubmit)="f.form.valid && editProfile()" #f="ngForm" novalidate>
+      <div class="row">
+        <div class="input-field col s6">
+          <input id="first_name" type="text" class="validate" [(ngModel)]="model.firstname" #title="ngModel" required >
+          <label for="first_name">First Name</label>
+        </div>
+        <div class="input-field col s6">
+          <input id="last_name" type="text" class="validate" [(ngModel)]="model.lastname" #title="ngModel" required >
+          <label for="last_name">Last Name</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s12">
+          <input disabled id="disabled" type="text" class="validate">
+          <label for="disabled">Email</label>
+        </div>
+
+
+      </div>
+
+      <br>
+      <div class="row">
+        <input name="grp1" type="radio" id="r1">
+        <label for="r1">Male</label>
+
+        <input name="grp1" type="radio" id="r2">
+        <label for="r2">Female</label>
+      </div>
+      <div class="row">
+        <div class="input-field col s12">
+          <input disabled value={{user.age}} id="disabled1" type="text" class="validate">
+          <label for="disabled">Age</label>
+        </div>
+      </div>
+
+
+    </form>
+  </div>
+
+
+  <!--<div id="basicInfo" class="col s12 z-depth-4 card-panel" style="width:45%;">
+    <h2>Edit Profile</h2>
+    <form name="form" (ngSubmit)="f.form.valid && editProfile()" #f="ngForm" novalidate>
+      <div class="form-group">
+        <label for="firstname">First Name</label>
+        <input type="text" class="form-control" name="firstname" [(ngModel)]="model.firstname" #title="ngModel" required />
+      </div>
+      <div class="form-group">
+        <label for="lastname">Last Name</label>
+        <input type="text" class="form-control" name="lastname" [(ngModel)]="model.lastname" #title="ngModel" required />
+      </div>
+      <div class="form-group">
+        <label>Age<input type="number" min="1" max="100" value="1" name="age" [(ngModel)]="model.age" #source="ngModel" required>
+        </label>
+      </div>
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="text" class="form-control" name="email" [(ngModel)]="model.email" #source="ngModel" required />
+      </div>
+
+      <div class="form-group">
+        <label for="gender">Gender:
+          <label>
+            <input type="radio" name="gender" value="male" [(ngModel)]="model.gender" #source="ngModel" required/>Male
+          </label>
+          <label>
+            <input type="radio" name="gender" value="female" [(ngModel)]="model.gender" #source="ngModel" required/>Female
+          </label>
+        </label>
+      </div>
+      <div class="form-group">
+        <label for="nationality">Nationality</label>
+        <input type="text" class="form-control" name="nationality" [(ngModel)]="model.nationality" #source="ngModel" required />
+      </div>
+    </form>
+  </div>-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   <div id="uploadPhoto" class="col s12 z-depth-4 card-panel" style="width:45%;height:200px;  ">
     <div class="text-center">
       <img src="//placehold.it/100" class="avatar img-circle" alt="avatar">
@@ -26,43 +133,8 @@
   </div>
 
 
-<div  class="col s12 z-depth-4 card-panel" style="width:45%;">
-  <h2>Edit Profile</h2>
-  <form name="form" (ngSubmit)="f.form.valid && editProfile()" #f="ngForm" novalidate>
-    <div class="form-group">
-      <label for="firstname">First Name</label>
-      <input type="text" class="form-control" name="firstname" [(ngModel)]="model.firstname" #title="ngModel" required />
-    </div>
-    <div class="form-group">
-      <label for="lastname">Last Name</label>
-      <input type="text" class="form-control" name="lastname" [(ngModel)]="model.lastname" #title="ngModel" required />
-    </div>
-    <div class="form-group">
-      <label>Age<input type="number" min="1" max="100" value="1" name="age" [(ngModel)]="model.age" #source="ngModel" required>
-      </label>
-    </div>
-    <div class="form-group">
-      <label for="email">Email</label>
-      <input type="text" class="form-control" name="email" [(ngModel)]="model.email" #source="ngModel" required />
-    </div>
 
-    <div class="form-group">
-      <label for="gender">Gender:
-      <label>
-        <input type="radio" name="gender" value="male" [(ngModel)]="model.gender" #source="ngModel" required/>Male
-      </label>
-      <label>
-        <input type="radio" name="gender" value="female" [(ngModel)]="model.gender" #source="ngModel" required/>Female
-      </label>
-        </label>
-    </div>
-    <div class="form-group">
-      <label for="nationality">Nationality</label>
-      <input type="text" class="form-control" name="nationality" [(ngModel)]="model.nationality" #source="ngModel" required />
-    </div>
-  </form>
-</div>
-  <div class="col s12 z-depth-4 card-panel" style="width:45%;">
+  <div class="col s12 z-depth-4 card-panel" id="aboutBox" style="width:45%;">
     <div class="row">
       <form class="col s12">
         <div class="row">
