@@ -5,7 +5,7 @@
           <i class="mdi-social-person-outline prefix"></i>
             <label for="username">Username</label>
 
-            <input type="text" class="form-control" name="username"  pattern="([A-Za-z0-9._-]*@tum.de|[A-Za-z0-9._-]*@mytum.de)$" [(ngModel)]="model.username" #username="ngModel" required />
+            <input type="text" class="form-control" name="username" placeholder="example@tum.de or example@mytum.de" pattern="([A-Za-z0-9._-]*@tum.de|[A-Za-z0-9._-]*@mytum.de)$" [(ngModel)]="model.username" #username="ngModel" required />
           <div *ngIf="f.submitted && !username.valid" class="help-block">Only @tum.de or @mytum.de emails are accepted</div>
 
         </div>
