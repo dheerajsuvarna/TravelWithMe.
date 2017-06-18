@@ -33,6 +33,7 @@
       <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !birthdate.valid }">
         <label for="birthdate">Birthdate</label>
         <input type="date" class="datepicker" name="birthdate" [(ngModel)]="model.birthdate" #age="ngModel" required />
+        <!--<md-datepicker ng-model="ctrl.myDate" md-placeholder="Enter date"></md-datepicker>-->
         <div *ngIf="f.submitted && !birthdate.valid" class="help-block">Birthdate is required</div>
       </div>
         <div class="form-group">
