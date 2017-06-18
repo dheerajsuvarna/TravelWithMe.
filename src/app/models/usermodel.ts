@@ -3,7 +3,11 @@
  */
 export class User {
   username: string;
+  firstname: string;
+  lastname: string;
   password: string;
-  email_address: string;
-  Age: Number;
+  email: string;
+  age: Number;
+  gender: string;
+  nationality: string;
 }
