@@ -44,6 +44,17 @@ module.exports = {
     if (!req.body || !req.body.username || !req.body.password) {
       return res.status(400).send('Incorrect request');
     }
+    var patt = new RegExp("([A-Za-z0-9._-]*@tum.de|[A-Za-z0-9._-]*@mytum.de)$");
+    var matched = patt.test(req.body.username.trim());
+    if(!matched)
+    {
+console.log(req.body.username);
+      return res.status(400).send("Invalid Email Domain");
+    }
+
+    User.findOne({username: req.body.username},function(err, existingUser){
+      if(existingUser  )
+      return res.status(400).send("User Already Exists"); });
 
     var newUser = new User({
       username: req.body.username,
