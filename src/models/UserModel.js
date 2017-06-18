@@ -25,6 +25,23 @@ var UserSchema = new Schema({
   age: {
     type: Number,
     required: true
+  },
+  gender: {
+    type: String,
+    required: true
+
+  },
+  nationality: {
+    type: String,
+    required: true
+  },
+  firstname: {
+    type: String,
+    required: true
+  },
+  lastname: {
+    type: String,
+    required: true
   }
 });
 
