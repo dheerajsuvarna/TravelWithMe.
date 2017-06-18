@@ -40,29 +40,25 @@ module.exports = {
   },
 
   create: function (req, res) {
-    console.log(req.body, req.headers);
+
     if (!req.body || !req.body.username || !req.body.password) {
       return res.status(400).send('Incorrect request');
     }
-    var patt = new RegExp("([A-Za-z0-9._-]*@tum.de|[A-Za-z0-9._-]*@mytum.de)$");
+    //This not required as it is being checked at the client side
+    /*var patt = new RegExp("([A-Za-z0-9._-]*@tum.de|[A-Za-z0-9._-]*@mytum.de)$");
     var matched = patt.test(req.body.username.trim());
     if(!matched)
     {
       console.log(req.body.username);
       return res.status(400).send("Invalid Email Domain");
-    }
-
-    User.findOne({username: req.body.username},function(err, existingUser){
-      if(existingUser  )
-      return res.status(400).send("User Already Exists"); });
-
-
+    }*/
+    console.log(req.body)
     var newUser = new User({
-      Namd: req.body.Name,
+      Name: req.body.Name,
       username: req.body.username,
       password: req.body.password,
-      email_address: req.body.emailaddress,
-      DOB: req.body.DOB
+      email_address: req.body.email_address,
+     // DOB: req.body.DOB
     });
 
     newUser.save()
@@ -70,7 +66,7 @@ module.exports = {
         res.json(user);
       })
       .catch(function (err) {
-        res.status(400).send(err);
+        res.status(400).send("not able to save" + err);
       });
   },
 

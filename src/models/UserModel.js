@@ -29,7 +29,8 @@ var UserSchema = new Schema({
   },
   DOB: {
     type: Date,
-    required: true
+    required: false,
+    default: ""
   }
 });
 

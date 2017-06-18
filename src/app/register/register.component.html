@@ -1,10 +1,10 @@
 <div class="col s12 z-depth-4 card-panel" style="width:400px;margin-left: auto; margin-right: auto; " >
   <h5><strong>Register</strong></h5>
     <form name="form" (ngSubmit)="f.form.valid && register()" #f="ngForm" novalidate>
-      <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !username.valid }">
+      <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !Name.valid }">
         <label for="Name">Name</label>
-        <input type="text" class="form-control" name="Name" [(ngModel)]="model.Name" pattern="([A-Za-z0-9._-]*@tum.de|[A-Za-z0-9._-]*@mytum.de)$" #username="ngModel" required />
-        <div *ngIf="f.submitted && !Name.valid" class="help-block"></div>
+        <input type="text" class="form-control" name="Name" [(ngModel)]="model.Name" placeholder="John Doe"#Name="ngModel" required />
+        <div *ngIf="f.submitted && !Name.valid" class="help-block">Enter a Name</div>
       </div>
         <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !username.valid }">
             <label for="username">Username</label>
@@ -18,7 +18,8 @@
         </div>
       <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !email_address.valid }">
         <label for="email_address">Email Address</label>
-        <input type="text" class="form-control" name="email_address" [(ngModel)]="model.email_address" #email_address="ngModel" required />
+        <input type="text" class="form-control" name="email_address" [(ngModel)]="model.email_address"
+               pattern="([A-Za-z0-9._-]*@tum.de|[A-Za-z0-9._-]*@mytum.de)$" placeholder="example@tum.de"#email_address="ngModel" required />
         <div *ngIf="f.submitted && !email_address.valid" class="help-block">Email address is required</div>
       </div>
       <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !DOB.valid }">
