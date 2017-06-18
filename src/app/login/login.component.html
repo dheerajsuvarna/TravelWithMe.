@@ -3,9 +3,9 @@
     <form class="login-form" name="form" (ngSubmit)="f.form.valid && login()" #f="ngForm" novalidate>
         <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !username.valid }">
           <i class="mdi-social-person-outline prefix"></i>
-            <label for="username">Username</label>
+            <label for="email">Email</label>
 
-            <input type="text" class="form-control" name="username" placeholder="example@tum.de or example@mytum.de" pattern="([A-Za-z0-9._-]*@tum.de|[A-Za-z0-9._-]*@mytum.de)$" [(ngModel)]="model.username" #username="ngModel" required />
+            <input type="text" class="form-control" name="email" placeholder="example@tum.de or example@mytum.de" pattern="([A-Za-z0-9._-]*@tum.de|[A-Za-z0-9._-]*@mytum.de)$" [(ngModel)]="model.username" #username="ngModel" required />
           <div *ngIf="f.submitted && !username.valid" class="help-block">Only @tum.de or @mytum.de emails are accepted</div>
 
         </div>
@@ -15,10 +15,6 @@
             <input type="password" class="form-control" name="password" [(ngModel)]="model.password" #password="ngModel" required />
             <div *ngIf="f.submitted && !password.valid" class="help-block">Password is required</div>
         </div>
-      <div class="input-field col s12 m12 l12  login-text">
-        <input type="checkbox" id="remember-me" />
-        <label for="remember-me">Remember me</label>
-      </div>
       <br>
       <br>
         <div class="form-group">
