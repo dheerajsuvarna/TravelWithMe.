@@ -48,7 +48,7 @@ module.exports = {
     var matched = patt.test(req.body.username.trim());
     if(!matched)
     {
-console.log(req.body.username);
+      console.log(req.body.username);
       return res.status(400).send("Invalid Email Domain");
     }
 
@@ -56,11 +56,13 @@ console.log(req.body.username);
       if(existingUser  )
       return res.status(400).send("User Already Exists"); });
 
+
     var newUser = new User({
+      Namd: req.body.Name,
       username: req.body.username,
       password: req.body.password,
       email_address: req.body.emailaddress,
-      age: req.body.age
+      DOB: req.body.DOB
     });
 
     newUser.save()

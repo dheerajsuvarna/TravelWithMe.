@@ -14,8 +14,8 @@ var TripSchema = new Schema({
     type: String,
     requiired: true
   },
-  TripID: {
-    type: Number,
+  TripName: {
+    type: String,
   },
   Budget:{
     type: Number,
