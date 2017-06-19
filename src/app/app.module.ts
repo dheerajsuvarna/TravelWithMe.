@@ -15,6 +15,7 @@ import { RegisterComponent } from './register/register.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { LandingPageComponent } from './landing-page/landing-page.component';
 import { profileManagementComponent } from './profile-management/profile-management.component';
+import { ViewProfileComponent } from './view-profile/view-profile.component';
 //import { TestComponent } from './test/test.component';
 
 @NgModule({
@@ -33,6 +34,7 @@ import { profileManagementComponent } from './profile-management/profile-managem
     NavbarComponent,
     LandingPageComponent,
     profileManagementComponent,
+    ViewProfileComponent,
 
   ],
   providers: [
