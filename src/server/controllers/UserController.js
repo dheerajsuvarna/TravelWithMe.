@@ -48,15 +48,15 @@ module.exports = {
     //Handled in client end
     /*var patt = new RegExp("([A-Za-z0-9._-]*@tum.de|[A-Za-z0-9._-]*@mytum.de)$");
     var matched = patt.test(req.body.email.trim());
-    if(!matched)
-    {
+    if (!matched) {
       console.log(req.body.email);
       return res.status(400).send("Invalid Email Domain");
     }*/
 
-    User.findOne({email: req.body.email},function(err, existingUser){
-      if(existingUser  )
-      return res.status(400).send("User Already Exists"); });
+    User.findOne({email: req.body.email}, function (err, existingUser) {
+      if (existingUser)
+        return res.status(400).send("User Already Exists");
+    });
 
     console.log(req.body.gender);
     var newUser = new User({
@@ -66,8 +66,12 @@ module.exports = {
       email: req.body.email,
       password: req.body.password,
       birthdate: req.body.birthdate,
+<<<<<<< HEAD
       description:req.body.description,
       gender: req.body.gender
+=======
+      description: req.body.description
+>>>>>>> 181f01537cbb03ca6e0f56c52cf52f413d3071e5
     });
 
     newUser.save()
@@ -94,10 +98,43 @@ module.exports = {
       });
 
   },
+<<<<<<< HEAD
 
   updateprofile: function(req, res){
 
   }
 }
+=======
+  editprofile: function (req, res) {
+    User.findOne({email: req.body.email}, function (err, p) {
+      if (!p)
+        return next(new Error('User does not exist'));
+      else {
+        var firstname = req.body.firstname;
+        var lastname = req.body.lastname;
+        var email = req.body.email;
+        var gender = req.body.gender;
+        var nationality = req.body.nationality;
+>>>>>>> 181f01537cbb03ca6e0f56c52cf52f413d3071e5
 
+        User.update({
+          firstname: firstname,
+          lastname: lastname,
+          username: username,
+          email: email,
+          gender: gender,
+          nationality: nationality
+        }, function (err, res) {
+          return res.status(200).send('Successfully Updated');
+        });
 
+        p.save(function (err) {
+          if (err)
+            console.log('error')
+          else
+            console.log('success')
+        });
+      }
+    });
+  },
+}

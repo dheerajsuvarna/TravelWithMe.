@@ -93,11 +93,10 @@
 
   <div id="basicInfo" class="col s12 z-depth-4 card-panel" style="width:45%;">
 
-    <h6><strong>Name       :                     	Sophia Mason</strong></h6>
-    <h6><strong>Gender     :                     Female</strong></h6>
-    <h6><strong>Email      :                      sophiamason@mytum.de</strong></h6>
-    <h6><strong>Country    :                    Canada</strong></h6>
-    <h6><strong>Age        :                        25</strong></h6>
+    <h6><strong>Name       :                     	{{currentUser.firstname}} {{currentUser.lastname}}</strong></h6>
+    <h6><strong>Gender     :                     {{currentUser.gender}}</strong></h6>
+    <h6><strong>Country    :                    {{currentUser.nationality}}</strong></h6>
+    <h6><strong>Age        :                        {{currentUser.age}}</strong></h6>
 
 
 
@@ -106,17 +105,10 @@
   <div class="col  z-depth-4 card-panel" id="aboutBox" style="width:45%;height:300px;">
     <h5><strong>About Me:</strong></h5>
     <p>
-      Hello Everyone, I'm Sophia. I study Informatics at TUM. I'm here because I love to travel and meet new people.
-      I love playing volleyball and listening to EDM.I'm a big time foodie as well. I want to travel to different countries
-      and try out different cuisines.
       <br>
-      <br>
-      Hope we end up meeting on a trip together.
-        <br>
-
-      <br>
-      Tschüss.
+      {{currentUser.description}}
 
     </p>
 
+</div>
 </div>

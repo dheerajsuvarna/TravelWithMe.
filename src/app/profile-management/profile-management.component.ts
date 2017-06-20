@@ -36,6 +36,7 @@ export class profileManagementComponent implements OnInit {
     var temp  = localStorage.getItem('currentUser');
     var json = JSON.parse(temp);
     this.currentUser = json.user;
+    this.currentUser.nationality = 'Germany';
     this.currentUser.gender = json.user.gender;
     this.currentUser.description = json.user.description;
     this.currentUser.age = new Number(this.getAge(this.currentUser.birthdate));
