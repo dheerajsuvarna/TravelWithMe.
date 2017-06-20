@@ -17,15 +17,14 @@ export class profileManagementComponent implements OnInit {
   model: any = {};
   loading = false;
   returnUrl: string;
-  currentUser: User;
-  users: User[] = [];
- public test:string;
+  currentUser: User= null;
+ public test:string = '';
 
 
 
   constructor() {
     this.test="sdfsdf";
-  //  this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+  this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
 
   }
 
