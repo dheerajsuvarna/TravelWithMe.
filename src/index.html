@@ -3,26 +3,44 @@
 
 <head>
   <base href="/" />
-  <title>Angular 4 User Registration and Login Example</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <!-- CSS  -->
   <link href="./assets/min/plugin-min.css" type="text/css" rel="stylesheet">
   <link href="./assets/min/custom-min.css" type="text/css" rel="stylesheet" >
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
-  <!-- polyfill(s) for older browsers -->
+ <link href="https://cdnjs.cloudflare.com/ajax/libs/angular-material/1.1.4/angular-material.css">
+  <link href=" https://cdnjs.cloudflare.com/ajax/libs/angular-material/1.1.4/angular-material.js">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/angular-material/1.1.4/angular-material.min.css">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/angular-material/1.1.4/angular-material.min.js">
+  <!-- <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.blue-red.min.css" /> -->
+
+   <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+   <!-- polyfill(s) for older browsers -->
   <script src="node_modules/core-js/client/shim.min.js"></script>
 
   <script src="node_modules/zone.js/dist/zone.js"></script>
   <script src="node_modules/systemjs/dist/system.src.js"></script>
 
-  <script src="systemjs.config.js"></script>
-  <script>
-    System.import('app').catch(function (err) { console.error(err); });
-  </script>
+  <!--<script src="systemjs.config.js"></script>-->
+  <!--<script>-->
+    <!--System.import('app').catch(function (err) { console.error(err); });-->
+  <!--</script>-->
+  <!----><script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+  <!--<script>
+
+    var picArr = ['./assets/backgrounds/1.jpg', './assets/backgrounds/2.jpg', './assets/backgrounds/3.jpg', './assets/backgrounds/4.jpg', './assets/backgrounds/5.jpg' ];
+
+    var myNumber = Math.floor((Math.random() * 5) + 1);
+
+    $(body).ready(function () {
+      $("#backgroundImage").attr('src', picArr[myNumber]);
+    })
+  </script>-->
 </head>
 
-<body>
+<body  style="background: url(./assets/backgrounds/37.jpg) no-repeat;">
 <app>Loading...</app>
 <!--  Scripts-->
 <script src="./assets/min/plugin-min.js"></script>
