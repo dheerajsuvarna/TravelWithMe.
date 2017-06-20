@@ -46,15 +46,15 @@ module.exports = {
     }
     var patt = new RegExp("([A-Za-z0-9._-]*@tum.de|[A-Za-z0-9._-]*@mytum.de)$");
     var matched = patt.test(req.body.email.trim());
-    if(!matched)
-    {
+    if (!matched) {
       console.log(req.body.email);
       return res.status(400).send("Invalid Email Domain");
     }
 
-    User.findOne({email: req.body.email},function(err, existingUser){
-      if(existingUser  )
-      return res.status(400).send("User Already Exists"); });
+    User.findOne({email: req.body.email}, function (err, existingUser) {
+      if (existingUser)
+        return res.status(400).send("User Already Exists");
+    });
 
 
     var newUser = new User({
@@ -64,7 +64,7 @@ module.exports = {
       email: req.body.email,
       password: req.body.password,
       birthdate: req.body.birthdate,
-      description:req.body.description
+      description: req.body.description
     });
 
     newUser.save()
@@ -92,24 +92,32 @@ module.exports = {
 
   },
   editprofile: function (req, res) {
-    User.findOne({username: req.body.username},function(err, p){
-      if(!p)
+    User.findOne({username: req.body.username}, function (err, p) {
+      if (!p)
         return next(new Error('User does not exist'));
-      else{
+      else {
         var firstname = req.body.firstname;
         var lastname = req.body.lastname;
-        var username: req.body.username;
+
         var email = req.body.email;
         var password = req.body.password;
         var age = req.body.age;
-        var gender =   req.body.gender;
+        var gender = req.body.gender;
         var nationality = req.body.nationality;
 
-        User.update({ firstname: firstname, lastname: lastname, username: username, email: email, age: age, gender: gender, nationality: nationality}, function (err, username) {
+        User.update({
+          firstname: firstname,
+          lastname: lastname,
+          username: username,
+          email: email,
+          age: age,
+          gender: gender,
+          nationality: nationality
+        }, function (err, username) {
           res.send(username)
         });
 
-        p.save(function(err) {
+        p.save(function (err) {
           if (err)
             console.log('error')
           else
@@ -117,6 +125,7 @@ module.exports = {
         });
       }
     });
+  },
 }
 
 
