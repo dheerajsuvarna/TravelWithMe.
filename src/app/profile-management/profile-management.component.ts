@@ -31,7 +31,10 @@ export class profileManagementComponent implements OnInit {
     return age;
   }
 
-  constructor(private userService: UserService) {
+  constructor(
+  private router: Router,
+  private userService: UserService,
+  private alertService: AlertService)  {
     this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
     var temp  = localStorage.getItem('currentUser');
     var json = JSON.parse(temp);
@@ -45,7 +48,17 @@ export class profileManagementComponent implements OnInit {
   ngOnInit() {
   }
 
-  editProfile(){
-    //fill this accordingly later
+  editprofile(){
+    this.loading = true;
+    this.userService.create(this.model)
+      .subscribe(
+        data => {
+          this.alertService.success('Successfully Updated', true);
+          this.router.navigate(['/editprofile']);
+        },
+        error => {
+          this.alertService.error(error);
+          this.loading = false;
+        });
   }
 }

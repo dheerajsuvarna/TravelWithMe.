@@ -24,6 +24,10 @@ router.post('/addtrip', jwt({
   secret: configPassport.secret
 }), trip.create);
 
+router.post('/editprofile', jwt({
+  secret: configPassport.secret
+}), user.editprofile);
+
 router.get('/mytrip',jwt({
   secret: configPassport.secret
 }), trip.mytrip);

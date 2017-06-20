@@ -16,7 +16,9 @@ export class UserService {
     return this.http.get('/api/user/getall', this.jwt()).map((response: Response) => response.json());
   }
 
-
+  editprofile(user: User) {
+    return this.http.post('/api/user/editprofile', user).map((response: Response) => response.json());
+  }
   // private helper methods
 
   private jwt() {
