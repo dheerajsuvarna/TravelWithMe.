@@ -37,8 +37,8 @@ export class profileManagementComponent implements OnInit {
     var json = JSON.parse(temp);
     this.currentUser = json.user;
     this.currentUser.gender= "Female";
-    this.currentUser.description = "We should bring this value from DB or store it";
-    this.currentUser.age= new Number(this.getAge(this.currentUser.birthdate));
+   // this.currentUser.description = "We should bring this value from DB or store it";
+  //  this.currentUser.age= new Number(this.getAge(this.currentUser.birthdate));
 
   }
 
