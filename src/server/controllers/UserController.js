@@ -12,6 +12,7 @@ var _ = require('lodash');
 
 module.exports = {
   authenticate: function (req, res) {
+    console.log("request body ", req.body.email_address);
     if (!req.body || !req.body.email_address || !req.body.password) {
       return res.status(400).send('Incorrect request');
     }
@@ -78,7 +79,7 @@ module.exports = {
         res.json(user);
       })
       .catch(function (err) {
-        console.log("could not save to database");
+        console.log("could not save to database", err);
         res.status(400).send("not able to save" + err);
       });
   },
@@ -88,7 +89,7 @@ module.exports = {
       .then(function (users) {
         // return users (without hashed passwords)
         users = _.map(users, function (user) {
-          user.DOB.toString();
+          //user.DOB.toString();
           return _.omit(user, 'password');
         });
         return res.json(users);

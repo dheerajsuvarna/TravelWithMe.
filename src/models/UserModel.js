@@ -26,7 +26,7 @@ var UserSchema = new Schema({
   },
 
   DOB: {
-    type: String,
+    type: Date,
    required: true
   },
 
