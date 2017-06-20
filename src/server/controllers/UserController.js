@@ -7,6 +7,8 @@ var configDb = require('../config/database');
 var configPassport = require('../config/passport');
 var jwt = require('jsonwebtoken');
 var _ = require('lodash');
+var nodemailer = require('nodemailer');
+var sgTransport = require('nodemailer-sendgrid-transport');
 
 
 module.exports = {
@@ -41,6 +43,21 @@ module.exports = {
 
   create: function (req, res) {
 
+
+
+
+    var options = {
+      auth: {
+        api_user: 'nilofer31',
+        api_key: 'Test@123'
+      }
+    }
+    var client = nodemailer.createTransport(sgTransport(options));
+
+
+
+
+
     if (!req.body || !req.body.username || !req.body.password) {
       return res.status(400).send('Incorrect request');
     }
@@ -58,12 +75,28 @@ module.exports = {
       username: req.body.username,
       password: req.body.password,
       email_address: req.body.email_address,
-     // DOB: req.body.DOB
+      DOB: req.body.DOB,
+      tempToken: token = jwt.sign(req.body.username, configPassport.secret)
     });
 
     newUser.save()
       .then(function (user) {
-        res.json(user);
+        var email = {
+          from: 'no-replay',
+          to: req.body.email_address,
+          subject: 'TravelWithMe activation link',
+          text: 'Hello world',
+          html: 'Please click below link for activartion..<br> <a href="http://localhost/4200/activation" + newUser.tempToken> http://localhost/4200/activation</a>'
+        };
+        client.sendMail(email, function(err, info){
+          if (err ){
+            console.log(error);
+          }
+          else {
+            console.log('Message sent: ' + info.response);
+          }
+        });
+        res.json("User created, please check your email for activation");
       })
       .catch(function (err) {
         res.status(400).send("not able to save" + err);

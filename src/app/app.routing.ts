@@ -12,6 +12,7 @@ const appRoutes: Routes = [
     { path: 'login', component: LoginComponent },
     { path: 'register', component: RegisterComponent },
     { path: 'landingPage', component: LandingPageComponent },
+  {path: 'activation', componet: ActivationComponet},
 
     // otherwise redirect to home
     { path: '**', redirectTo: '' }

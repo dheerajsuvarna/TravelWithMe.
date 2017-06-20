@@ -30,7 +30,16 @@ var UserSchema = new Schema({
   DOB: {
     type: Date,
     required: false,
-    default: ""
+    default: new Date()
+  },
+  active:{
+    type: Boolean,
+    required: true,
+    default: false
+  },
+  tempToken:{
+    type: String,
+    required: true
   }
 });
 
