@@ -47,11 +47,13 @@ module.exports = {
       return res.status(400).send('Incorrect request');
     }
 
-    var today = new Date();
-    var birthDate = new Date(req.body.DOB);
-    var age = today.getFullYear() - birthDate.getFullYear();
-    var m = today.getMonth() - birthDate.getMonth();
-    if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+
+    var now = new Date();
+    var bday = new Date(req.body.DOB);
+    var age = now.getFullYear() - bday.getFullYear();
+    var m = now.getMonth() - bday.getMonth();
+    if (m < 0 || (m === 0 && now.getDate() < bday.getDate())) {
+
       age--;
     }
     console.log("User age "+ age);
@@ -103,7 +105,11 @@ module.exports = {
   getprofile: function(req, res){
     User.findOne({email_address: req.body.email_address})
       .then(function (user){
+
         return _.omit(users, 'password');
+
+        return users;
+
       })
   }
 }
