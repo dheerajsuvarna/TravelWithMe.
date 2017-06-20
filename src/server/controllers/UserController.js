@@ -44,19 +44,21 @@ module.exports = {
     if (!req.body || !req.body.email || !req.body.password) {
       return res.status(400).send('Incorrect request');
     }
-    var patt = new RegExp("([A-Za-z0-9._-]*@tum.de|[A-Za-z0-9._-]*@mytum.de)$");
+
+    //Handled in client end
+    /*var patt = new RegExp("([A-Za-z0-9._-]*@tum.de|[A-Za-z0-9._-]*@mytum.de)$");
     var matched = patt.test(req.body.email.trim());
     if(!matched)
     {
       console.log(req.body.email);
       return res.status(400).send("Invalid Email Domain");
-    }
+    }*/
 
     User.findOne({email: req.body.email},function(err, existingUser){
       if(existingUser  )
       return res.status(400).send("User Already Exists"); });
 
-
+    console.log(req.body.gender);
     var newUser = new User({
 
       firstname: req.body.firstname,
@@ -64,7 +66,8 @@ module.exports = {
       email: req.body.email,
       password: req.body.password,
       birthdate: req.body.birthdate,
-      description:req.body.description
+      description:req.body.description,
+      gender: req.body.gender
     });
 
     newUser.save()
@@ -91,6 +94,10 @@ module.exports = {
       });
 
   },
+
+  updateprofile: function(req, res){
+
+  }
 }
 
 

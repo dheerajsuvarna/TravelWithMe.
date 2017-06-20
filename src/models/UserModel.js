@@ -53,7 +53,7 @@ var UserSchema = new Schema({
     required: false
 
     // required: true
-  },
+  }
   // img: { data: Buffer, contentType: String }
 });
 
