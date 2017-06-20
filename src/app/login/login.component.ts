@@ -36,12 +36,12 @@ export class LoginComponent implements OnInit {
     this.authenticationService.login(this.model.email_address, this.model.password)
       .subscribe(
         data => {
-          console.log("successfully logged in", data);
+          console.log('successfully logged in', data);
           window.location.reload();
           this.router.navigate([this.returnUrl]);
         },
         error => {
-          console.log("error in login ", error);
+          console.log('error in login ', error);
           this.alertService.error(error);
           this.loading = false;
         });

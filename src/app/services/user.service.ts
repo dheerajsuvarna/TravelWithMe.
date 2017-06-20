@@ -8,7 +8,7 @@ export class UserService {
   constructor(private http: Http) { }
 
   create(user: User) {
-
+    console.log('in user service',user);
     return this.http.post('/api/user/signup', user).map((response: Response) => response.json());
   }
 

@@ -103,7 +103,7 @@ module.exports = {
   getprofile: function(req, res){
     User.findOne({email_address: req.body.email_address})
       .then(function (user){
-        return users;
+        return _.omit(users, 'password');
       })
   }
 }

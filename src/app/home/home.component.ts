@@ -17,7 +17,7 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log("Home component called")
+    console.log('Home component called')
     this.loadAllUsers();
   }
 
