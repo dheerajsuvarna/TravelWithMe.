@@ -92,16 +92,13 @@ module.exports = {
 
   },
   editprofile: function (req, res) {
-    User.findOne({username: req.body.username}, function (err, p) {
+    User.findOne({email: req.body.email}, function (err, p) {
       if (!p)
         return next(new Error('User does not exist'));
       else {
         var firstname = req.body.firstname;
         var lastname = req.body.lastname;
-
         var email = req.body.email;
-        var password = req.body.password;
-        var age = req.body.age;
         var gender = req.body.gender;
         var nationality = req.body.nationality;
 
@@ -110,11 +107,10 @@ module.exports = {
           lastname: lastname,
           username: username,
           email: email,
-          age: age,
           gender: gender,
           nationality: nationality
-        }, function (err, username) {
-          res.send(username)
+        }, function (err, res) {
+          return res.status(200).send('Successfully Updated');
         });
 
         p.save(function (err) {
@@ -127,5 +123,3 @@ module.exports = {
     });
   },
 }
-
-
