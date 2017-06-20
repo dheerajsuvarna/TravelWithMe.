@@ -48,17 +48,17 @@
     <form class="col s12" name="form" (ngSubmit)="f.form.valid && editProfile()" #f="ngForm" novalidate>
       <div class="row">
         <div class="input-field col s6">
-          <input id="first_name" type="text" class="validate" [(ngModel)]="model.firstname" #title="ngModel" required >
+          <input id="first_name" type="text" class="validate" value="{{currentUser.firstname}}" [(ngModel)]="model.firstname" #title="ngModel" required >
           <label for="first_name">First Name</label>
         </div>
         <div class="input-field col s6">
-          <input id="last_name" type="text" class="validate" [(ngModel)]="model.lastname" #title="ngModel" required >
+          <input id="last_name" type="text" class="validate" value="{{currentUser.lastname}}"  [(ngModel)]="model.lastname" #title="ngModel" required >
           <label for="last_name">Last Name</label>
         </div>
       </div>
       <div class="row">
         <div class="input-field col s12">
-          <input disabled value="sophiamason@mytum.de" type="text" class="validate">
+          <input disabled value="{{currentUser.email}}" type="text" class="validate">
           <label for="disabled">Email</label>
         </div>
 
@@ -67,15 +67,15 @@
 
       <br>
       <div class="row">
-        <input name="grp1" type="radio" id="r1">
+        <input name="grp1" type="radio" [(ngModel)]="model.gender" value="Male" [checked]="'Male'== currentUser.gender"  id="r1">
         <label for="r1">Male</label>
 
-        <input name="grp1" type="radio" id="r2">
+        <input name="grp1" type="radio" [(ngModel)]="model.gender" value="Female" [checked]="'Female'== currentUser.gender"   id="r2">
         <label for="r2">Female</label>
       </div>
       <div class="row">
         <div class="input-field col s12">
-          <input disabled value="25" id="disabled1" type="text" class="validate">
+          <input disabled value="{{currentUser.age}}" [(ngModel)]="model.age" id="disabled1" type="text" class="validate">
           <label for="disabled">Age</label>
         </div>
       </div>
@@ -379,24 +379,6 @@
     </form>
   </div>-->
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   <div id="uploadPhoto" class="col s12 z-depth-4 card-panel" style="width:45%;height:200px;  ">
     <div class="text-center">
       <img src="//placehold.it/100" class="avatar img-circle" alt="avatar">
@@ -413,7 +395,7 @@
       <form class="col s12">
         <div class="row">
           <div class="input-field col s12">
-            <textarea id="textarea1" class="materialize-textarea" [(ngModel)]="model.text" #text="ngModel" required></textarea>
+            <textarea id="textarea1" class="materialize-textarea" [(ngModel)]="model.text" value="{{currentUser.description}}"  #text="ngModel" required></textarea>
               <label for="textarea1">Tell us a little about you.</label>
           </div>
         </div>
