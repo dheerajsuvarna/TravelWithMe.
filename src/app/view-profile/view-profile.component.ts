@@ -27,10 +27,11 @@ export class ViewProfileComponent implements OnInit {
     var temp  = localStorage.getItem('currentUser');
     var json = JSON.parse(temp);
     this.currentUser = json.user;
-    this.currentUser.gender= json.gender;
-    this.currentUser.description = "We should bring this value from DB or store it";
+    this.currentUser.gender= json.user.gender;
+    this.currentUser.description = json.user.description;
     this.currentUser.age= new Number(this.getAge(this.currentUser.birthdate));
-    // this.currentUser.age= new Number(this.getAge(this.currentUser.birthdate));
+    this.currentUser.nationality = json.user.nationality;
+    //this.currentUser.age= new Number(this.getAge(this.currentUser.birthdate));
   }
   ngOnInit() {
   }
