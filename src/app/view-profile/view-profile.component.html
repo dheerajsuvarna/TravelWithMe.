@@ -1,0 +1,114 @@
+
+<style>
+  #uploadPhoto,#basicInfo{
+
+
+    margin-left: 200px;
+
+  }
+  #uploadPhoto{
+    float:left;
+  }
+  #basicInfo{
+
+    float:right;
+    margin-right:100px;
+  }
+  #aboutBox{
+    float:right;
+    margin-right:100px;
+  }
+</style>
+
+
+<div  style="background: rgba(76, 175, 80, 0.0)">
+  <!-- left column -->
+
+
+
+
+
+  <!--<div id="basicInfo" class="col s12 z-depth-4 card-panel" style="width:45%;">
+    <h2>Edit Profile</h2>
+    <form name="form" (ngSubmit)="f.form.valid && editProfile()" #f="ngForm" novalidate>
+      <div class="form-group">
+        <label for="firstname">First Name</label>
+        <input type="text" class="form-control" name="firstname" [(ngModel)]="model.firstname" #title="ngModel" required />
+      </div>
+      <div class="form-group">
+        <label for="lastname">Last Name</label>
+        <input type="text" class="form-control" name="lastname" [(ngModel)]="model.lastname" #title="ngModel" required />
+      </div>
+      <div class="form-group">
+        <label>Age<input type="number" min="1" max="100" value="1" name="age" [(ngModel)]="model.age" #source="ngModel" required>
+        </label>
+      </div>
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="text" class="form-control" name="email" [(ngModel)]="model.email" #source="ngModel" required />
+      </div>
+
+      <div class="form-group">
+        <label for="gender">Gender:
+          <label>
+            <input type="radio" name="gender" value="male" [(ngModel)]="model.gender" #source="ngModel" required/>Male
+          </label>
+          <label>
+            <input type="radio" name="gender" value="female" [(ngModel)]="model.gender" #source="ngModel" required/>Female
+          </label>
+        </label>
+      </div>
+      <div class="form-group">
+        <label for="nationality">Nationality</label>
+        <input type="text" class="form-control" name="nationality" [(ngModel)]="model.nationality" #source="ngModel" required />
+      </div>
+    </form>
+  </div>-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <div id="uploadPhoto" class="col  z-depth-4 card-panel" style="width:250px;height:250px;  ">
+    <div class="text-center">
+      <img src="http://res.cloudinary.com/demo/image/upload/w_400,h_400,c_crop,g_face,r_max/w_200/lady.jpg" class="avatar img-circle" alt="avatar">
+      <br>
+      <h4> <strong></strong></h4>
+    </div>
+  </div>
+
+  <div id="basicInfo" class="col s12 z-depth-4 card-panel" style="width:45%;">
+
+    <h6><strong>Name       :                     	{{currentUser.firstname}} {{currentUser.lastname}}</strong></h6>
+    <h6><strong>Gender     :                     {{currentUser.gender}}</strong></h6>
+    <h6><strong>Country    :                    {{currentUser.nationality}}</strong></h6>
+    <h6><strong>Age        :                        {{currentUser.age}}</strong></h6>
+
+
+
+  </div>
+
+  <div class="col  z-depth-4 card-panel" id="aboutBox" style="width:45%;height:300px;">
+    <h5><strong>About Me:</strong></h5>
+    <p>
+      <br>
+      {{currentUser.description}}
+
+    </p>
+
+</div>
+</div>
