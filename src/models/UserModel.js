@@ -8,9 +8,12 @@ var bcrypt = require('bcrypt');
 const saltRounds = 10
 
 var UserSchema = new Schema({
-  username: {
+  firstname: {
     type: String,
-    unique: true,
+    required: true
+  },
+  lastname: {
+    type: String,
     required: true
   },
   password: {
@@ -19,39 +22,26 @@ var UserSchema = new Schema({
   },
   email_address: {
     type: String,
-  },
-<<<<<<< HEAD
-  DOB: {
-    type: Date,
-    required: false,
-    default: new Date()
-  },
-  active:{
-    type: Boolean,
-    required: true,
-    default: false
-  },
-  tempToken:{
-    type: String,
     required: true
-=======
-  age: {
-    type: Number,
+  },
+
+  DOB: {
+    type: String,
+   required: true
+  },
+
+  Age: {
+    type: Number
   },
   gender: {
     type: String,
+    required: false
+    //default:""
   },
   nationality: {
     type: String,
-  },
-  firstname: {
-    type: String,
-    // required: true
-  },
-  lastname: {
-    type: String,
-    // required: true
->>>>>>> 2535295141fd1d68dc9adfb507f61601235f4d40
+    required: false
+    //default:""
   }
 });
 

@@ -7,18 +7,17 @@ var configDb = require('../config/database');
 var configPassport = require('../config/passport');
 var jwt = require('jsonwebtoken');
 var _ = require('lodash');
-var nodemailer = require('nodemailer');
-var sgTransport = require('nodemailer-sendgrid-transport');
+
 
 
 module.exports = {
   authenticate: function (req, res) {
-    if (!req.body || !req.body.username || !req.body.password) {
+    if (!req.body || !req.body.email_address || !req.body.password) {
       return res.status(400).send('Incorrect request');
     }
 
     User.findOne({
-      username: req.body.username
+      email_address: req.body.email_address
     })
       .then(function (user) {
         user.comparePassword(req.body.password, function (err, isMatch) {
@@ -43,25 +42,19 @@ module.exports = {
 
   create: function (req, res) {
 
-
-
-
-    var options = {
-      auth: {
-        api_user: 'nilofer31',
-        api_key: 'Test@123'
-      }
-    }
-    var client = nodemailer.createTransport(sgTransport(options));
-
-
-
-
-
-    if (!req.body || !req.body.username || !req.body.password) {
+    if (!req.body || !req.body.email_address || !req.body.password) {
       return res.status(400).send('Incorrect request');
     }
-    //This not required as it is being checked at the client side
+
+    var today = new Date();
+    var birthDate = new Date(req.body.DOB);
+    var age = today.getFullYear() - birthDate.getFullYear();
+    var m = today.getMonth() - birthDate.getMonth();
+    if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+      age--;
+    }
+    console.log("User age "+ age);
+    //This is not required in server side
     /*var patt = new RegExp("([A-Za-z0-9._-]*@tum.de|[A-Za-z0-9._-]*@mytum.de)$");
     var matched = patt.test(req.body.username.trim());
     if(!matched)
@@ -69,45 +62,33 @@ module.exports = {
       console.log(req.body.username);
       return res.status(400).send("Invalid Email Domain");
     }*/
-    console.log(req.body)
+    console.log(req.body.DOB)
     var newUser = new User({
-      Name: req.body.Name,
-      username: req.body.username,
+      firstname: req.body.firstname,
+      lastname: req.body.lastname,
       password: req.body.password,
       email_address: req.body.email_address,
       DOB: req.body.DOB,
-      tempToken: token = jwt.sign(req.body.username, configPassport.secret)
+      Age: age
     });
-
+    console.log(newUser);
     newUser.save()
       .then(function (user) {
-        var email = {
-          from: 'no-replay',
-          to: req.body.email_address,
-          subject: 'TravelWithMe activation link',
-          text: 'Hello world',
-          html: 'Please click below link for activartion..<br> <a href="http://localhost/4200/activation" + newUser.tempToken> http://localhost/4200/activation</a>'
-        };
-        client.sendMail(email, function(err, info){
-          if (err ){
-            console.log(error);
-          }
-          else {
-            console.log('Message sent: ' + info.response);
-          }
-        });
-        res.json("User created, please check your email for activation");
+        console.log("saved successfully");
+        res.json(user);
       })
       .catch(function (err) {
+        console.log("could not save to database");
         res.status(400).send("not able to save" + err);
       });
   },
 
   getall: function (req, res) {
-    User.find()
+    User.findOne({email_address: req.body.email_address})
       .then(function (users) {
         // return users (without hashed passwords)
         users = _.map(users, function (user) {
+          user.DOB.toString();
           return _.omit(user, 'password');
         });
         return res.json(users);
@@ -117,6 +98,13 @@ module.exports = {
       });
 
   },
+
+  getprofile: function(req, res){
+    User.findOne({email_address: req.body.email_address})
+      .then(function (user){
+        return users;
+      })
+  }
 }
 
 
