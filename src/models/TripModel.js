@@ -5,27 +5,32 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 
-var TripSchema = new Schema({
+var TripPlan = new Schema({
   source: {
     type: String,
     required: true
   },
   destination: {
     type: String,
-    requiired: true
+    required: true
   },
   TripName: {
     type: String,
+    unique: true
   },
-  Budget:{
+  BudgetLow:{
     type: Number,
     required: false
   },
+  BudgetMax:{
+    type: Number,
+    required: true
+  },
   user: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'UserSchema'
+    ref: 'User'
   }
 });
 
-module.exports = mongoose.model('TripPlan', TripSchema);
+module.exports = mongoose.model('Trip', TripPlan);
 

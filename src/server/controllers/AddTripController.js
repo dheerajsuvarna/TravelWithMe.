@@ -18,9 +18,10 @@ module.exports = {
    var newTrip = new Trip({
      source: req.body.source,
      destination: req.body.destination,
-     Budget: req.body.Budget
+     BudgetLow: req.body.BudgetLow,
+     BudgetMax: req.body.BudgetMax,
+     TripName:req.body.TripName
    });
-
    newTrip.save()
      .then(function (trip) {
        res.json(trip)

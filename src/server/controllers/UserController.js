@@ -44,6 +44,8 @@ module.exports = {
   create: function (req, res) {
 
     if (!req.body || !req.body.email_address || !req.body.password) {
+      console.log("body",req.body.username);
+      console.log("Printing email");
       return res.status(400).send('Incorrect request');
     }
 
