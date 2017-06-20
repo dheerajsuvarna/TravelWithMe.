@@ -11,12 +11,12 @@ var _ = require('lodash');
 
 module.exports = {
   authenticate: function (req, res) {
-    if (!req.body || !req.body.username || !req.body.password) {
+    if (!req.body || !req.body.email || !req.body.password) {
       return res.status(400).send('Incorrect request');
     }
 
     User.findOne({
-      username: req.body.username
+      email: req.body.email
     })
       .then(function (user) {
         user.comparePassword(req.body.password, function (err, isMatch) {
@@ -41,28 +41,30 @@ module.exports = {
 
   create: function (req, res) {
     console.log(req.body, req.headers);
-    if (!req.body || !req.body.username || !req.body.password) {
+    if (!req.body || !req.body.email || !req.body.password) {
       return res.status(400).send('Incorrect request');
     }
     var patt = new RegExp("([A-Za-z0-9._-]*@tum.de|[A-Za-z0-9._-]*@mytum.de)$");
-    var matched = patt.test(req.body.username.trim());
+    var matched = patt.test(req.body.email.trim());
     if(!matched)
     {
-      console.log(req.body.username);
+      console.log(req.body.email);
       return res.status(400).send("Invalid Email Domain");
     }
 
-    User.findOne({username: req.body.username},function(err, existingUser){
+    User.findOne({email: req.body.email},function(err, existingUser){
       if(existingUser  )
       return res.status(400).send("User Already Exists"); });
 
 
     var newUser = new User({
-      Namd: req.body.Name,
-      username: req.body.username,
+
+      firstname: req.body.firstname,
+      lastname: req.body.lastname,
+      email: req.body.email,
       password: req.body.password,
-      email_address: req.body.emailaddress,
-      DOB: req.body.DOB
+      birthdate: req.body.birthdate,
+      description:req.body.description
     });
 
     newUser.save()
@@ -70,6 +72,7 @@ module.exports = {
         res.json(user);
       })
       .catch(function (err) {
+        console.log(err);
         res.status(400).send(err);
       });
   },

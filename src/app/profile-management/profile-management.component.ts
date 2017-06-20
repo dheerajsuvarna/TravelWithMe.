@@ -18,14 +18,27 @@ export class profileManagementComponent implements OnInit {
   loading = false;
   returnUrl: string;
   currentUser: User;
-  users: User[] = [];
- public test:string;
+ public test:string = '';
 
+  getAge(dateString) {
+    var today = new Date();
+    var birthDate = new Date(dateString);
+    var age = today.getFullYear() - birthDate.getFullYear();
+    var m = today.getMonth() - birthDate.getMonth();
+    if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+      age--;
+    }
+    return age;
+  }
 
-
-  constructor() {
-    this.test="sdfsdf";
-  //  this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+  constructor(private userService: UserService) {
+    this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    var temp  = localStorage.getItem('currentUser');
+    var json = JSON.parse(temp);
+    this.currentUser = json.user;
+    this.currentUser.gender= "Female";
+    this.currentUser.description = "We should bring this value from DB or store it";
+    this.currentUser.age= new Number(this.getAge(this.currentUser.birthdate));
 
   }
 
