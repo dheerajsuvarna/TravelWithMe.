@@ -91,32 +91,6 @@ module.exports = {
       });
 
   },
-  editprofile: function (req, res) {
-    User.findOne({username: req.body.username},function(err, p){
-      if(!p)
-        return next(new Error('User does not exist'));
-      else{
-        var firstname = req.body.firstname;
-        var lastname = req.body.lastname;
-        var username: req.body.username;
-        var email = req.body.email;
-        var password = req.body.password;
-        var age = req.body.age;
-        var gender =   req.body.gender;
-        var nationality = req.body.nationality;
-
-        User.update({ firstname: firstname, lastname: lastname, username: username, email: email, age: age, gender: gender, nationality: nationality}, function (err, username) {
-          res.send(username)
-        });
-
-        p.save(function(err) {
-          if (err)
-            console.log('error')
-          else
-            console.log('success')
-        });
-      }
-    });
 }
 
 
