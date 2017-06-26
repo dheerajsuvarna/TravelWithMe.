@@ -31,14 +31,14 @@ export class profileManagementComponent implements OnInit {
     return age;
   }
 
-  constructor(private userService: UserService) {
+  constructor() {
     this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
     var temp  = localStorage.getItem('currentUser');
     var json = JSON.parse(temp);
     this.currentUser = json.user;
     this.currentUser.gender = json.user.gender;
     this.currentUser.description = json.user.description;
-    this.currentUser.age= new Number(this.getAge(this.currentUser.birthdate));
+ //   this.currentUser.age= new Number(this.getAge(this.currentUser.birthdate));
 
   }
 
