@@ -1,4 +1,4 @@
-<div style="width: 400px;">
+<div style="width: 500px;">
 
   <div class="card sticky-action"  >
 
@@ -10,22 +10,24 @@
       <span class="card-title activator grey-text text-darken-4">{{trip.tripName}}<i class="material-icons right">more_vert</i></span>
       <p><a href="#">Join this Trip!</a></p>
     </div>
+    <div style="background:lightblue;">
+      <div style="  margin:10px;">
 
+        <p >
+          Posted by: <a  href="#">{{trip.user.firstname}} {{trip.user.lastname}}️   </a>
+        </p>
+        <p ><i class="fa fa-map-marker"></i>  {{trip.source}} → {{trip.destination}} </p>
+        <p  ><i class="fa fa-calendar" aria-hidden="true">    {{trip.date}}</i></p>
+        <i class="fa fa-money" aria-hidden="true">    Budget: {{trip.budget}} <i class="fa fa-eur" aria-hidden="true"></i>
+        </i>
+      </div>
+    </div>
     <div class="card-reveal">
       <span class="card-title grey-text text-darken-4">{{trip.tripName}}<i class="material-icons right">close</i></span>
       <p>{{trip.description}}</p>
     </div>
 
-    <div style="background:lightblue">
-      <p  style="margin:10px">   Posted by: <a  href="#">{{trip.user.firstname}} {{trip.user.lastname}}️</a>  </p>
 
-      <div>
-        <p style="margin:10px"><i class="fa fa-map-marker"></i>  {{trip.source}} → {{trip.destination}} </p>
-       <p style="margin:10px"><i class="fa fa-calendar" aria-hidden="true">    {{trip.date}}</i></p>
-
-      </div>
-
-    </div>
 
 
 
