@@ -16,6 +16,8 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { LandingPageComponent } from './landing-page/landing-page.component';
 import { profileManagementComponent } from './profile-management/profile-management.component';
 import { ViewProfileComponent } from './view-profile/view-profile.component';
+import { TripCardComponent } from './trip-card/trip-card.component';
+import { MyTripsComponent } from './my-trips/my-trips.component';
 //import { TestComponent } from './test/test.component';
 
 @NgModule({
@@ -35,6 +37,8 @@ import { ViewProfileComponent } from './view-profile/view-profile.component';
     LandingPageComponent,
     profileManagementComponent,
     ViewProfileComponent,
+    TripCardComponent,
+    MyTripsComponent,
 
   ],
   providers: [

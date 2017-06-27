@@ -1,0 +1,35 @@
+<div style="width: 400px;">
+
+  <div class="card sticky-action"  >
+
+    <div class="card-image waves-effect waves-block waves-light">
+      <img class="activator" src="{{imageURI}}">
+    </div>
+
+    <div class="card-content">
+      <span class="card-title activator grey-text text-darken-4">{{trip.tripName}}<i class="material-icons right">more_vert</i></span>
+      <p><a href="#">Join this Trip!</a></p>
+    </div>
+
+    <div class="card-reveal">
+      <span class="card-title grey-text text-darken-4">{{trip.tripName}}<i class="material-icons right">close</i></span>
+      <p>{{trip.description}}</p>
+    </div>
+
+    <div style="background:lightblue">
+      <p  >  Posted by: Hege Refsnes 🛳️  </p>
+
+      <div>
+        <p><i class="fa fa-map-marker"></i> {{trip.source}} → {{trip.destination}} </p>
+       <p style="margin:10px"><i class="fa fa-calendar" aria-hidden="true">{{trip.date}}</i></p>
+
+      </div>
+
+    </div>
+
+
+
+  </div>
+
+
+</div>

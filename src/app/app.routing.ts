@@ -7,6 +7,7 @@ import { RegisterComponent } from './register/register.component';
 import { LandingPageComponent } from './landing-page/landing-page.component';
 import { profileManagementComponent } from './profile-management/profile-management.component';
 import { ViewProfileComponent } from './view-profile/view-profile.component';
+import { MyTripsComponent} from './my-trips/my-trips.component';
 
 const appRoutes: Routes = [
 
@@ -16,8 +17,10 @@ const appRoutes: Routes = [
     { path: 'login', component: LoginComponent },
     { path: 'register', component: RegisterComponent },
     { path: 'landingPage', component: LandingPageComponent },
+  { path: 'mytrips', component: MyTripsComponent, canActivate: [AuthGuard] },
 
-    // otherwise redirect to home
+
+  // otherwise redirect to home
     { path: '**', redirectTo: '' }
 ];
 
