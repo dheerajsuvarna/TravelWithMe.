@@ -14,7 +14,7 @@ export class MyTripsComponent implements OnInit {
   user: User = new User();
 
 
-  public trips: Trip[] = [this.trip,this.trip2];
+  public trips: Trip[] = [this.trip,this.trip2,this.trip,this.trip2];
 
   constructor() {
 
