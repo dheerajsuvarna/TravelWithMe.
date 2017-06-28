@@ -23,6 +23,7 @@ export class MyTripsComponent implements OnInit {
   ngOnInit() {
     this.user.firstname = "Bakri";
     this.user.lastname="Bitar";
+    this.user.email = "bakri.bitar@tum.de";
     this.trip.interests= [Interest.Beach];
     this.trip.tripName = "To the Beach";
     this.trip.budget = 50;
