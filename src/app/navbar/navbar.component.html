@@ -8,7 +8,10 @@
           <li><a href="#intro" *ngIf="!loggedIn">Home</a></li>
           <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"  *ngIf="loggedIn" ><a [routerLink] = "['/viewProfile']">Profile</a></li>
           <li><a href="#contact">Contact</a></li>
-          <li><a href="#mytrips" *ngIf="loggedIn" ng-show="false">My Trips</a></li>
+          <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"  *ngIf="loggedIn" ><a [routerLink] = "['/mytrips']">My Trips</a></li>
+
+
+
           <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"  *ngIf="!loggedIn" ><a [routerLink] = "['/register']">Signup</a></li>
           <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"  *ngIf="loggedIn" ><a [routerLink] = "['/profileEdit']">Edit Profile</a></li>
           <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"><a [routerLink] = "['/login']"  *ngIf="!loggedIn"  >Login</a></li>
@@ -20,7 +23,7 @@
           <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"  *ngIf="loggedIn" ><a [routerLink] = "['/viewProfile']">Profile</a></li>
 
           <li><a href="#contact">Contact</a></li>
-          <li><a href="#mytrips" ng-show="false">My Trips</a></li>
+          <li><a href="#mytrips" *ngIf="loggedIn">My Trips</a></li>
           <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"  *ngIf="!loggedIn" ><a [routerLink] = "['/register']">Signup</a></li>
           <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"><a [routerLink] = "['/login']"  *ngIf="!loggedIn"  >Login</a></li>
           <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}" (click)="logout()"><a [routerLink] = "['/logout']"    *ngIf="loggedIn"  >Logout</a></li>
