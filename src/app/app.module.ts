@@ -18,7 +18,6 @@ import { profileManagementComponent } from './profile-management/profile-managem
 import { ViewProfileComponent } from './view-profile/view-profile.component';
 import { TripCardComponent } from './trip-card/trip-card.component';
 import { MyTripsComponent } from './my-trips/my-trips.component';
-//import { TestComponent } from './test/test.component';
 
 @NgModule({
   imports: [
