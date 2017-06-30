@@ -3,7 +3,7 @@
  */
 module.exports = {
 
-  'database': 'mongodb://localhost/TravelWithMe'
+  'database': 'mongodb://localhost/TravelWithMe2'
 
   // the old one but all users must be deleted in order for register to work
   // 'database': 'mongodb://admin:admin@ds053126.mlab.com:53126/travelwithme'
