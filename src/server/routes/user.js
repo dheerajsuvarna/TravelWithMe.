@@ -15,7 +15,7 @@ var trip = require("../controllers/AddTripController.js");
 
 router.post('/signup', user.createTemp);
 router.post('/signin', user.authenticate);
-router.get('/email-verification', user.confirmTempUser);
+router.post('/email-verification', user.confirmTempUser);
 
 router.get('/getall', jwt({
   secret: configPassport.secret

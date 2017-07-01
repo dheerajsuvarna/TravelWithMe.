@@ -213,7 +213,7 @@ console.log(newTempUser);
         res.json(newTempUser);
 
 
-          var URL = newTempUser[nev.options.URLFieldName]|| "WERWEQRASDFASDFASDF";
+          var URL = newTempUser[nev.options.URLFieldName];
           nev.sendVerificationEmail(newUser.email, URL, function (err, info) {
             if (err) {
               console.log(err.message);
@@ -265,41 +265,31 @@ console.log(newTempUser);
   confirmTempUser: function (req,res) {
 
 
-    nev.sendVerificationEmail("bakri_bitar@hotmail.com", URL, function (err, info) {
-      if (err) {
-        console.log(err.message);
+    TempUser.findOneAndRemove({GENERATED_VERIFYING_URL: req.body.firstname}, function (err, existingUser) {
+      if (existingUser) {
+
+        var newUser = new User({
+          firstname: existingUser.firstname,
+          lastname: existingUser.lastname,
+          email: existingUser.email,
+          password: existingUser.password,
+          birthdate: existingUser.birthdate,
+          gender:existingUser.gender
+        });
+
+        newUser.save()
+          .then(function (user) {
+            res.json(user);
+            res.status(200).send("Confirmed!");
+            nev.sendConfirmationEmail(newUser.email);
+          })
+          .catch(function (err) {
+            console.log(err);
+            res.status(400).send(err);
+          });
       }
-      // newUser.save()
-      //   .then(function (user) {
-      //     res.json(user);
-      //   })
-      //   .catch(function (err) {
-      //     console.log(err);
-      //     res.status(400).send(err);
-      //   });
     });
 
-    nev.confirmTempUser(req.URL, function(err, user) {
-
-
-
-      if (err)
-      {}
-      // handle error...
-
-      // user was found!
-        if (user) {
-          // optional
-          nev.sendConfirmationEmail(user['email_field_name'], function(err, info) {
-            // redirect to their profile...
-          });
-        }
-
-        // user's data probably expired...
-        else
-        {}
-        // redirect to sign-up
-          });
 
 
   },

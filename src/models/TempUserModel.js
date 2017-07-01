@@ -5,6 +5,12 @@ var bcrypt = require('bcrypt');
 const saltRounds = 10
 
 var TempUserSchema = new Schema({
+  GENERATED_VERIFYING_URL: {
+    type: String,
+    unique:true,
+    required: true,
+    // required: true
+  },
   password: {
     type: String,
     required: true
@@ -12,7 +18,6 @@ var TempUserSchema = new Schema({
   email: {
     type: String,
     required: true,
-    unique:true,
   },
   age: {
     type: Number,
@@ -52,12 +57,7 @@ var TempUserSchema = new Schema({
     // required: true
   },
 
-  GENERATED_VERIFYING_URL: {
-    type: String,
-    required: false
 
-    // required: true
-  },
 
 
 
