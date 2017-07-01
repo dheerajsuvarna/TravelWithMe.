@@ -7,7 +7,7 @@ import { User } from '../models/usermodel';
 export class UserService {
   constructor(private http: Http) { }
 
-  create(user: User) {
+  createTemp(user: User) {
 
     return this.http.post('/api/user/signup', user).map((response: Response) => response.json());
   }
