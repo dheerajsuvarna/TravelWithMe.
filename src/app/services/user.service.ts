@@ -7,7 +7,7 @@ import { User } from '../models/usermodel';
 export class UserService {
   constructor(private http: Http) { }
 
-  create(user: User) {
+  createTemp(user: User) {
 
     return this.http.post('/api/user/signup', user).map((response: Response) => response.json());
   }
@@ -16,6 +16,10 @@ export class UserService {
     return this.http.get('/api/user/getall', this.jwt()).map((response: Response) => response.json());
   }
 
+  confirmUser(user:User)
+  {
+    return this.http.post('/api/user/email-verification',user).map((response: Response) => response.json());
+  }
 
   // private helper methods
 
