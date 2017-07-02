@@ -1,4 +1,4 @@
-<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/jquery-1.12.4.js" xmlns="http://www.w3.org/1999/html"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script>
   var select = '';
@@ -45,21 +45,22 @@
 
 
   <div id="basicInfo" class="col s12 z-depth-4 card-panel" style="width:45%;">
-    <form class="col s12" name="form" (ngSubmit)="f.form.valid && editProfile()" #f="ngForm" novalidate>
+    <form class="col s12" name="form" (ngSubmit)="f.form.valid && getUserProfile()" #f="ngForm" novalidate>
       <div class="row">
         <div class="input-field col s6">
-          <input id="first_name" type="text" class="validate" value="{{currentUser.firstname}}" [(ngModel)]="model.firstname" #title="ngModel" required >
-          <label for="first_name">First Name</label>
+          <label for="last_name">First Name</label>
+          <input id="first_name" type="text" class="validate" value="{{currentUser.firstname}}" [(ngModel)]="model.firstname">
+
         </div>
         <div class="input-field col s6">
-          <input id="last_name" type="text" class="validate" value="{{currentUser.lastname}}"  [(ngModel)]="model.lastname" #title="ngModel" required >
+          <input id="last_name" type="text" class="validate" value="{{currentUser.lastname}}"  [(ngModel)]="model.lastname">
           <label for="last_name">Last Name</label>
         </div>
       </div>
       <div class="row">
         <div class="input-field col s12">
           <input disabled value="{{currentUser.email}}" type="text" class="validate">
-          <label for="disabled">Email</label>
+          <label for="disabled" *ngIf="currentUser.email === ''">Email</label>
         </div>
 
 
@@ -82,7 +83,7 @@
       <br>
       <div class="row">
         <label>Country</label>
-        <select class="browser-default" id="#country">
+        <select ng-model="" class="browser-default" id="#country">
           <option value="" disabled selected>Select Country</option>
           <option value="AF">Afghanistan</option>
           <option value="AX">Åland Islands</option>
@@ -396,7 +397,7 @@
         <div class="row">
           <div class="input-field col s12">
             <textarea id="textarea1" class="materialize-textarea" [(ngModel)]="model.text" value="{{currentUser.description}}"  #text="ngModel" required></textarea>
-              <label for="textarea1">Tell us a little about you.</label>
+              <label for="textarea1" *ngIf="model.text === ''">Tell us a little about you.</label>
           </div>
         </div>
       </form>

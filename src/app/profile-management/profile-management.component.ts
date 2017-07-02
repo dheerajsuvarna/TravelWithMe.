@@ -55,6 +55,6 @@ export class profileManagementComponent implements OnInit {
     // this.currentUser.age= new Number(this.getAge(this.currentUser.birthdate));
   }
   OnUpdateProfile() {
-    this.userService.onUpdateProfile(this.model)
+    this.userService.onUpdateProfile(this.model).subscribe();
   }
 }
