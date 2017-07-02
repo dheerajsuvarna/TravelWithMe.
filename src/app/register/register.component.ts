@@ -22,7 +22,7 @@ export class RegisterComponent {
         this.userService.createTemp(this.model)
             .subscribe(
                 data => {
-                    this.alertService.success('Registration successful', true);
+                    this.alertService.success('Registration successful\nPlease verify your Email account', true);
                     this.router.navigate(['/login']);
                 },
                 error => {

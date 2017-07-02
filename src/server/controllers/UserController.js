@@ -231,40 +231,8 @@ console.log(newTempUser);
     });
   },
 
-  // createTemp: function (req,res) {
-  //   console.log("sdf");
-  //
-  //   var newUser = new TempUser({
-  //
-  //           firstname: req.body.firstname,
-  //           lastname: req.body.lastname,
-  //           email: req.body.email,
-  //           password: req.body.password,
-  //           birthdate: req.body.birthdate,
-  //           description: req.body.description
-  //         });
-  //
-  //         var URL = newUser[nev.options.URLFieldName];
-  //         nev.sendVerificationEmail(email, URL, function(err, info){
-  //         if (err)
-  //         {
-  //           // handle error...
-  //         }
-  //         newUser.save()
-  //           .then(function (user) {
-  //             res.json(user);
-  //           })
-  //           .catch(function (err) {
-  //             console.log(err);
-  //             res.status(400).send(err);
-  //           });
-  //         });
-  //
-  // },
 
   confirmTempUser: function (req,res) {
-
-
     TempUser.findOneAndRemove({GENERATED_VERIFYING_URL: req.body.firstname}, function (err, existingUser) {
       if (existingUser) {
 
@@ -289,8 +257,6 @@ console.log(newTempUser);
           });
       }
     });
-
-
 
   },
 }
