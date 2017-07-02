@@ -31,21 +31,30 @@ export class profileManagementComponent implements OnInit {
     return age;
   }
 
-  constructor() {
+  constructor(
+    private router: Router,
+    private userService: UserService,
+    private alertService: AlertService) {
     this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
     var temp  = localStorage.getItem('currentUser');
     var json = JSON.parse(temp);
     this.currentUser = json.user;
-    this.currentUser.gender = json.user.gender;
-    this.currentUser.description = json.user.description;
- //   this.currentUser.age= new Number(this.getAge(this.currentUser.birthdate));
-
   }
 
   ngOnInit() {
+    this.getUserProfile();
   }
-
-  editProfile(){
-    //fill this accordingly later
+  getUserProfile() {
+    this.userService.getUserProfile().subscribe( currentUser => {this.currentUser = currentUser} );
+    // this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    // var temp  = localStorage.getItem('currentUser');
+    // var json = JSON.parse(temp);
+    // this.currentUser = json.user;
+    // this.currentUser.gender= json.gender;
+    // this.currentUser.description =json.description;
+    // this.currentUser.age= new Number(this.getAge(this.currentUser.birthdate));
+  }
+  OnUpdateProfile() {
+    this.userService.onUpdateProfile(this.model)
   }
 }

@@ -49,6 +49,7 @@ nev.configure({
 module.exports = {
   authenticate: function (req, res) {
     if (!req.body || !req.body.email || !req.body.password) {
+      console.log(req.body)
       return res.status(400).send('Incorrect request');
     }
 
@@ -128,36 +129,68 @@ module.exports = {
       });
 
   },
-  editprofile: function (req, res) {
-    User.findOne({email: req.body.email}, function (err, p) {
-      if (!p)
-        return next(new Error('User does not exist'));
-      else {
-        var firstname = req.body.firstname;
-        var lastname = req.body.lastname;
-        var email = req.body.email;
-        var gender = req.body.gender;
-        var nationality = req.body.nationality;
+  getProfile: function (req, res) {
+    console.log("In get profile --------")
+   // console.log(configPassport.secret);
+    if (req.headers && req.headers.authorization) {
+      var authorization = req.headers.authorization;
+      var decoded;
+      decoded = jwt.verify(authorization, configPassport.secret, function(error, payload){
+        if(error)
+        {
+          console.log("error", error);
+          return res.status(401).send('unauthorized');
+        }
+        else
+        {
+          console.log("payload", payload);
+          return payload;
+        }
+      });
+      var userId = decoded.id;
 
-        User.update({
-          firstname: firstname,
-          lastname: lastname,
-          username: username,
-          email: email,
-          gender: gender,
-          nationality: nationality
-        }, function (err, res) {
-          return res.status(200).send('Successfully Updated');
-        });
+      // Fetch the user by id
+      User.findOne({email: userId})
+        .then(function (user) {
+        // Do something with the user
+        return res.json(user);
+      });
+    }
+    return res.send(500);
+  },
 
-        p.save(function (err) {
-          if (err)
-            console.log('error')
-          else
-            console.log('success')
-        });
+  onUpdateProfile: function (req, res) {
+    console.log("********", req.body);
+    if (!req.body) {
+      return res.status(400).send('Incorrect request');
+    }
+    console.log("Updating profile");
+    firstname = req.body.firstname;
+    lastname = req.body.lastname;
+    gender = req.body.gender;
+    nationality = req.body.nationality;
+    desc = req.body.description;
+    User.find()
+      .then(function (users) {
+        console.log(users);
+      });
+    User.findOneAndUpdate({email: req.body.email}, {
+        $set: {
+          firstname: req.body.firstname,
+          lastname: req.body.lastname,
+          description: req.body.description,
+          nationality: req.body.nationality
+        }
+      },
+      {'new': true}, { overwrite: true }, function (err) {
+        if(err)
+          return res.json(err);
+        else
+          return res.json("successfully saved");
       }
-    });
+    );
+
+
   },
 
   createTemp: function(req,res){
