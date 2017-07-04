@@ -1,0 +1,49 @@
+<!--<p>
+  search-trip works!
+</p>-->
+
+<div id="mainDiv">
+  <div id="SearchBar" class="form-group container">
+    <!--<div class="input-field">
+      <form id="filters">
+        &lt;!&ndash;<input #searchDestination type="text"  [(ngModel)]="model.term"/>&ndash;&gt;
+        <input #textbox type="text" [(ngModel)]="textValue">
+        <label for="search"><i class="material-icons">search</i></label>
+        <br>
+        <h5> This is the term => {{textbox.value}}</h5>
+      </form>
+    </div>-->
+    <div class="card-panel z-depth-2 row">
+      <form class="form-group col-lg-8 col-md-4 col-sm-2" [formGroup]="userForm" (ngSubmit)="onFormSubmit()">
+        <div id="inputFields1" class="row">
+           <label for="source">Source</label>
+           <input id="source" class="form-control" formControlName="source"  placeholder="Source">
+          <label for="destination">Destination</label>
+           <input  id="destination" class="form-control" formControlName="destination"  placeholder="Destination">
+          <label for="traveldate">Travel Date</label>
+           <input id="traveldate" class="form-control" formControlName="travelDate"  placeholder="Travel Date">
+          <label for="returndate">Return Date</label>
+           <input id="returndate" class="form-control" formControlName="returnDate" placeholder="Return Date">
+
+        </div>
+        <div id="inputFields2" class="row">
+          <label for="budget">Return Date</label>
+          <input id="budget"  class="form-control" formControlName="budget"  placeholder="Budget">
+          <label for="noofpeople">Return Date</label>
+          <input id="noofpeople"  class="form-control" formControlName="noofpeople"  placeholder="Number of People">
+          <label for="interests">Return Date</label>
+          <input id="interests" class="form-control" formControlName="Interests"  placeholder="Interests">
+          <button type="submit" id="searchButton" class="btn waves-button-input">Search</button>
+        </div>
+      </form>
+    </div>
+    <!--<br>
+    <h5> Source => {{searchSource}}</h5>
+    <h5> Destination => {{searchDestination}}</h5>
+    <h5> Travel Date => {{searchTravelDate}}</h5>
+    <h5> Return Date => {{searchReturnDate}}</h5>-->
+  </div>
+  <div id="search results" class="row container card-panel z-depth-2 center-align" style="margin:auto;">
+  <app-trip-card style="display: inline-block; margin: 10px;" *ngFor="let trip of trips | sourceFilter: searchSource | destinationFilter: searchDestination | traveldateFilter"  [trip]="trip" ></app-trip-card>
+  </div>
+</div>

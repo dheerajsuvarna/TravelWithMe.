@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
@@ -18,15 +18,32 @@ import { profileManagementComponent } from './profile-management/profile-managem
 import { ViewProfileComponent } from './view-profile/view-profile.component';
 import { TripCardComponent } from './trip-card/trip-card.component';
 import { MyTripsComponent } from './my-trips/my-trips.component';
+import { SearchTripComponent } from './search-trip/search-trip.component';
+import { FilterPipe } from './filter.pipe';
+import {SearchPipe} from './search-pipe';
+import { SourceFilterPipe } from './source-filter.pipe';
+import { DestinationFilterPipe } from './destination-filter.pipe';
+import { TraveldateFilterPipe } from './traveldate-filter.pipe';
+import { ReturndateFilterPipe } from './returndate-filter.pipe';
+
 
 @NgModule({
   imports: [
     BrowserModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpModule,
     routing
   ],
+
+
   declarations: [
+    SourceFilterPipe,
+    DestinationFilterPipe,
+    ReturndateFilterPipe,
+    TraveldateFilterPipe,
+    SearchPipe,
+    FilterPipe,
     AppComponent,
     AlertComponent,
     HomeComponent,
@@ -38,6 +55,12 @@ import { MyTripsComponent } from './my-trips/my-trips.component';
     ViewProfileComponent,
     TripCardComponent,
     MyTripsComponent,
+    SearchTripComponent,
+    SourceFilterPipe,
+    DestinationFilterPipe,
+    TraveldateFilterPipe,
+    ReturndateFilterPipe,
+
 
   ],
   providers: [
@@ -46,6 +69,7 @@ import { MyTripsComponent } from './my-trips/my-trips.component';
     AuthenticationService,
     UserService,
   ],
+  exports: [FilterPipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
