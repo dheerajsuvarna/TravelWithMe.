@@ -3,7 +3,7 @@
     <form name="form" (ngSubmit)="f.form.valid && register()" #f="ngForm" novalidate>
       <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !email.valid }">
         <label for="email">Email Address</label>
-        <input type="text" class="form-control" name="email" placeholder="example@tum.de or example@mytum.de"  pattern="([A-Za-z0-9._-]*@tum.de|[A-Za-z0-9._-]*@mytum.de)$" [(ngModel)]="model.email" #email="ngModel" required />
+        <input type="text" class="form-control" name="email" placeholder="example@tum.de or example@mytum.de"  pattern="([A-Za-z0-9._-]*@[Tt][Uu][Mm].[Dd][Ee]|[A-Za-z0-9._-]*@[Mm][Yy][Tt][Uu][Mm].[Dd][Ee])$" [(ngModel)]="model.email" #email="ngModel" required />
         <div *ngIf="f.submitted && !email.valid" class="help-block">Only @tum.de or @mytum.de emails are accepted</div>
       </div>
       <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !password.valid }">
