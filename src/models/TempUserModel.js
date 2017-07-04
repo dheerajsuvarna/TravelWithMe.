@@ -9,7 +9,6 @@ var TempUserSchema = new Schema({
     type: String,
     unique:true,
     required: true,
-    // required: true
   },
   password: {
     type: String,
@@ -26,41 +25,31 @@ var TempUserSchema = new Schema({
   birthdate:{
     type: String,
     required: false
-
   },
   gender: {
     type: String,
     required: false
-
   },
   nationality: {
     type: String,
     required: false
-
   },
   firstname: {
     type: String,
     required: false
-
-    // required: true
   },
   lastname: {
     type: String,
     required: false
-
-    // required: true
   },
   description: {
     type: String,
     required: false
-
-    // required: true
   },
-
-
-
-
-
+  expirationTime : {
+    type: Date,
+    required: false
+  },
 });
 
 TempUserSchema.pre('save', function (next) {

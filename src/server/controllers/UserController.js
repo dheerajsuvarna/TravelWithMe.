@@ -11,6 +11,7 @@ var _ = require('lodash');
 
 
 // verification
+const  expirationInMinutes = 30;
 mongoose = require('mongoose'),
   nev = require('email-verification')(mongoose);
 
@@ -33,7 +34,7 @@ nev.configure({
   verifyMailOptions: {
     from: 'Do Not Reply <twm@gmail.com>',
     subject: 'Please confirm your account',
-    html: 'Click the following link to confirm your account:</p><p>${URL}</p>',
+    html: 'Click the following link to confirm your account:(Valid for the next 30 minutes) </p><p>${URL}</p>',
     text: 'Please confirm your account by clicking the following link: ${URL}'
   }
 }, function(error, options){
@@ -165,7 +166,7 @@ module.exports = {
     if (!req.body || !req.body.email || !req.body.password) {
       return res.status(400).send('Incorrect request');
     }
-    var patt = new RegExp("([A-Za-z0-9._-]*@tum.de|[A-Za-z0-9._-]*@mytum.de)$");
+    var patt = new RegExp("([A-Za-z0-9._-]*@[Tt][Uu][Mm].[Dd][Ee]|[A-Za-z0-9._-]*@[Mm][Yy][Tt][Uu][Mm].[Dd][Ee])$");
     var matched = patt.test(req.body.email.trim());
     if (!matched) {
       console.log(req.body.email);
@@ -179,9 +180,11 @@ module.exports = {
 
     TempUser.findOne({email: req.body.email}, function (err, existingUser) {
       if (existingUser)
-        return res.status(400).send("User Already Exists");
+        return res.status(200).send("User Already Exists");
     });
 
+    var expiration = new Date();
+    expiration.setMinutes(now.getMinutes() + expirationInMinutes);
 
     var newUser = new TempUser({
 
@@ -191,6 +194,7 @@ module.exports = {
       password: req.body.password,
       birthdate: req.body.birthdate,
       gender: req.body.gender,
+      expirationTime:  expiration
     });
 
 
@@ -233,8 +237,14 @@ console.log(newTempUser);
 
 
   confirmTempUser: function (req,res) {
+
     TempUser.findOneAndRemove({GENERATED_VERIFYING_URL: req.body.firstname}, function (err, existingUser) {
       if (existingUser) {
+
+        if (existingUser.expirationTime < Date.now())
+        {
+          return res.status(401).send("Expired please register again!");
+        }
 
         var newUser = new User({
           firstname: existingUser.firstname,
