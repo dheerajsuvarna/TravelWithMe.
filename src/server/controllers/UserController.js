@@ -8,6 +8,14 @@ var configPassport = require('../config/passport');
 var jwt = require('jsonwebtoken');
 var _ = require('lodash');
 
+// Password reset
+
+var nodemailer = require('nodemailer');
+
+// create reusable transporter object using the default SMTP transport
+var transporter = nodemailer.createTransport('smtps://travelwithme.seba@gmail.com:travelwithme46@smtp.gmail.com');
+
+
 
 
 // verification
@@ -34,7 +42,7 @@ nev.configure({
   verifyMailOptions: {
     from: 'Do Not Reply <twm@gmail.com>',
     subject: 'Please confirm your account',
-    html: 'Click the following link to confirm your account:(Valid for the next 30 minutes) </p><p>${URL}</p>',
+    html: 'Click the following link to confirm your account:(Valid for the next 30 minutes) <p>${URL}</p>',
     text: 'Please confirm your account by clicking the following link: ${URL}'
   }
 }, function(error, options){
@@ -48,6 +56,51 @@ nev.configure({
 
 
 module.exports = {
+
+  resetPassword: function (req, res)
+  {},
+  resetPassword1: function (req, res) {
+    User.findOne({
+      email: req.body
+    }).then(function (user) {
+
+
+
+    if(user)
+    {
+      var rand = function() {
+        return Math.random().toString(36).substr(2);
+      };
+
+      var token = function() {
+        return rand() + rand()+rand();
+      };
+
+      var tok= token();
+
+      user.update({passwordReset: tok});
+
+      var mailOptions = {
+        // from: '"Fred Foo ?" <foo@blurdybloop.com>', // sender address
+        to:user.email  , // list of receivers
+        subject: 'Reset Password', // Subject line
+        text: 'Please follow this link to reset your password <p>${tok}</p>',
+        // html: '<b>  </b>' // html body
+      };
+
+      transporter.sendMail(mailOptions, function(error, info){
+        if(error){
+          return console.log(error);
+        }
+        console.log('Message sent: ' + info.response);
+      });
+
+
+
+    }
+    })
+  },
+
   authenticate: function (req, res) {
     if (!req.body || !req.body.email || !req.body.password) {
       return res.status(400).send('Incorrect request');
@@ -161,7 +214,7 @@ module.exports = {
     });
   },
 
-  createTemp: function(req,res){
+  createTemp: function (req, res) {
     console.log(req.body, req.headers);
     if (!req.body || !req.body.email || !req.body.password) {
       return res.status(400).send('Incorrect request');
@@ -194,12 +247,11 @@ module.exports = {
       password: req.body.password,
       birthdate: req.body.birthdate,
       gender: req.body.gender,
-      expirationTime:  expiration
+      expirationTime: expiration
     });
 
 
-
-    nev.createTempUser(newUser, function(err, existingPersistentUser, newTempUser) {
+    nev.createTempUser(newUser, function (err, existingPersistentUser, newTempUser) {
 // some sort of error
       if (err) // handle error...
       {
@@ -212,37 +264,36 @@ module.exports = {
 //
 //       }
 // a new user
-        if (newTempUser) {
-console.log(newTempUser);
+      if (newTempUser) {
+        console.log(newTempUser);
         res.json(newTempUser);
 
 
-          var URL = newTempUser[nev.options.URLFieldName];
-          nev.sendVerificationEmail(newUser.email, URL, function (err, info) {
-            if (err) {
-              console.log(err.message);
-            }
-            // newUser.save()
-            //   .then(function (user) {
-            //     res.json(user);
-            //   })
-            //   .catch(function (err) {
-            //     console.log(err);
-            //     res.status(400).send(err);
-            //   });
-          });
-        }
+        var URL = newTempUser[nev.options.URLFieldName];
+        nev.sendVerificationEmail(newUser.email, URL, function (err, info) {
+          if (err) {
+            console.log(err.message);
+          }
+          // newUser.save()
+          //   .then(function (user) {
+          //     res.json(user);
+          //   })
+          //   .catch(function (err) {
+          //     console.log(err);
+          //     res.status(400).send(err);
+          //   });
+        });
+      }
     });
   },
 
 
-  confirmTempUser: function (req,res) {
+  confirmTempUser: function (req, res) {
 
     TempUser.findOneAndRemove({GENERATED_VERIFYING_URL: req.body.firstname}, function (err, existingUser) {
       if (existingUser) {
 
-        if (existingUser.expirationTime < Date.now())
-        {
+        if (existingUser.expirationTime < Date.now()) {
           return res.status(401).send("Expired please register again!");
         }
 
@@ -252,7 +303,7 @@ console.log(newTempUser);
           email: existingUser.email,
           password: existingUser.password,
           birthdate: existingUser.birthdate,
-          gender:existingUser.gender
+          gender: existingUser.gender
         });
 
         newUser.save()
@@ -269,4 +320,6 @@ console.log(newTempUser);
     });
 
   },
+
+
 }

@@ -21,6 +21,10 @@ export class UserService {
     return this.http.post('/api/user/email-verification',user).map((response: Response) => response.json());
   }
 
+  resetPassword(user: User) {
+
+    return this.http.post('/api/user/reset-password', user).map((response: Response) => response.json());
+  }
   // private helper methods
 
   private jwt() {

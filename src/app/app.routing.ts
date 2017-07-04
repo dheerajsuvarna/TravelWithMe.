@@ -9,10 +9,12 @@ import { profileManagementComponent } from './profile-management/profile-managem
 import { ViewProfileComponent } from './view-profile/view-profile.component';
 import { MyTripsComponent} from './my-trips/my-trips.component';
 import{EmailVerificationComponent} from './email-verification/email-verification.component'
+import {PasswordResetComponent} from "./password-reset/password-reset.component";
 
 const appRoutes: Routes = [
 
   { path: 'email-verification/:token', component: EmailVerificationComponent },
+  { path: 'reset-password/:token', component: PasswordResetComponent },
   { path: '', component: HomeComponent, canActivate: [AuthGuard] },
   { path: 'profileEdit', component: profileManagementComponent, canActivate: [AuthGuard] },
   { path: 'viewProfile', component: ViewProfileComponent, canActivate: [AuthGuard] },
