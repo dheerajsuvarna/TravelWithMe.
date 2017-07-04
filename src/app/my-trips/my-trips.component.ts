@@ -30,7 +30,7 @@ export class MyTripsComponent implements OnInit {
     this.trip.description = "Some description about the trip";
     this.trip.destination = "Miami";
     this.trip.source = "Munich";
-    this.trip.date= "22.07.2017";
+    this.trip.startDate= "22.07.2017";
     this.trip.user = this.user;
 
 
@@ -40,7 +40,7 @@ export class MyTripsComponent implements OnInit {
     this.trip2.description = "Some description about the trip";
     this.trip2.destination = "Deutsches Museum";
     this.trip2.source = "Munich";
-    this.trip2.date= "30.07.2017";
+    this.trip2.startDate= "30.07.2017";
     this.trip2.user = this.user;
 
 

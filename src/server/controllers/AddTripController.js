@@ -18,7 +18,12 @@ module.exports = {
    var newTrip = new Trip({
      source: req.body.source,
      destination: req.body.destination,
-     Budget: req.body.Budget
+     Budget: req.body.Budget,
+     TripName: req.body.tripName,
+     description: req.body.description,
+     startDate: req.body.startDate,
+     endDate: req.body.endDate,
+     numOfPeople: req.body.numOfPeople
    });
 
    newTrip.save()

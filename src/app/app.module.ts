@@ -19,6 +19,7 @@ import { ViewProfileComponent } from './view-profile/view-profile.component';
 import { TripCardComponent } from './trip-card/trip-card.component';
 import { MyTripsComponent } from './my-trips/my-trips.component';
 import { EmailVerificationComponent } from './email-verification/email-verification.component';
+import { AddTripComponent } from './add-trip/add-trip.component';
 
 @NgModule({
   imports: [
@@ -40,6 +41,7 @@ import { EmailVerificationComponent } from './email-verification/email-verificat
     TripCardComponent,
     MyTripsComponent,
     EmailVerificationComponent,
+    AddTripComponent,
 
   ],
   providers: [
