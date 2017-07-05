@@ -25,6 +25,8 @@ import { SourceFilterPipe } from './source-filter.pipe';
 import { DestinationFilterPipe } from './destination-filter.pipe';
 import { TraveldateFilterPipe } from './traveldate-filter.pipe';
 import { ReturndateFilterPipe } from './returndate-filter.pipe';
+import { BudgetFilterPipe } from './budget-filter.pipe';
+
 
 
 @NgModule({
@@ -42,6 +44,7 @@ import { ReturndateFilterPipe } from './returndate-filter.pipe';
     DestinationFilterPipe,
     ReturndateFilterPipe,
     TraveldateFilterPipe,
+    BudgetFilterPipe,
     SearchPipe,
     FilterPipe,
     AppComponent,
@@ -57,11 +60,6 @@ import { ReturndateFilterPipe } from './returndate-filter.pipe';
     MyTripsComponent,
     SearchTripComponent,
     SourceFilterPipe,
-    DestinationFilterPipe,
-    TraveldateFilterPipe,
-    ReturndateFilterPipe,
-
-
   ],
   providers: [
     AuthGuard,

@@ -25,7 +25,7 @@ export class SearchTripComponent implements OnInit {
   searchDestination: any;
   searchTravelDate: any;
   searchReturnDate: any;
-  searchBudget: any;
+  searchBudget: number;
   searchNoofpeople: any;
   searchInterests: any;
   myForm: FormGroup;
