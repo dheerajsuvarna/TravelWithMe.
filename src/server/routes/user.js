@@ -17,6 +17,7 @@ router.post('/signup', user.createTemp);
 router.post('/signin', user.authenticate);
 router.post('/email-verification', user.confirmTempUser);
 router.post('/reset-password', user.resetPassword);
+router.post('/reset-password-change', user.resetPasswordChange);
 
 router.get('/getall', jwt({
   secret: configPassport.secret

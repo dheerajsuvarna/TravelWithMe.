@@ -7,6 +7,8 @@ var configDb = require('../config/database');
 var configPassport = require('../config/passport');
 var jwt = require('jsonwebtoken');
 var _ = require('lodash');
+var bcrypt = require('bcrypt');
+
 
 // Password reset
 
@@ -57,47 +59,78 @@ nev.configure({
 
 module.exports = {
 
-  resetPassword: function (req, res)
-  {},
-  resetPassword1: function (req, res) {
+
+  resetPassword: function (req, res) {
     User.findOne({
-      email: req.body
+      email: req.body.email
     }).then(function (user) {
-
-
-
     if(user)
     {
-      var rand = function() {
-        return Math.random().toString(36).substr(2);
-      };
-
-      var token = function() {
-        return rand() + rand()+rand();
-      };
-
-      var tok= token();
-
-      user.update({passwordReset: tok});
-
+      var tok = token();
+      user.passwordReset = tok;
+      User.findOneAndUpdate({'email':user.email},user, {upsert:true}, function(err, doc){
       var mailOptions = {
         // from: '"Fred Foo ?" <foo@blurdybloop.com>', // sender address
         to:user.email  , // list of receivers
         subject: 'Reset Password', // Subject line
-        text: 'Please follow this link to reset your password <p>${tok}</p>',
+        text: 'Please follow this link to reset your password \n\n'+'http://localhost:4200/reset-password-change/' +tok,
         // html: '<b>  </b>' // html body
       };
 
       transporter.sendMail(mailOptions, function(error, info){
-        if(error){
-          return console.log(error);
-        }
-        console.log('Message sent: ' + info.response);
+        res.json({
+        });
+        return res.status(200).send();
       });
-
-
-
+      });
     }
+    else
+    {
+      var err = new Error('Not Found');
+      return res.status(401).send(err);
+    }
+    })
+  },
+
+  resetPasswordChange: function (req, res) {
+    User.findOne({
+      passwordReset: req.body.firstname
+    }).then(function (user) {
+      if(user)
+      {
+        var query = {'email':user.email};
+
+        user.passwordReset = "";
+        bcrypt.hash(req.body.password, 10, function (err, hash) {
+
+          user.password =hash;
+          User.findOneAndUpdate(query,user, {upsert:true}, function(err, doc){
+            if (err) return res.send(500, { error: err });
+
+          });
+        });
+
+        var mailOptions = {
+          // from: '"Fred Foo ?" <foo@blurdybloop.com>', // sender address
+          to:user.email  , // list of receivers
+          subject: 'Reset Password', // Subject line
+          text: 'Your password was changed successfully!'
+        };
+
+        transporter.sendMail(mailOptions, function(error, info){
+          if(error){
+            return console.log(error);
+          }
+          console.log('Message sent: ' + info.response);
+        });
+        res.json({
+        });
+        return res.status(200).send('Password changed Successfully');
+      }
+      else
+      {
+        return res.status(401).send("Email doesn't exist!");
+      }
     })
   },
 
@@ -233,11 +266,11 @@ module.exports = {
 
     TempUser.findOne({email: req.body.email}, function (err, existingUser) {
       if (existingUser)
-        return res.status(200).send("User Already Exists");
+        return res.status(400).send("User Already Exists");
     });
 
     var expiration = new Date();
-    expiration.setMinutes(now.getMinutes() + expirationInMinutes);
+    expiration.setMinutes(expiration.getMinutes() + expirationInMinutes);
 
     var newUser = new TempUser({
 
@@ -274,19 +307,10 @@ module.exports = {
           if (err) {
             console.log(err.message);
           }
-          // newUser.save()
-          //   .then(function (user) {
-          //     res.json(user);
-          //   })
-          //   .catch(function (err) {
-          //     console.log(err);
-          //     res.status(400).send(err);
-          //   });
         });
       }
     });
   },
-
 
   confirmTempUser: function (req, res) {
 
@@ -323,3 +347,10 @@ module.exports = {
 
 
 }
+var rand = function() {
+  return Math.random().toString(36).substr(2);
+};
+
+var token = function() {
+  return rand() + rand();
+};

@@ -20,7 +20,7 @@ import { TripCardComponent } from './trip-card/trip-card.component';
 import { MyTripsComponent } from './my-trips/my-trips.component';
 import { EmailVerificationComponent } from './email-verification/email-verification.component';
 import { PasswordResetComponent } from './password-reset/password-reset.component';
-import { EmailInputForPswrdResetComponent } from './email-input-for-pswrd-reset/email-input-for-pswrd-reset.component';
+import { ResetPasswordChangeComponent } from './reset-password-change/reset-password-change.component';
 
 @NgModule({
   imports: [
@@ -43,7 +43,7 @@ import { EmailInputForPswrdResetComponent } from './email-input-for-pswrd-reset/
     MyTripsComponent,
     EmailVerificationComponent,
     PasswordResetComponent,
-    EmailInputForPswrdResetComponent,
+    ResetPasswordChangeComponent,
 
   ],
   providers: [
