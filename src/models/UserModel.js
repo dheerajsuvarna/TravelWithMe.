@@ -54,23 +54,28 @@ var UserSchema = new Schema({
 
     // required: true
   },
+
+  passwordReset: {
+    type: String,
+    required: false
+  },
   // img: { data: Buffer, contentType: String }
 });
 
-UserSchema.pre('save', function (next) {
-  var user = this;
-  if (this.isModified('password') || this.isNew) {
-    bcrypt.hash(user.password, saltRounds, function (err, hash) {
-      if (err) {
-        return next(err);
-      }
-     // user.password = hash;
-      next();
-    });
-  } else {
-    return next();
-  }
-});
+// UserSchema.pre('save', function (next) {
+//   var user = this;
+//   if (this.isModified('password') || this.isNew) {
+//     bcrypt.hash(user.password, saltRounds, function (err, hash) {
+//       if (err) {
+//         return next(err);
+//       }
+//      // user.password = hash;
+//       next();
+//     });
+//   } else {
+//     return next();
+//   }
+// });
 UserSchema.methods.comparePassword = function (passw, cb) {
   bcrypt.compare(passw, this.password, function (err, isMatch) {
     if (err) {

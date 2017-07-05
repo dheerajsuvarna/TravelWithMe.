@@ -7,6 +7,16 @@ var configDb = require('../config/database');
 var configPassport = require('../config/passport');
 var jwt = require('jsonwebtoken');
 var _ = require('lodash');
+var bcrypt = require('bcrypt');
+
+
+// Password reset
+
+var nodemailer = require('nodemailer');
+
+// create reusable transporter object using the default SMTP transport
+var transporter = nodemailer.createTransport('smtps://travelwithme.seba@gmail.com:travelwithme46@smtp.gmail.com');
+
 
 
 
@@ -34,7 +44,7 @@ nev.configure({
   verifyMailOptions: {
     from: 'Do Not Reply <twm@gmail.com>',
     subject: 'Please confirm your account',
-    html: 'Click the following link to confirm your account:(Valid for the next 30 minutes) </p><p>${URL}</p>',
+    html: 'Click the following link to confirm your account:(Valid for the next 30 minutes) <p>${URL}</p>',
     text: 'Please confirm your account by clicking the following link: ${URL}'
   }
 }, function(error, options){
@@ -48,6 +58,82 @@ nev.configure({
 
 
 module.exports = {
+
+
+  resetPassword: function (req, res) {
+    User.findOne({
+      email: req.body.email
+    }).then(function (user) {
+    if(user)
+    {
+      var tok = token();
+      user.passwordReset = tok;
+      User.findOneAndUpdate({'email':user.email},user, {upsert:true}, function(err, doc){
+      var mailOptions = {
+        // from: '"Fred Foo ?" <foo@blurdybloop.com>', // sender address
+        to:user.email  , // list of receivers
+        subject: 'Reset Password', // Subject line
+        text: 'Please follow this link to reset your password \n\n'+'http://localhost:4200/reset-password-change/' +tok,
+        // html: '<b>  </b>' // html body
+      };
+
+      transporter.sendMail(mailOptions, function(error, info){
+        res.json({
+        });
+        return res.status(200).send();
+      });
+      });
+    }
+    else
+    {
+      var err = new Error('Not Found');
+      return res.status(401).send(err);
+    }
+    })
+  },
+
+  resetPasswordChange: function (req, res) {
+    User.findOne({
+      passwordReset: req.body.firstname
+    }).then(function (user) {
+      if(user)
+      {
+        var query = {'email':user.email};
+
+        user.passwordReset = "";
+        bcrypt.hash(req.body.password, 10, function (err, hash) {
+
+          user.password =hash;
+          User.findOneAndUpdate(query,user, {upsert:true}, function(err, doc){
+            if (err) return res.send(500, { error: err });
+
+          });
+        });
+
+        var mailOptions = {
+          // from: '"Fred Foo ?" <foo@blurdybloop.com>', // sender address
+          to:user.email  , // list of receivers
+          subject: 'Reset Password', // Subject line
+          text: 'Your password was changed successfully!'
+        };
+
+        transporter.sendMail(mailOptions, function(error, info){
+          if(error){
+            return console.log(error);
+          }
+          console.log('Message sent: ' + info.response);
+        });
+        res.json({
+        });
+        return res.status(200).send('Password changed Successfully');
+      }
+      else
+      {
+        return res.status(401).send("Email doesn't exist!");
+      }
+    })
+  },
+
   authenticate: function (req, res) {
     if (!req.body || !req.body.email || !req.body.password) {
       return res.status(400).send('Incorrect request');
@@ -161,7 +247,7 @@ module.exports = {
     });
   },
 
-  createTemp: function(req,res){
+  createTemp: function (req, res) {
     console.log(req.body, req.headers);
     if (!req.body || !req.body.email || !req.body.password) {
       return res.status(400).send('Incorrect request');
@@ -180,11 +266,11 @@ module.exports = {
 
     TempUser.findOne({email: req.body.email}, function (err, existingUser) {
       if (existingUser)
-        return res.status(200).send("User Already Exists");
+        return res.status(400).send("User Already Exists");
     });
 
     var expiration = new Date();
-    expiration.setMinutes(now.getMinutes() + expirationInMinutes);
+    expiration.setMinutes(expiration.getMinutes() + expirationInMinutes);
 
     var newUser = new TempUser({
 
@@ -194,12 +280,11 @@ module.exports = {
       password: req.body.password,
       birthdate: req.body.birthdate,
       gender: req.body.gender,
-      expirationTime:  expiration
+      expirationTime: expiration
     });
 
 
-
-    nev.createTempUser(newUser, function(err, existingPersistentUser, newTempUser) {
+    nev.createTempUser(newUser, function (err, existingPersistentUser, newTempUser) {
 // some sort of error
       if (err) // handle error...
       {
@@ -212,37 +297,27 @@ module.exports = {
 //
 //       }
 // a new user
-        if (newTempUser) {
-console.log(newTempUser);
+      if (newTempUser) {
+        console.log(newTempUser);
         res.json(newTempUser);
 
 
-          var URL = newTempUser[nev.options.URLFieldName];
-          nev.sendVerificationEmail(newUser.email, URL, function (err, info) {
-            if (err) {
-              console.log(err.message);
-            }
-            // newUser.save()
-            //   .then(function (user) {
-            //     res.json(user);
-            //   })
-            //   .catch(function (err) {
-            //     console.log(err);
-            //     res.status(400).send(err);
-            //   });
-          });
-        }
+        var URL = newTempUser[nev.options.URLFieldName];
+        nev.sendVerificationEmail(newUser.email, URL, function (err, info) {
+          if (err) {
+            console.log(err.message);
+          }
+        });
+      }
     });
   },
 
-
-  confirmTempUser: function (req,res) {
+  confirmTempUser: function (req, res) {
 
     TempUser.findOneAndRemove({GENERATED_VERIFYING_URL: req.body.firstname}, function (err, existingUser) {
       if (existingUser) {
 
-        if (existingUser.expirationTime < Date.now())
-        {
+        if (existingUser.expirationTime < Date.now()) {
           return res.status(401).send("Expired please register again!");
         }
 
@@ -252,7 +327,7 @@ console.log(newTempUser);
           email: existingUser.email,
           password: existingUser.password,
           birthdate: existingUser.birthdate,
-          gender:existingUser.gender
+          gender: existingUser.gender
         });
 
         newUser.save()
@@ -269,4 +344,13 @@ console.log(newTempUser);
     });
 
   },
+
+
 }
+var rand = function() {
+  return Math.random().toString(36).substr(2);
+};
+
+var token = function() {
+  return rand() + rand();
+};
