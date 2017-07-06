@@ -8,7 +8,7 @@ import { routing } from './app.routing';
 
 import { AlertComponent } from './alert/alert.component';
 import { AuthGuard } from './guards/auth.guard';
-import { AlertService, AuthenticationService, UserService } from './services/index';
+import { AlertService, AuthenticationService, UserService, AddTripService } from './services/index';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
@@ -53,6 +53,7 @@ import { ResetPasswordChangeComponent } from './reset-password-change/reset-pass
     AlertService,
     AuthenticationService,
     UserService,
+    AddTripService,
   ],
   bootstrap: [AppComponent]
 })

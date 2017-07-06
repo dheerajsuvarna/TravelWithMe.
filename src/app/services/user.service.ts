@@ -30,8 +30,7 @@ export class UserService {
 
     return this.http.post('/api/user/reset-password-change', user).map((response: Response) => response.json());
   }
-
-
+  
   // private helper methods
 
   private jwt() {

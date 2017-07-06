@@ -20,7 +20,7 @@ var TripSchema = new Schema({
   },
   description: {
     type: String,
-    required: true
+    required: false
   },
   Budget:{
     type: Number,
@@ -32,7 +32,7 @@ var TripSchema = new Schema({
   },
   interests:{
    type: [String],
-    required: true
+    required: false
   },
   startDate: {
     type: String,

@@ -22,10 +22,12 @@ export class AddTripComponent implements OnInit {
   currentUser: User;
   public trip: Trip =new Trip();
   constructor(
-    /*private router: Router,
-    private userService: UserService,
+   /* private router: Router,
+    //private userService: UserService,
     private addTripService: AddTripService,
-    private alertService: AlertService*/
+   */ private alertService: AlertService,
+   private addTripService: AddTripService,
+  private router: Router
   ) {
     this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
     var temp  = localStorage.getItem('currentUser');
@@ -53,8 +55,11 @@ export class AddTripComponent implements OnInit {
     console.log("inside add trip")
   this.loading = true;
     this.trip.source = this.model.source;
+    console.log(this.model.interests);
+    this.model.user = this.currentUser;
     console.log(this.model);
-    /*this.addTripService.addTrip(this.trip)
+
+    this.addTripService.addTrip(this.model)
       .subscribe(
         data => {
           window.location.reload();
@@ -63,7 +68,7 @@ export class AddTripComponent implements OnInit {
         error => {
           this.alertService.error(error);
           this.loading = false;
-        })*/
+        })
   }
 
 }

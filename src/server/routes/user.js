@@ -25,7 +25,7 @@ router.get('/getall', jwt({
 
 router.post('/addtrip', jwt({
   secret: configPassport.secret
-}), trip.create);
+}), trip.addtrip);
 
 router.get('/mytrip',jwt({
   secret: configPassport.secret
