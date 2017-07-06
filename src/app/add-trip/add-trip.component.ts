@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import {Trip} from '../models/tripmodel';
 import {Interest} from '../../models/Enums/Interest';
 import {User} from "../models/usermodel";
+import { AlertService, UserService, AddTripService } from '../services/index';
 
 
 @Component({
@@ -9,10 +11,21 @@ import {User} from "../models/usermodel";
   templateUrl: './add-trip.component.html',
   styleUrls: ['./add-trip.component.css']
 })
+
+
+
 export class AddTripComponent implements OnInit {
+  model: any = {};
+  returnUrl: string;
+  loading = false;
   currentUser: User;
   public trip: Trip =new Trip();
-  constructor() {
+  constructor(
+    private router: Router,
+    private userService: UserService,
+    private addTripService: AddTripService,
+    private alertService: AlertService
+  ) {
     this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
     var temp  = localStorage.getItem('currentUser');
     var json = JSON.parse(temp);
@@ -31,7 +44,17 @@ export class AddTripComponent implements OnInit {
   }
   
   addTrip() {
-    //fill this later
+    this.loading = true;
+    this.addTripService.addTrip(this.currentUser, this.trip)
+      .subscribe(
+        data => {
+          window.location.reload();
+          this.router.navigate([this.returnUrl]);
+        },
+        error => {
+          this.alertService.error(error);
+          this.loading = false;
+        });
   }
 
 }
