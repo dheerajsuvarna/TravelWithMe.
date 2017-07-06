@@ -38,6 +38,8 @@
     "passport-jwt": "^2.2.1",
     "rxjs": "^5.1.0",
     "serve-favicon": "^2.4.3",
+    "socket.io-client": "^2.0.3",
+    "socketio": "^1.0.0",
     "zone.js": "^0.8.4"
   },
   "devDependencies": {
