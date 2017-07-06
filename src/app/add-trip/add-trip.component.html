@@ -45,17 +45,23 @@
 
 
   <div id="basicInfo" class="col s12 z-depth-4 card-panel" style="width:45%;">
-    <form class="col s12" name="form" (ngSubmit)="f.form.valid && addTrip()" #f="ngForm" novalidate>
+    <form class="col s12" name="form" (ngSubmit)="addTrip()" #f="ngForm" novalidate>
       <div class="row">
         <div class="input-field col s12">
-          <input id="trip_name" type="text" class="validate" value="{{currentUser.firstname}}" [(ngModel)]="model.firstname" #title="ngModel" required >
+          <input id="trip_name" type="text" class="validate" [(ngModel)]="model.tripName" #title="ngModel" required >
           <label for="trip_name">Trip Name</label>
         </div>
       </div>
       <div class="row">
         <div class="input-field col s12">
-          <input id="trip_name" type="text" class="validate" value="{{currentUser.firstname}}" [(ngModel)]="model.firstname" #title="ngModel" required >
-          <label for="trip_name">Where To?</label>
+          <input id="source" type="text" class="validate" [(ngModel)]="trip.source" #title="ngModel" required >
+          <label for="source">From?</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s12">
+          <input id="destination" type="text" class="validate" [(ngModel)]="model.destination" #title="ngModel" required >
+          <label for="destination">Where To?</label>
         </div>
       </div>
 
@@ -78,14 +84,14 @@
       <br>
       <div class="row">
         <div class="input-field col s12">
-          <input id="budeget" type="text" class="validate" value="{{currentUser.firstname}}" [(ngModel)]="model.budget" #title="ngModel" required >
+          <input id="budget" type="text" class="validate" [(ngModel)]="model.budget" #title="ngModel" required >
           <label for="budget">Budget (max)</label>
         </div>
       </div>
       <br>
       <div class="row">
         <label>How Many People?</label>
-        <select class="browser-default" id="#numOfPeople">
+        <select class="browser-default" id="#numOfPeople" [(ngModel)]="model.numOfPeople" >
           <option value="" disabled selected>1</option>
           <option value="2">2</option>
           <option value="3">3</option>
@@ -96,36 +102,30 @@
 
       <div class="row">
         <label>Interests:</label>
-        <select class="browser-default" id="#interests">
+        <select class="browser-default" id="#interests" [(ngModel)]="model.interests">
           <option value="hiking" disabled selected>Hiking</option>
           <option value="surfing">Surfing</option>
           <option value="sightseeing">Sightseeing</option>
         </select>
       </div>
 
+      <div class="row">
+        <div class="input-field col s12">
+          <textarea id="textarea1" class="materialize-textarea" [(ngModel)]="model.text" value="{{model.description}}"  #text="ngModel" required></textarea>
+          <label for="textarea1">Write a description about the trip.</label>
+        </div>
+      </div>
+      <br>
+      <br>
+      <button class="btn pink btn-primary z-depth-3" type="submit" value="Submit" style="margin-left: 5%">Add Trip</button>
 
     </form>
 
   </div>
 
-  <div class="col s12 z-depth-4 card-panel" id="aboutBox" style="width:45%;height:300px;">
-    <div class="row">
-      <form class="col s12">
-        <div class="row">
-          <div class="input-field col s12">
-            <textarea id="textarea1" class="materialize-textarea" [(ngModel)]="model.text" value="{{currentUser.description}}"  #text="ngModel" required></textarea>
-            <label for="textarea1">Write a description about the trip.</label>
-          </div>
-        </div>
-      </form>
-    </div>
 
-    <!--<label>About Me  <textarea name="text" cols="40" rows="5" [(ngModel)]="model.text" #text="ngModel" required>
-      </textarea></label>-->
-    <br>
-    <br>
-    <button class="btn pink btn-primary z-depth-3" type="submit" value="Submit" style="margin-left: 5%">Add Trip</button>
 
-  </div>
+
+
 
 </div>

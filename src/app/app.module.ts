@@ -20,6 +20,8 @@ import { TripCardComponent } from './trip-card/trip-card.component';
 import { MyTripsComponent } from './my-trips/my-trips.component';
 import { EmailVerificationComponent } from './email-verification/email-verification.component';
 import { AddTripComponent } from './add-trip/add-trip.component';
+import { PasswordResetComponent } from './password-reset/password-reset.component';
+import { ResetPasswordChangeComponent } from './reset-password-change/reset-password-change.component';
 
 @NgModule({
   imports: [
@@ -42,6 +44,8 @@ import { AddTripComponent } from './add-trip/add-trip.component';
     MyTripsComponent,
     EmailVerificationComponent,
     AddTripComponent,
+    PasswordResetComponent,
+    ResetPasswordChangeComponent,
 
   ],
   providers: [

@@ -3,7 +3,7 @@
     <form name="form" (ngSubmit)="f.form.valid && register()" #f="ngForm" novalidate>
       <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !email.valid }">
         <label for="email">Email Address</label>
-        <input type="text" class="form-control" name="email" placeholder="example@tum.de or example@mytum.de"  pattern="([A-Za-z0-9._-]*@tum.de|[A-Za-z0-9._-]*@mytum.de)$" [(ngModel)]="model.email" #email="ngModel" required />
+        <input type="text" class="form-control" name="email" placeholder="example@tum.de or example@mytum.de"  pattern="([A-Za-z0-9._-]*@[Tt][Uu][Mm].[Dd][Ee]|[A-Za-z0-9._-]*@[Mm][Yy][Tt][Uu][Mm].[Dd][Ee])$" [(ngModel)]="model.email" #email="ngModel" required />
         <div *ngIf="f.submitted && !email.valid" class="help-block">Only @tum.de or @mytum.de emails are accepted</div>
       </div>
       <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !password.valid }">
@@ -11,6 +11,13 @@
         <input type="password" class="form-control" name="password" [(ngModel)]="model.password" #password="ngModel" required />
         <div *ngIf="f.submitted && !password.valid" class="help-block">Password is required</div>
       </div>
+
+      <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !password.valid }">
+        <label for="password">Confirm Password</label>
+        <input type="password" class="form-control" name="password2" [(ngModel)]="model.null" #password2="ngModel" required />
+        <div *ngIf="f.submitted && (!password2.valid || password2.value !=password.value)" class="help-block">Passwords do not match</div>
+      </div>
+
         <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !firstname.valid }">
             <label for="firstname">First Name</label>
             <input type="text" class="form-control" name="firstname" [(ngModel)]="model.firstname"  #firstname="ngModel" required />
