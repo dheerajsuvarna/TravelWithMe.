@@ -32,6 +32,8 @@ import { BudgetFilterPipe } from './budget-filter.pipe';
 import { SearchTripComponent } from './search-trip/search-trip.component';
 import { FilterPipe } from './filter.pipe';
 import {SearchPipe} from './search-pipe';
+import { NoofpeopleFilterPipe } from './noofpeople-filter.pipe';
+import { InterestsFilterPipe } from './interests-filter.pipe';
 @NgModule({
   imports: [
     BrowserModule,
@@ -68,8 +70,10 @@ import {SearchPipe} from './search-pipe';
 
     SearchTripComponent,
     SourceFilterPipe,
+    NoofpeopleFilterPipe,
+    InterestsFilterPipe,
   ],
-  providers: [
+   providers: [
     AuthGuard,
     AlertService,
     AuthenticationService,

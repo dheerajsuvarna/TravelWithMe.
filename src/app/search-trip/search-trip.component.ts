@@ -25,7 +25,7 @@ export class SearchTripComponent implements OnInit {
   searchDestination: any;
   searchTravelDate: any;
   searchReturnDate: any;
-  searchBudget: number;
+  searchBudget: any;
   searchNoofpeople: any;
   searchInterests: any;
   myForm: FormGroup;
@@ -49,6 +49,18 @@ export class SearchTripComponent implements OnInit {
     this.searchBudget = this.userForm.get('budget').value;
     this.searchNoofpeople = this.userForm.get('noofpeople').value;
     this.searchInterests = this.userForm.get('interests').value;
+    this.formatAndValidateInput();
+  }
+  formatAndValidateInput(): void {
+    this.searchSource = this.searchSource.toLowerCase();
+    this.searchDestination = this.searchDestination.toLowerCase();
+    this.searchInterests = this.searchInterests.toLowerCase();
+    if (this.searchBudget.isNumber()) {
+    }else {
+      console.log(this.searchBudget.isNumber());
+      console.log('inside else');
+      alert("Please Enter a valid Number for Budget");
+    }
   }
   constructor(fb: FormBuilder){
     this.myForm = fb.group({

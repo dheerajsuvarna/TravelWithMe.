@@ -1,21 +1,22 @@
 import { Pipe, PipeTransform } from '@angular/core';
+import {forEach} from "@angular/router/src/utils/collection";
+import {isNgTemplate} from "@angular/compiler";
+import {visitValue} from "@angular/compiler/src/util";
 
 @Pipe({
   name: 'budgetFilter'
 })
 export class BudgetFilterPipe implements PipeTransform {
-
-  transform(value: any, budget: number): any {
+  transform(value: any, budget: any): any {
     if (budget === undefined || budget === null) {
-      console.log("in budget - undefined or null")
       return value;
     }
-    console.log("in budget");
-    console.log(budget);
-    console.log(value);
-    console.log(value.item.budget.valueOf());
-    return value.filter((item) => item.budget.value < budget ? item : null);
+   return value.filter((item) => {
+      if (item.budget < budget) {
+        return item;
+      }
+      }
+    );
   }
-
 }
 
