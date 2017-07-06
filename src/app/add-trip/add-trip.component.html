@@ -48,19 +48,19 @@
     <form class="col s12" name="form" (ngSubmit)="addTrip()" #f="ngForm" novalidate>
       <div class="row">
         <div class="input-field col s12">
-          <input id="trip_name" type="text" class="validate" [(ngModel)]="model.tripName" #title="ngModel" required >
+          <input id="trip_name" type="text" name="tripName" class="validate" [(ngModel)]="model.tripName" #tripName="ngModel" required >
           <label for="trip_name">Trip Name</label>
         </div>
       </div>
       <div class="row">
         <div class="input-field col s12">
-          <input id="source" type="text" class="validate" [(ngModel)]="model.source" #title="ngModel" required >
+          <input id="source" type="text" name="source" class="validate" [(ngModel)]="model.source" #source="ngModel" required >
           <label for="source">From?</label>
         </div>
       </div>
       <div class="row">
         <div class="input-field col s12">
-          <input id="destination" type="text" class="validate" [(ngModel)]="model.destination" #title="ngModel" required >
+          <input id="destination" type="text" name="destination" class="validate" [(ngModel)]="model.destination" #destination="ngModel" required >
           <label for="destination">Where To?</label>
         </div>
       </div>
@@ -84,14 +84,14 @@
       <br>
       <div class="row">
         <div class="input-field col s12">
-          <input id="budget" type="text" class="validate" [(ngModel)]="model.budget" #title="ngModel" required >
+          <input id="budget" type="text" name="budget "class="validate" [(ngModel)]="model.budget" #budget="ngModel" required >
           <label for="budget">Budget (max)</label>
         </div>
       </div>
       <br>
       <div class="row">
         <label>How Many People?</label>
-        <select class="browser-default" id="#numOfPeople" [(ngModel)]="model.numOfPeople" >
+        <select class="browser-default" id="#numOfPeople" name="numOfPeople" [(ngModel)]="model.numOfPeople" #numOfPeople="ngModel" required>
           <option value="" disabled selected>1</option>
           <option value="2">2</option>
           <option value="3">3</option>
@@ -102,7 +102,7 @@
 
       <div class="row">
         <label>Interests:</label>
-        <select class="browser-default" id="#interests" [(ngModel)]="model.interests">
+        <select class="browser-default" name="interests" id="#interests" [(ngModel)]="model.interests" #interests="ngModel" required>
           <option value="hiking" disabled selected>Hiking</option>
           <option value="surfing">Surfing</option>
           <option value="sightseeing">Sightseeing</option>
@@ -111,7 +111,7 @@
 
       <div class="row">
         <div class="input-field col s12">
-          <textarea id="textarea1" class="materialize-textarea" [(ngModel)]="model.text" value="{{model.description}}"  #text="ngModel" required></textarea>
+          <textarea id="textarea1" class="materialize-textarea" name="description" [(ngModel)]="model.text" value="{{model.description}}"  #description="ngModel" required></textarea>
           <label for="textarea1">Write a description about the trip.</label>
         </div>
       </div>
