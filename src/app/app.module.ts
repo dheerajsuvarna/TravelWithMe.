@@ -58,6 +58,8 @@ import {SearchPipe} from './search-pipe';
     ViewProfileComponent,
     TripCardComponent,
     MyTripsComponent,
+
+
     SearchTripComponent,
     SourceFilterPipe,
   ],

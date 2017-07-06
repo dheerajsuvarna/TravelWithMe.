@@ -15,12 +15,12 @@ const appRoutes: Routes = [
    { path: '', component: HomeComponent, canActivate: [AuthGuard] },
   { path: 'profileEdit', component: profileManagementComponent, canActivate: [AuthGuard] },
   { path: 'viewProfile', component: ViewProfileComponent, canActivate: [AuthGuard] },
-  { path: 'searchTrip', component: SearchTripComponent, canActivate: [AuthGuard] },
+
     { path: 'login', component: LoginComponent },
     { path: 'register', component: RegisterComponent },
     { path: 'landingPage', component: LandingPageComponent },
   { path: 'mytrips', component: MyTripsComponent, canActivate: [AuthGuard] },
-
+  { path: 'searchTrip', component: SearchTripComponent, canActivate: [AuthGuard] },
 
   // otherwise redirect to home
     { path: '**', redirectTo: '' }
