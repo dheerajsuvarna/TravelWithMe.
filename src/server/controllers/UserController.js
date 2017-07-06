@@ -61,6 +61,7 @@ module.exports = {
 
 
   resetPassword: function (req, res) {
+    req.body.email = req.body.email.toLowerCase();
     User.findOne({
       email: req.body.email
     }).then(function (user) {
@@ -140,7 +141,7 @@ module.exports = {
     }
 
     User.findOne({
-      email: req.body.email
+      email: req.body.email.toLowerCase()
     })
       .then(function (user) {
         user.comparePassword(req.body.password, function (err, isMatch) {
@@ -248,6 +249,7 @@ module.exports = {
   },
 
   createTemp: function (req, res) {
+
     console.log(req.body, req.headers);
     if (!req.body || !req.body.email || !req.body.password) {
       return res.status(400).send('Incorrect request');
@@ -259,6 +261,7 @@ module.exports = {
       return res.status(400).send("Invalid Email Domain");
     }
 
+    req.body.email = req.body.email.toLowerCase();
     User.findOne({email: req.body.email}, function (err, existingUser) {
       if (existingUser)
         return res.status(400).send("User Already Exists");
