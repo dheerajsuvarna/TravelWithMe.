@@ -16,13 +16,15 @@ var trip = require("../controllers/AddTripController.js");
 router.post('/signup', user.createTemp);
 router.post('/signin', user.authenticate);
 router.post('/email-verification', user.confirmTempUser);
-router.post('/profiledit', user.onUpdateProfile);
+router.post('/updateProfile', jwt({
+  secret: configPassport.secret}),
+  user.onUpdateProfile);
 
 router.get('/getall', jwt({
   secret: configPassport.secret
 }), user.getall);
 
-router.get('/getProfile', jwt({
+router.post('/getProfile', jwt({
   secret: configPassport.secret
 }), user.getProfile);
 

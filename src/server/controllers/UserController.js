@@ -130,66 +130,48 @@ module.exports = {
 
   },
   getProfile: function (req, res) {
-    console.log("In get profile --------")
-   // console.log(configPassport.secret);
-    if (req.headers && req.headers.authorization) {
-      var authorization = req.headers.authorization;
-      var decoded;
-      decoded = jwt.verify(authorization, configPassport.secret, function(error, payload){
-        if(error)
-        {
-          console.log("error", error);
-          return res.status(401).send('unauthorized');
-        }
-        else
-        {
-          console.log("payload", payload);
-          return payload;
-        }
-      });
-      var userId = decoded.id;
+    console.log("helloo from the other side", req.body);
 
-      // Fetch the user by id
-      User.findOne({email: userId})
-        .then(function (user) {
-        // Do something with the user
-        return res.json(user);
-      });
+    if(req.body.email){
+      User.findOne({email: req.body.email})
+        .then( function (foundUser) {
+          console.log('why this kolavari di',foundUser);
+          return res.json(_.omit(foundUser,'password'));
+        })
+        .catch(function (err) {
+          res.status(400).send(err);
+        });
     }
-    return res.send(500);
   },
 
   onUpdateProfile: function (req, res) {
-    console.log("********", req.body);
+    console.log("helloo from the other side");
     if (!req.body) {
       return res.status(400).send('Incorrect request');
     }
-    console.log("Updating profile");
-    firstname = req.body.firstname;
-    lastname = req.body.lastname;
-    gender = req.body.gender;
-    nationality = req.body.nationality;
-    desc = req.body.description;
-    User.find()
-      .then(function (users) {
-        console.log(users);
-      });
-    User.findOneAndUpdate({email: req.body.email}, {
-        $set: {
-          firstname: req.body.firstname,
-          lastname: req.body.lastname,
-          description: req.body.description,
-          nationality: req.body.nationality
-        }
-      },
-      {'new': true}, { overwrite: true }, function (err) {
-        if(err)
-          return res.json(err);
-        else
-          return res.json("successfully saved");
-      }
-    );
+     User.findOne({email: req.body.email})
+      .then( function(foundUser) {
+        console.log(req.body);
+        if (req.body.firstname)
+          foundUser.firstname = req.body.firstname;
+        if (req.body.lastname)
+          foundUser.lastname = req.body.lastname;
+        if (req.body.description)
+          foundUser.description = req.body.description;
+        if (req.body.nationality)
+          foundUser.nationality = req.body.nationality;
+        if (req.body.gender)
+          foundUser.gender = req.body.gender;
 
+        return User.update({email: req.body.email}, foundUser);
+        })
+        .then(function (updatedUser) {
+            console.log("successfully updated");
+            return res.json("Successfully updated !!");
+         })
+         .catch(function(err) {
+            return res.status(401).send(err);
+         })
 
   },
 
@@ -217,7 +199,6 @@ module.exports = {
 
 
     var newUser = new TempUser({
-
       firstname: req.body.firstname,
       lastname: req.body.lastname,
       email: req.body.email,

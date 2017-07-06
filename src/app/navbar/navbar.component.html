@@ -1,29 +1,29 @@
 <div>
-  <div class="navbar-fixed ">
+  <div class="navbar navbar-default ">
     <nav id="nav_f" class="default_color" role="navigation">
       <div class="container">
         <div class="nav-wrapper">
           <a [routerLink] ="['/landingPage']" class="brand-logo"><strong>Travel With Me</strong></a>
         <ul class="right hide-on-med-and-down">
-          <li><a href="#intro" *ngIf="!loggedIn">Home</a></li>
-          <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"  *ngIf="loggedIn" ><a [routerLink] = "['/viewProfile']">Profile</a></li>
+          <li><a href="#intro">Home</a></li>
+          <!--<li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"  *ngIf="loggedIn" ><a [routerLink] = "['/viewProfile']">Profile</a></li>-->
           <!--<li><a href="#contact">Contact</a></li>-->
           <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"  *ngIf="loggedIn" ><a [routerLink] = "['/mytrips']">My Trips</a></li>
           <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"  *ngIf="!loggedIn" ><a [routerLink] = "['/register']">Signup</a></li>
-          <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"  *ngIf="loggedIn" ><a [routerLink] = "['/profileEdit']">Edit Profile</a></li>
+          <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"  *ngIf="loggedIn" ><a [routerLink] = "['/profileMangement']">Profile</a></li>
           <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"> <a [routerLink] = "['/login']"  *ngIf="!loggedIn"  >Login</a></li>
-          <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}" (click)="logout()" *ngIf="loggedIn"><a [routerLink] = "['/logout']"      >Logout</a></li>
+          <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}" (click)="logout()" *ngIf="loggedIn"><a [routerLink] = "['/logout']">Logout</a></li>
 
         </ul>
         <ul id="nav-mobile" class="side-nav">
           <li><a href="#intro" *ngIf="!loggedIn">Home</a></li>
-          <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"  *ngIf="loggedIn" ><a [routerLink] = "['/viewProfile']">Profile</a></li>
+          <!--<li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"  *ngIf="loggedIn" ><a [routerLink] = "['/viewProfile']">Profile</a></li>-->
 
           <!--<li><a href="#contact">Contact</a></li>-->
           <li><a href="#mytrips" *ngIf="loggedIn">My Trips</a></li>
           <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"  *ngIf="!loggedIn" ><a [routerLink] = "['/register']">Signup</a></li>
           <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"><a [routerLink] = "['/login']"  *ngIf="!loggedIn"  >Login</a></li>
-          <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}" (click)="logout()"><a [routerLink] = "['/logout']"    *ngIf="loggedIn"  >Logout</a></li>
+          <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}" (click)="logout()"><a [routerLink] = "['/logout']"    *ngIf="loggedIn">Logout</a></li>
         </ul>
         <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
 
