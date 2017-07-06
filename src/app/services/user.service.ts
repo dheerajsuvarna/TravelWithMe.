@@ -7,13 +7,28 @@ import { User } from '../models/usermodel';
 export class UserService {
   constructor(private http: Http) { }
 
-  create(user: User) {
+  createTemp(user: User) {
 
     return this.http.post('/api/user/signup', user).map((response: Response) => response.json());
   }
 
   getAll() {
     return this.http.get('/api/user/getall', this.jwt()).map((response: Response) => response.json());
+  }
+
+  confirmUser(user:User)
+  {
+    return this.http.post('/api/user/email-verification',user).map((response: Response) => response.json());
+  }
+
+  resetPassword(user:User) {
+
+    return this.http.post('/api/user/reset-password', user).map((response: Response) => response.json());
+  }
+
+  resetPasswordChange(user:User) {
+
+    return this.http.post('/api/user/reset-password-change', user).map((response: Response) => response.json());
   }
 
 

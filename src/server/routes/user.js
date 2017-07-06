@@ -13,8 +13,11 @@ var trip = require("../controllers/AddTripController.js");
 // route for login action
 //router.post('/login', auth.doLogin);
 
-router.post('/signup', user.create);
+router.post('/signup', user.createTemp);
 router.post('/signin', user.authenticate);
+router.post('/email-verification', user.confirmTempUser);
+router.post('/reset-password', user.resetPassword);
+router.post('/reset-password-change', user.resetPasswordChange);
 
 router.get('/getall', jwt({
   secret: configPassport.secret

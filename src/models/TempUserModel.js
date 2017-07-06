@@ -1,13 +1,15 @@
-/**
- * Created by nilu on 15/06/17.
- */
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 var bcrypt = require('bcrypt');
 
 const saltRounds = 10
 
-var UserSchema = new Schema({
+var TempUserSchema = new Schema({
+  GENERATED_VERIFYING_URL: {
+    type: String,
+    unique:true,
+    required: true,
+  },
   password: {
     type: String,
     required: true
@@ -15,7 +17,6 @@ var UserSchema = new Schema({
   email: {
     type: String,
     required: true,
-    unique:true,
   },
   age: {
     type: Number,
@@ -24,59 +25,48 @@ var UserSchema = new Schema({
   birthdate:{
     type: String,
     required: false
-
   },
   gender: {
     type: String,
     required: false
-
   },
   nationality: {
     type: String,
     required: false
-
   },
   firstname: {
     type: String,
     required: false
-
-    // required: true
   },
   lastname: {
     type: String,
     required: false
-
-    // required: true
   },
   description: {
     type: String,
     required: false
-
-    // required: true
   },
-
-  passwordReset: {
-    type: String,
+  expirationTime : {
+    type: Date,
     required: false
   },
-  // img: { data: Buffer, contentType: String }
 });
 
-// UserSchema.pre('save', function (next) {
-//   var user = this;
-//   if (this.isModified('password') || this.isNew) {
-//     bcrypt.hash(user.password, saltRounds, function (err, hash) {
-//       if (err) {
-//         return next(err);
-//       }
-//      // user.password = hash;
-//       next();
-//     });
-//   } else {
-//     return next();
-//   }
-// });
-UserSchema.methods.comparePassword = function (passw, cb) {
+TempUserSchema.pre('save', function (next) {
+  var user = this;
+  if (this.isModified('password') || this.isNew) {
+    bcrypt.hash(user.password, saltRounds, function (err, hash) {
+      if (err) {
+        return next(err);
+      }
+      user.password = hash;
+      next();
+    });
+  } else {
+    return next();
+  }
+});
+TempUserSchema.methods.comparePassword = function (passw, cb) {
   bcrypt.compare(passw, this.password, function (err, isMatch) {
     if (err) {
       return cb(err);
@@ -87,4 +77,4 @@ UserSchema.methods.comparePassword = function (passw, cb) {
 
 
 
-module.exports = mongoose.model('User', UserSchema);
+module.exports = mongoose.model('TempUser', TempUserSchema);
