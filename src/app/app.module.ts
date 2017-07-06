@@ -18,17 +18,17 @@ import { profileManagementComponent } from './profile-management/profile-managem
 import { ViewProfileComponent } from './view-profile/view-profile.component';
 import { TripCardComponent } from './trip-card/trip-card.component';
 import { MyTripsComponent } from './my-trips/my-trips.component';
-import { SearchTripComponent } from './search-trip/search-trip.component';
-import { FilterPipe } from './filter.pipe';
-import {SearchPipe} from './search-pipe';
+
+
+
 import { SourceFilterPipe } from './source-filter.pipe';
 import { DestinationFilterPipe } from './destination-filter.pipe';
 import { TraveldateFilterPipe } from './traveldate-filter.pipe';
 import { ReturndateFilterPipe } from './returndate-filter.pipe';
 import { BudgetFilterPipe } from './budget-filter.pipe';
-
-
-
+import { SearchTripComponent } from './search-trip/search-trip.component';
+import { FilterPipe } from './filter.pipe';
+import {SearchPipe} from './search-pipe';
 @NgModule({
   imports: [
     BrowserModule,
