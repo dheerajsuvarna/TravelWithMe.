@@ -12,10 +12,15 @@ var TripSchema = new Schema({
   },
   destination: {
     type: String,
-    requiired: true
+    required: true
   },
   TripName: {
     type: String,
+    required: true
+  },
+  description: {
+    type: String,
+    required: false
   },
   Budget:{
     type: Number,
@@ -27,6 +32,18 @@ var TripSchema = new Schema({
   },
   interests:{
    type: [String],
+    required: false
+  },
+  startDate: {
+    type: String,
+    required: false
+  },
+  endDate: {
+    type: String,
+    required: false
+  },
+  numOfPeople: {
+    type: Number,
     required: true
   }
 });

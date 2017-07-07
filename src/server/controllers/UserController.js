@@ -7,7 +7,7 @@ var configDb = require('../config/database');
 var configPassport = require('../config/passport');
 var jwt = require('jsonwebtoken');
 var _ = require('lodash');
-var bcrypt = require('bcrypt');
+var bcrypt = require('bcryptjs');
 
 
 // Password reset
