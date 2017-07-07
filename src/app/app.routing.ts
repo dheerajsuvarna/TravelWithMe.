@@ -24,7 +24,7 @@ const appRoutes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'landingPage', component: LandingPageComponent },
-  { path: 'mytrips', component: MyTripsComponent, canActivate: [AuthGuard] },
+  { path: 'mytrips', component: HomeComponent, canActivate: [AuthGuard] },
 
   { path: 'searchTrip', component: SearchTripComponent, canActivate: [AuthGuard] },
   // otherwise redirect to home
