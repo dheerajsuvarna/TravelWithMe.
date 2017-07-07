@@ -130,13 +130,16 @@ module.exports = {
 
   },
   getProfile: function (req, res) {
-    console.log("helloo from the other side", req.body);
+    console.log("helloo from the other side ----- getprofile", req.body);
 
     if(req.body.email){
+
       User.findOne({email: req.body.email})
         .then( function (foundUser) {
-          console.log('why this kolavari di',foundUser);
-          return res.json(_.omit(foundUser,'password'));
+
+          var retUser = _.omit(foundUser, 'password');
+          console.log('why this kolavari di: ',retUser);
+          return res.json(retUser);
         })
         .catch(function (err) {
           res.status(400).send(err);
@@ -144,8 +147,12 @@ module.exports = {
     }
   },
 
+  OnUploadImage: function (req, res) {
+    console.log(req.body);
+
+  },
   onUpdateProfile: function (req, res) {
-    console.log("helloo from the other side");
+    console.log("helloo from the other side  -- UpdateProfile");
     if (!req.body) {
       return res.status(400).send('Incorrect request');
     }
@@ -166,6 +173,7 @@ module.exports = {
         return User.update({email: req.body.email}, foundUser);
         })
         .then(function (updatedUser) {
+          console.log(updatedUser);
             console.log("successfully updated");
             return res.json("Successfully updated !!");
          })

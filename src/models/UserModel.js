@@ -54,7 +54,10 @@ var UserSchema = new Schema({
 
     // required: true
   },
-  // img: { data: Buffer, contentType: String }
+   image: {
+    data: Buffer,
+     contentType: String
+  }
 });
 
 UserSchema.pre('save', function (next) {

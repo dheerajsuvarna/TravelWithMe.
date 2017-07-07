@@ -12,9 +12,9 @@ export class UserService {
     return this.http.post('/api/user/signup', user).map((response: Response) => response.json());
   }
 
-  getAll() {
-    return this.http.get('/api/user/getall', this.jwt()).map((response: Response) => response.json());
-  }
+  // getAll() {
+  //   return this.http.get('/api/user/getall', this.jwt()).map((response: Response) => response.json());
+  // }
 
   confirmUser(user: User) {
     return this.http.post('/api/user/email-verification',user).map((response: Response) => response.json());
@@ -24,6 +24,9 @@ export class UserService {
   }
   getUserProfile(email: any) {
     return this.http.post('api/user/getProfile', email, this.jwt()).map((response: Response) => response.json());
+  }
+  uploadAvatar(user: User) {
+    return this.http.post('api/user/uploadImage', user, this.jwt()).map((response: Response) => response.json());
   }
 
   // private helper methods

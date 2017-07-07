@@ -6,7 +6,7 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { LandingPageComponent } from './landing-page/landing-page.component';
 import { UpdateProfileComponent } from './profile-management/update-profile/update-profile.component';
-import { ViewProfileComponent } from './profile-management/view-profile/view-profile.component';
+// import { ViewProfileComponent } from './profile-management/view-profile/view-profile.component';
 import { ProfileManagementComponent } from './profile-management/profile-management.component';
 import { MyTripsComponent} from './my-trips/my-trips.component';
 import { EmailVerificationComponent } from './email-verification/email-verification.component'

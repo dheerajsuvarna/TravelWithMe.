@@ -4,12 +4,13 @@
 /**
  * Created by narin on 17/06/17.
  */
-import { Component, OnInit } from '@angular/core';
+import {Component, ElementRef, OnInit} from '@angular/core';
 import { User } from '../../models/usermodel';
 import { UserService } from '../../services/index';
 import { Router, ActivatedRoute } from '@angular/router';
 
 import { AlertService, AuthenticationService } from '../../services/index';
+import {NgForm} from "@angular/forms";
 
 @Component({
   moduleId:    module.id,
@@ -48,12 +49,12 @@ export class UpdateProfileComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log('in nkOninit update profile');
+    console.log('in Oninit update profile');
     this.getUserProfile();
   }
   getUserProfile() {
-    console.log('in getuserprofile', this.currentUser.email);
-    var sendData = {
+
+    const sendData = {
       email : this.currentUser.email
     };
     this.userService.getUserProfile(sendData)
@@ -66,9 +67,29 @@ export class UpdateProfileComponent implements OnInit {
         );
   }
   OnUpdateProfile() {
-    console.log('In Update profile');
     this.UpdateStatus = 'successful';
-    console.log('*****in UodateProfile', this.currentUser);
-    this.userService.onUpdateProfile(this.currentUser).subscribe();
+    this.userService.onUpdateProfile(this.currentUser)
+      .subscribe(
+        data => {
+          this.alertService.success('Profile Updated', true);
+        },
+        error => {
+          this.alertService.error(error);
+          this.loading = false;
+        });
+  }
+
+  UploadAvtar() {
+    console.log('**********',this.currentUser.image);
+    this.userService.uploadAvatar(this.currentUser)
+      .subscribe(
+        data => {
+          this.alertService.success('Imaged Uploaded', true)
+        },
+        error => {
+          this.alertService.error(error);
+          this.loading = false;
+        }
+      )
   }
 }

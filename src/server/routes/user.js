@@ -20,6 +20,9 @@ router.post('/updateProfile', jwt({
   secret: configPassport.secret}),
   user.onUpdateProfile);
 
+// router.post('/uploadImage',jwt({
+//     secret: configPassport.secret}),
+//   user.onUploadImage);
 router.get('/getall', jwt({
   secret: configPassport.secret
 }), user.getall);
