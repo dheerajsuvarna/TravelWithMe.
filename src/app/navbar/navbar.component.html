@@ -17,13 +17,7 @@
         <ul id="nav-mobile" class="side-nav">
           <li><a href="#intro" *ngIf="!loggedIn">Home</a></li>
           <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"  *ngIf="loggedIn" ><a [routerLink] = "['/viewProfile']">Profile</a></li>
-<<<<<<< .mine
 
-
-=======
-
-          <!--<li><a href="#contact">Contact</a></li>-->
->>>>>>> .theirs
           <li><a href="#mytrips" *ngIf="loggedIn">My Trips</a></li>
           <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"  *ngIf="!loggedIn" ><a [routerLink] = "['/register']">Signup</a></li>
           <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"><a [routerLink] = "['/login']"  *ngIf="!loggedIn"  >Login</a></li>
