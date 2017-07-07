@@ -8,15 +8,12 @@ import { LandingPageComponent } from './landing-page/landing-page.component';
 import { profileManagementComponent } from './profile-management/profile-management.component';
 import { ViewProfileComponent } from './view-profile/view-profile.component';
 import { MyTripsComponent} from './my-trips/my-trips.component';
-import{EmailVerificationComponent} from './email-verification/email-verification.component'
-import {PasswordResetComponent} from "./password-reset/password-reset.component";
-import {ResetPasswordChangeComponent} from "./reset-password-change/reset-password-change.component"
+import{EmailVerificationComponent} from './email-verification/email-verification.component';
+import { AddTripComponent} from './add-trip/add-trip.component'
 
 const appRoutes: Routes = [
 
   { path: 'email-verification/:token', component: EmailVerificationComponent },
-  { path: 'reset-password-change/:token', component: ResetPasswordChangeComponent },
-  { path: 'reset-password', component: PasswordResetComponent },
   { path: '', component: HomeComponent, canActivate: [AuthGuard] },
   { path: 'profileEdit', component: profileManagementComponent, canActivate: [AuthGuard] },
   { path: 'viewProfile', component: ViewProfileComponent, canActivate: [AuthGuard] },
@@ -24,6 +21,7 @@ const appRoutes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'landingPage', component: LandingPageComponent },
   { path: 'mytrips', component: MyTripsComponent, canActivate: [AuthGuard] },
+  { path: 'addtrip', component: AddTripComponent, canActivate: [AuthGuard] },
 
 
   // otherwise redirect to home

@@ -8,7 +8,7 @@ import { routing } from './app.routing';
 
 import { AlertComponent } from './alert/alert.component';
 import { AuthGuard } from './guards/auth.guard';
-import { AlertService, AuthenticationService, UserService } from './services/index';
+import { AlertService, AuthenticationService, UserService, AddTripService } from './services/index';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
@@ -19,6 +19,7 @@ import { ViewProfileComponent } from './view-profile/view-profile.component';
 import { TripCardComponent } from './trip-card/trip-card.component';
 import { MyTripsComponent } from './my-trips/my-trips.component';
 import { EmailVerificationComponent } from './email-verification/email-verification.component';
+import { AddTripComponent } from './add-trip/add-trip.component';
 import { PasswordResetComponent } from './password-reset/password-reset.component';
 import { ResetPasswordChangeComponent } from './reset-password-change/reset-password-change.component';
 
@@ -42,6 +43,7 @@ import { ResetPasswordChangeComponent } from './reset-password-change/reset-pass
     TripCardComponent,
     MyTripsComponent,
     EmailVerificationComponent,
+    AddTripComponent,
     PasswordResetComponent,
     ResetPasswordChangeComponent,
 
@@ -51,6 +53,7 @@ import { ResetPasswordChangeComponent } from './reset-password-change/reset-pass
     AlertService,
     AuthenticationService,
     UserService,
+    AddTripService,
   ],
   bootstrap: [AppComponent]
 })

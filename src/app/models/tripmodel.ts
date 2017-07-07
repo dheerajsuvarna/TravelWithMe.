@@ -11,6 +11,8 @@ export class Trip {
   user:User;
   interests: [Interest];
   description:string;
-  date:string;
+  startDate:string;
+  endDate:string;
+  numOfPeople: Number;
 }
 
