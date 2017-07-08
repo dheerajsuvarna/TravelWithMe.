@@ -55,6 +55,11 @@ var UserSchema = new Schema({
     // required: true
   },
 
+   image: {
+    data: Buffer,
+     contentType: String
+  },
+
   passwordReset: {
     type: String,
     required: false

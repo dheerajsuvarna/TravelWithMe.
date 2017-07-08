@@ -11,7 +11,7 @@ import {isBoolean} from "util";
 export class NavbarComponent implements OnInit {
   public  loggedIn;
   currentUser: User;
-  users: User[] = [];
+  //users: User[] = [];
   constructor(private userService: UserService) {
     this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
   }
@@ -28,7 +28,7 @@ export class NavbarComponent implements OnInit {
 
   }
 
-  private loadAllUsers() {
-    this.userService.getAll().subscribe(users => { this.users = users; });
-  }
+  // private loadAllUsers() {
+  //   this.userService.getAll().subscribe(users => { this.users = users; });
+  // }
 }

@@ -137,6 +137,7 @@ module.exports = {
 
   authenticate: function (req, res) {
     if (!req.body || !req.body.email || !req.body.password) {
+      console.log(req.body)
       return res.status(400).send('Incorrect request');
     }
 
@@ -216,36 +217,58 @@ module.exports = {
       });
 
   },
-  editprofile: function (req, res) {
-    User.findOne({email: req.body.email}, function (err, p) {
-      if (!p)
-        return next(new Error('User does not exist'));
-      else {
-        var firstname = req.body.firstname;
-        var lastname = req.body.lastname;
-        var email = req.body.email;
-        var gender = req.body.gender;
-        var nationality = req.body.nationality;
+  getProfile: function (req, res) {
+    console.log("helloo from the other side ----- getprofile", req.body);
 
-        User.update({
-          firstname: firstname,
-          lastname: lastname,
-          username: username,
-          email: email,
-          gender: gender,
-          nationality: nationality
-        }, function (err, res) {
-          return res.status(200).send('Successfully Updated');
-        });
+    if(req.body.email){
 
-        p.save(function (err) {
-          if (err)
-            console.log('error')
-          else
-            console.log('success')
+      User.findOne({email: req.body.email})
+        .then( function (foundUser) {
+
+          var retUser = _.omit(foundUser, 'password');
+          console.log('why this kolavari di: ',retUser);
+          return res.json(retUser);
+        })
+        .catch(function (err) {
+          res.status(400).send(err);
         });
-      }
-    });
+    }
+  },
+
+  OnUploadImage: function (req, res) {
+    console.log(req.body);
+
+  },
+  onUpdateProfile: function (req, res) {
+    console.log("helloo from the other side  -- UpdateProfile");
+    if (!req.body) {
+      return res.status(400).send('Incorrect request');
+    }
+     User.findOne({email: req.body.email})
+      .then( function(foundUser) {
+        console.log(req.body);
+        if (req.body.firstname)
+          foundUser.firstname = req.body.firstname;
+        if (req.body.lastname)
+          foundUser.lastname = req.body.lastname;
+        if (req.body.description)
+          foundUser.description = req.body.description;
+        if (req.body.nationality)
+          foundUser.nationality = req.body.nationality;
+        if (req.body.gender)
+          foundUser.gender = req.body.gender;
+
+        return User.update({email: req.body.email}, foundUser);
+        })
+        .then(function (updatedUser) {
+          console.log(updatedUser);
+            console.log("successfully updated");
+            return res.json("Successfully updated !!");
+         })
+         .catch(function(err) {
+            return res.status(401).send(err);
+         })
+
   },
 
   createTemp: function (req, res) {
@@ -276,7 +299,6 @@ module.exports = {
     expiration.setMinutes(expiration.getMinutes() + expirationInMinutes);
 
     var newUser = new TempUser({
-
       firstname: req.body.firstname,
       lastname: req.body.lastname,
       email: req.body.email,
