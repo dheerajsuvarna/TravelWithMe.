@@ -22,9 +22,11 @@ import { MyTripsComponent } from './my-trips/my-trips.component';
 import { EmailVerificationComponent } from './email-verification/email-verification.component';
 
 import {DropDownDirective} from './shared/dropdown.directive';
+
 import { AddTripComponent } from './add-trip/add-trip.component';
 import { PasswordResetComponent } from './password-reset/password-reset.component';
 import { ResetPasswordChangeComponent } from './reset-password-change/reset-password-change.component';
+
 
 @NgModule({
   imports: [
@@ -46,7 +48,6 @@ import { ResetPasswordChangeComponent } from './reset-password-change/reset-pass
     TripCardComponent,
     MyTripsComponent,
     EmailVerificationComponent,
-
     ProfileManagementComponent,
     DropDownDirective,
 
@@ -60,7 +61,7 @@ import { ResetPasswordChangeComponent } from './reset-password-change/reset-pass
     AlertService,
     AuthenticationService,
     UserService,
-    AddTripService,
+    AddTripService
   ],
   bootstrap: [AppComponent]
 })

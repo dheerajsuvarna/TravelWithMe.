@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from '../models/usermodel';
 import { UserService } from '../services/index';
-import {isBoolean} from "util";
+import {isBoolean} from 'util';
 
 @Component({
   selector: 'app-navbar',
@@ -12,6 +12,7 @@ export class NavbarComponent implements OnInit {
   public  loggedIn;
   currentUser: User;
   //users: User[] = [];
+
   constructor(private userService: UserService) {
     this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
   }
@@ -24,7 +25,7 @@ export class NavbarComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.loggedIn = localStorage.getItem("currentUser")!=null;
+    this.loggedIn = localStorage.getItem('currentUser') != null;
 
   }
 

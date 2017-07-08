@@ -1,16 +1,11 @@
-/**
- * Created by nilu on 03/07/17.
- */
-/**
- * Created by narin on 17/06/17.
- */
-import {Component, ElementRef, OnInit} from '@angular/core';
+
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import { User } from '../../models/usermodel';
 import { UserService } from '../../services/index';
 import { Router, ActivatedRoute } from '@angular/router';
 
 import { AlertService, AuthenticationService } from '../../services/index';
-import {NgForm} from "@angular/forms";
+// import {NgForm} from '@angular/forms';
 
 @Component({
   moduleId:    module.id,
@@ -26,12 +21,17 @@ export class UpdateProfileComponent implements OnInit {
   UpdateStatus: string;
 
 
+  @Output() featureSelected = new EventEmitter<string>();
+  OnSelect(feature: string) {
+    console.log('********on select*******', feature);
+    this.featureSelected.emit(feature);
+  }
   getAge(dateString) {
-    console.log("in getAge");
-    var today = new Date();
-    var birthDate = new Date(dateString);
+    // console.log("in getAge");
+    const today = new Date();
+    const birthDate = new Date(dateString);
     var age = today.getFullYear() - birthDate.getFullYear();
-    var m = today.getMonth() - birthDate.getMonth();
+    const m = today.getMonth() - birthDate.getMonth();
     if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
       age--;
     }
@@ -43,8 +43,8 @@ export class UpdateProfileComponent implements OnInit {
     private userService: UserService,
     private alertService: AlertService) {
     this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
-    var temp  = localStorage.getItem('currentUser');
-    var json = JSON.parse(temp);
+    const temp  = localStorage.getItem('currentUser');
+    const json = JSON.parse(temp);
     this.currentUser = json.user;
   }
 
@@ -79,8 +79,8 @@ export class UpdateProfileComponent implements OnInit {
         });
   }
 
-  UploadAvtar() {
-    console.log('**********',this.currentUser.image);
+  UploadAvatar() {
+    console.log('**********', this.currentUser.image);
     this.userService.uploadAvatar(this.currentUser)
       .subscribe(
         data => {
@@ -91,5 +91,26 @@ export class UpdateProfileComponent implements OnInit {
           this.loading = false;
         }
       )
+  }
+  getImage(data) {
+    if (data) {
+      return data;
+    }
+    else {
+      return "../../assets/img/avatar1.png";
+    }
+  }
+  getInput(fileInput) {
+
+    const reader = new FileReader();
+    reader.onload = ((e: any) => {
+      this.currentUser.image = e.target.result;
+    });
+    if (fileInput.target.files[0].size > 1024 * 50) {
+      this.alertService.error("Choose a smaller file with 50kb size");
+    }
+    else {
+      reader.readAsDataURL(fileInput.target.files[0]);
+    }
   }
 }
