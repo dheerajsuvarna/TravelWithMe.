@@ -14,21 +14,28 @@ var _ = require('lodash');
 
 
 module.exports = {
- create: function (req, res) {
+ addtrip: function (req, res) {
    var newTrip = new Trip({
      source: req.body.source,
      destination: req.body.destination,
-     Budget: req.body.Budget
+     Budget: req.body.Budget,
+     TripName: req.body.tripName,
+     description: req.body.description,
+     startDate: req.body.startDate,
+     endDate: req.body.endDate,
+     numOfPeople: req.body.numOfPeople,
+     user: req.body.user
    });
 
    newTrip.save()
      .then(function (trip) {
-       res.json(trip)
-
-         .catch(function (err) {
-           res.status(400).send(err);
-         });
+       console.log('success: trip added', newTrip)
+       return res.json(newTrip)
      })
+     .catch(function (err) {
+       console.log(err)
+       return res.status(400).send(err);
+     });
  },
   mytrip: function (req,res) {
     Trip.find()

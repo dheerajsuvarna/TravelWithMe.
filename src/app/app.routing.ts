@@ -10,6 +10,8 @@ import { UpdateProfileComponent } from './profile-management/update-profile/upda
 import { ProfileManagementComponent } from './profile-management/profile-management.component';
 import { MyTripsComponent} from './my-trips/my-trips.component';
 import { EmailVerificationComponent } from './email-verification/email-verification.component'
+// import {EmailVerificationComponent} from './email-verification/email-verification.component';
+import { AddTripComponent} from './add-trip/add-trip.component'
 
 const appRoutes: Routes = [
 
@@ -22,6 +24,8 @@ const appRoutes: Routes = [
   { path: 'landingPage', component: LandingPageComponent },
   { path: 'mytrips', component: MyTripsComponent, canActivate: [AuthGuard] },
   { path: 'profileMangement', component: ProfileManagementComponent },
+
+  { path: 'addtrip', component: AddTripComponent, canActivate: [AuthGuard] },
 
 
   // otherwise redirect to home

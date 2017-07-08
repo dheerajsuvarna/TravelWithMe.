@@ -8,7 +8,7 @@ import { routing } from './app.routing';
 
 import { AlertComponent } from './alert/alert.component';
 import { AuthGuard } from './guards/auth.guard';
-import { AlertService, AuthenticationService, UserService } from './services/index';
+import { AlertService, AuthenticationService, UserService, AddTripService } from './services/index';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
@@ -20,7 +20,11 @@ import { UpdateProfileComponent } from './profile-management/update-profile/upda
 import { TripCardComponent } from './trip-card/trip-card.component';
 import { MyTripsComponent } from './my-trips/my-trips.component';
 import { EmailVerificationComponent } from './email-verification/email-verification.component';
+
 import {DropDownDirective} from './shared/dropdown.directive';
+import { AddTripComponent } from './add-trip/add-trip.component';
+import { PasswordResetComponent } from './password-reset/password-reset.component';
+import { ResetPasswordChangeComponent } from './reset-password-change/reset-password-change.component';
 
 @NgModule({
   imports: [
@@ -42,8 +46,13 @@ import {DropDownDirective} from './shared/dropdown.directive';
     TripCardComponent,
     MyTripsComponent,
     EmailVerificationComponent,
+
     ProfileManagementComponent,
-    DropDownDirective
+    DropDownDirective,
+
+    AddTripComponent,
+    PasswordResetComponent,
+    ResetPasswordChangeComponent,
 
   ],
   providers: [
@@ -51,6 +60,7 @@ import {DropDownDirective} from './shared/dropdown.directive';
     AlertService,
     AuthenticationService,
     UserService,
+    AddTripService,
   ],
   bootstrap: [AppComponent]
 })

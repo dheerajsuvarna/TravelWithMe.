@@ -29,6 +29,16 @@ export class UserService {
     return this.http.post('api/user/uploadImage', user, this.jwt()).map((response: Response) => response.json());
   }
 
+  resetPassword(user:User) {
+
+    return this.http.post('/api/user/reset-password', user).map((response: Response) => response.json());
+  }
+
+  resetPasswordChange(user:User) {
+
+    return this.http.post('/api/user/reset-password-change', user).map((response: Response) => response.json());
+  }
+  
   // private helper methods
 
   private jwt() {
