@@ -12,13 +12,18 @@ export class UserService {
     return this.http.post('/api/user/signup', user).map((response: Response) => response.json());
   }
 
-  getAll() {
-    return this.http.get('/api/user/getall', this.jwt()).map((response: Response) => response.json());
-  }
+  // getAll() {
+  //   return this.http.get('/api/user/getall', this.jwt()).map((response: Response) => response.json());
+  // }
 
-  confirmUser(user:User)
-  {
+  confirmUser(user: User) {
     return this.http.post('/api/user/email-verification',user).map((response: Response) => response.json());
+  }
+  onUpdateProfile(user: User) {
+    return this.http.post('/api/user/updateProfile',  user, this.jwt()).map((response: Response) => response.json());
+  }
+  getUserProfile(email: any) {
+    return this.http.post('api/user/getProfile', email, this.jwt()).map((response: Response) => response.json());
   }
 
   resetPassword(user:User) {
@@ -30,11 +35,14 @@ export class UserService {
 
     return this.http.post('/api/user/reset-password-change', user).map((response: Response) => response.json());
   }
-  
+  uploadAvatar(user: User) {
+    return this.http.post('api/user/uploadProfileImage', user, this.jwt()).map((response: Response) => response.json());
+  }
   // private helper methods
 
   private jwt() {
     // create authorization header with jwt token
+    console.log('in User services - jwt()');
     let currentUser = JSON.parse(localStorage.getItem('currentUser'));
     if (currentUser && currentUser.token) {
       let headers = new Headers({ 'Authorization': 'Bearer ' + currentUser.token });

@@ -14,14 +14,19 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { LandingPageComponent } from './landing-page/landing-page.component';
-import { profileManagementComponent } from './profile-management/profile-management.component';
-import { ViewProfileComponent } from './view-profile/view-profile.component';
+import { ProfileManagementComponent } from './profile-management/profile-management.component';
+import { UpdateProfileComponent } from './profile-management/update-profile/update-profile.component';
+// import { ViewProfileComponent } from './profile-management/view-profile/view-profile.component';
 import { TripCardComponent } from './trip-card/trip-card.component';
 import { MyTripsComponent } from './my-trips/my-trips.component';
 import { EmailVerificationComponent } from './email-verification/email-verification.component';
+
+import {DropDownDirective} from './shared/dropdown.directive';
+
 import { AddTripComponent } from './add-trip/add-trip.component';
 import { PasswordResetComponent } from './password-reset/password-reset.component';
 import { ResetPasswordChangeComponent } from './reset-password-change/reset-password-change.component';
+
 
 @NgModule({
   imports: [
@@ -38,11 +43,14 @@ import { ResetPasswordChangeComponent } from './reset-password-change/reset-pass
     RegisterComponent,
     NavbarComponent,
     LandingPageComponent,
-    profileManagementComponent,
-    ViewProfileComponent,
+    UpdateProfileComponent,
+    // ViewProfileComponent,
     TripCardComponent,
     MyTripsComponent,
     EmailVerificationComponent,
+    ProfileManagementComponent,
+    DropDownDirective,
+
     AddTripComponent,
     PasswordResetComponent,
     ResetPasswordChangeComponent,
@@ -53,7 +61,7 @@ import { ResetPasswordChangeComponent } from './reset-password-change/reset-pass
     AlertService,
     AuthenticationService,
     UserService,
-    AddTripService,
+    AddTripService
   ],
   bootstrap: [AppComponent]
 })

@@ -1,0 +1,162 @@
+
+
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+<style>
+  #basicInfo, #uploadPhoto{
+    margin-right:10px;
+    float:left;
+    margin-left: 40px;
+  }
+  #basicInfo{
+    margin-right: 10px;
+  }
+  #aboutBox{
+    float:right;
+    margin-right:43px;
+  }
+</style>
+
+<div style="background: rgba(70, 175, 80, 0.0)">
+  <div class="collapse navbar-collapse">
+    <div class="nav navbar-nav">
+      <li><a href="#"(click)="OnSelect('My Profile')">My Profile</a></li>
+      <li><a href="#" (click)="OnSelect('My Trips')">My Trips</a></li>
+      <li><a href="#" (click)="OnSelect('Add Trip')">Add Trip</a></li>
+      <li><a href="#" (click)="OnSelect('Messages')">Messages</a></li>
+      <li><a href="#" (click)="OnSelect('Settings')">Settings</a></li>
+    </div>
+
+  </div>
+
+  <form action="/api/upload" method="post" enctype="multipart/form-data">
+    <div id="uploadPhoto" class="col s8 z-depth-4 card-panel" style="width:35%;height:275px;  ">
+      <div class="text-center">
+        <img src="{{getImage(currentUser.image)}}" [width]="200" [height]="200" />
+      </div>
+      <div class="row">
+        <input type="file" class="form-control" (change)="getInput($event)" name="myFile">
+        <button type="submit" class="btn btn-primary" [disabled]="!f.valid" (click)="UploadAvatar()">Upload Image</button>
+      </div>
+    </div>
+  </form>
+
+  <div id="basicInfo" class="col s12 z-depth-3 card-panel" style="width:45%;height:560px;margin-left:15%">
+    <form class="col s12" name="form" #f="ngForm" novalidate>
+      <div class="row">
+        <div class="input-field col s4">
+          <label for="first_name">First Name</label>
+          <br>
+          <input id="first_name" type="text" class="validate"
+                 [(ngModel)]="currentUser.firstname"
+                 name = "first_name"
+                 pattern="[a-zA-Z ]*" ngModel required >
+          <!--<div *ngIf="f.submitted && !firstname.valid" class="help-block">first name is required</div>-->
+          <span *ngIf="currentUser.firstname === ''" class="help-block">First Name is required</span>
+        </div>
+        <div class="input-field col s4">
+          <label for="last_name">Last Name</label>
+          <br>
+          <input id="last_name" type="text" class="validate"
+                 [(ngModel)]="currentUser.lastname"
+                 name="last_name"
+                 #title="ngModel"
+                 pattern="[a-zA-Z ]*" ngModel required >
+          <!--<label for="last_name" *ngIf="currentUser.lastname === ''">Last Name</label>-->
+          <span *ngIf="currentUser.lastname === ''" class="help-block">Last Name is required</span>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s8">
+          <label for="email">Email Address</label>
+          <br>
+          <input id="email"
+                 disabled [(ngModel)]="currentUser.email"
+                 type="text" name="email">
+        </div>
+      </div>
+
+      <div class="row">
+        <input name="grp1" type="radio" [(ngModel)]="currentUser.gender" value="Male" [checked]="'Male'=== currentUser.gender" id="r1">
+        <label for="r1">Male</label>
+
+        <input name="grp1" type="radio" [(ngModel)]="currentUser.gender" value="Female" [checked]="'Female'=== currentUser.gender"id="r2">
+        <label for="r2">Female</label>
+      </div>
+      <div class="row">
+        <label for="Age">Age</label>
+        <div class="input-field col s12">
+          <input disabled value="{{currentUser.age}}" id="Age" type="text" class="validate" name="Age">
+          <!--<label for="disabled" *ngIf="!currentUser.age">Age</label>-->
+        </div>
+      </div>
+      <br>
+      <div class="form-group">
+        <label for="country">Nationality</label>
+        <select id="country" class="browser-default" [(ngModel)]="currentUser.nationality" name="country">
+          <option value="" disabled selected>Select Country</option>
+          <option value="Afghanistan">Afghanistan</option>
+          <option value="Albania">Albania</option>
+          <option value="Algeria">Algeria</option>
+          <option value="American">America</option>
+          <option value="Bangladesh">Bangladesh</option>
+          <option value="Belgium">Belgium</option>
+          <option value="Canada">Canada</option>
+          <option value="China">China</option>
+          <option value="Czech Republic">Czech Republic</option>
+          <option value="Denmark">Denmark</option>
+          <option value="Germany">Germany</option>
+          <option value="Honduras">Honduras</option>
+          <option value="Hong Kong">Hong Kong</option>
+          <option value="Hungary">Hungary</option>
+          <option value="Iceland">Iceland</option>
+          <option value="India">India</option>
+          <option value="Indonesia">Indonesia</option>
+          <option value="Iraq">Iraq</option>
+          <option value="Ireland">Ireland</option>
+          <option value="Israel">Israel</option>
+          <option value="Malaysia">Malaysia</option>
+          <option value="Nepal">Nepal</option>
+          <option value="Netherlands">Netherlands</option>
+          <option value="New Zealand">New Zealand</option>
+          <option value="Norway">Norway</option>
+          <option value="Oman">Oman</option>
+          <option value="Pakistan">Pakistan</option>
+          <option value="Qatar">Qatar</option>
+          <option value="Romania">Romania</option>
+          <option value="Russian Federation">Russian Federation</option>
+          <option value="Spain">Spain</option>
+          <option value="Syria">Syria</option>
+
+        </select>
+
+      </div>
+
+
+    </form>
+
+  </div>
+  <div class="col s12 z-depth-3 card-panel" id="aboutBox" style="width:35%;height:275px;margin-right: 62%;
+  margin-bottom:0%;margin-top:-20%">
+    <div class="row">
+      <form class="col s12">
+        <div class="row">
+          <label>About Me</label>
+          <div class="input-field col s12">
+            <textarea id="textarea1" class="materialize-textarea" [(ngModel)]="currentUser.description" name="description"
+                      #text="ngModel" required></textarea>
+            <label for="textarea1"*ngIf="currentUser.description === ''">Tell us a little about you.</label>
+          </div>
+        </div>
+      </form>
+    </div>
+    <br>
+    <button class="btn pink btn-primary z-depth-3" type="submit" value="Submit" [disabled]="!f.valid"
+            style="" (click)="OnUpdateProfile()">Update Profile</button>
+
+  </div>
+
+</div>
+
+
