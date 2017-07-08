@@ -5,10 +5,17 @@
 
 #searchButton{
   float: right;
-  margin-right: 10%px;
+  margin-right: 0.2%;
+}
+label{
+  float:left
 }
 input {
-  /*float:left;*/
+  float:left;
+  width:100%;
+}
+.searchresults{
+
 }
 .container{
   /*width: 100%;

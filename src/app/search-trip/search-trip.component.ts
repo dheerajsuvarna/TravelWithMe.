@@ -3,6 +3,15 @@ import {Trip} from '../models/tripmodel';
 import {Interest} from '../../models/Enums/Interest';
 import {User} from '../models/usermodel';
 import { FormBuilder, FormGroup , FormControl} from '@angular/forms';
+import {
+  trigger,
+  state,
+  style,
+  animate,
+  transition,
+  group,
+  keyframes
+} from '@angular/animations';
 import { FilterPipe } from '../filter.pipe';
 import { SearchPipe } from '../search-pipe';
 
@@ -10,6 +19,26 @@ import { SearchPipe } from '../search-pipe';
   selector: 'app-search-trip',
   templateUrl: './search-trip.component.html',
   styleUrls: ['./search-trip.component.css'],
+  animations: [
+    trigger('flyInOut', [
+      state('in', style({transform: 'translateX(0)'})),
+      transition('void => *', [
+        animate(300, keyframes([
+          style({opacity: 0, transform: 'translateX(-100%)', offset: 0}),
+          style({opacity: 1, transform: 'translateX(15px)',  offset: 0.3}),
+          style({opacity: 1, transform: 'translateX(30px)',  offset: 0.6}),
+          style({opacity: 1, transform: 'translateX(0)',     offset: 1.0})
+        ]))
+      ]),
+      transition('* => void', [
+        animate(300, keyframes([
+          style({opacity: 1, transform: 'translateX(0)',     offset: 0}),
+          style({opacity: 1, transform: 'translateX(-15px)', offset: 0.7}),
+          style({opacity: 0, transform: 'translateX(100%)',  offset: 1.0})
+        ]))
+      ])
+    ])
+  ]
 })
 export class SearchTripComponent implements OnInit {
   userForm = new FormGroup({

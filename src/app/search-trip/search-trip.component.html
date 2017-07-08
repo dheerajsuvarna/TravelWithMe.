@@ -2,39 +2,52 @@
   search-trip works!
 </p>-->
 
-<div id="mainDiv">
+<div id="mainDiv" >
   <div id="SearchBar" class="form-group container">
-    <!--<div class="input-field">
-      <form id="filters">
-        &lt;!&ndash;<input #searchDestination type="text"  [(ngModel)]="model.term"/>&ndash;&gt;
-        <input #textbox type="text" [(ngModel)]="textValue">
-        <label for="search"><i class="material-icons">search</i></label>
-        <br>
-        <h5> This is the term => {{textbox.value}}</h5>
-      </form>
-    </div>-->
     <div class="card-panel z-depth-2 row">
       <form class="form-group col-lg-8 col-md-4 col-sm-2" [formGroup]="userForm" (ngSubmit)="onFormSubmit()">
         <div id="inputFields1" class="row">
+          <table>
+            <tr>
+              <td>
            <label for="source">Source</label>
-           <input id="source" class="form-control" formControlName="source"  placeholder="Source">
+           <input id="source" class="form-control" type="text" formControlName="source"  placeholder="Source">
+              </td>
+              <td>
           <label for="destination">Destination</label>
-           <input  id="destination" class="form-control" formControlName="destination"  placeholder="Destination">
+           <input  id="destination" class="form-control" type="text"formControlName="destination"  placeholder="Destination">
+              </td>
+              <td>
           <label for="traveldate">Travel Date</label>
-           <input id="traveldate" class="form-control" formControlName="travelDate"  placeholder="dd.mm.yyyy">
+           <input id="traveldate" class="form-control" type="text" formControlName="travelDate"  placeholder="dd.mm.yyyy">
+              </td>
+              <td>
           <label for="returndate">Return Date</label>
-           <input id="returndate" class="form-control" formControlName="returnDate" placeholder="dd.mm.yyyy">
-
+           <input id="returndate" class="form-control" type="text" formControlName="returnDate" placeholder="dd.mm.yyyy">
+              </td>
+            </tr>
+          </table>
         </div>
         <div id="inputFields2" class="row">
+          <table>
+            <tr>
+              <td>
           <label for="budget"><strong>Budget</strong></label>
-          <input id="budget"  class="form-control" formControlName="budget"  placeholder="Budget">
-          <label for="noofpeople">Max No of People</label>
-          <input id="noofpeople"  class="form-control" formControlName="noofpeople"  placeholder="Max Number of People">
+          <input id="budget"  class="form-control" type="text" formControlName="budget"  placeholder="Budget">
+              </td>
+              <td>
+          <label for="noofpeople">Max People</label>
+          <input id="noofpeople"   type="text" class="form-control" formControlName="noofpeople"  placeholder="Max People">
+              </td>
+              <td>
           <label for="interests">Interests</label>
-          <input id="interests" class="form-control" formControlName="Interests"  placeholder="Interests">
-
-          <button type="submit" id="searchButton" class="btn waves-button-input">Search</button>
+          <input id="interests" class="form-control" type="text" formControlName="Interests"  placeholder="Interests">
+              </td>
+              <td>
+          <button type="submit" id="searchButton" class="btn waves-button-input pull-right ripple">Search</button>
+              </td>
+            </tr>
+          </table>
         </div>
       </form>
     </div>
@@ -44,7 +57,7 @@
     <h5> Travel Date => {{searchTravelDate}}</h5>
     <h5> Return Date => {{searchReturnDate}}</h5>-->
   </div>
-  <div id="search results" class="row container card-panel z-depth-2 center-align" style="margin:auto;">
-  <app-trip-card style="display: inline-block; margin: 10px;" *ngFor="let trip of trips | sourceFilter: searchSource | destinationFilter: searchDestination | traveldateFilter: searchTravelDate | budgetFilter : searchBudget "  [trip]="trip"  ></app-trip-card>
+  <div id="search results" class="row card-panel z-depth-2 pull-right" style="margin-right: 14%;width: 72%;" >
+  <app-trip-card style="display: inline-block; margin: 10px;" *ngFor="let trip of trips | sourceFilter: searchSource | destinationFilter: searchDestination | traveldateFilter: searchTravelDate | budgetFilter : searchBudget "  [trip]="trip" [@flyInOut]="'in'" ></app-trip-card>
   </div>
 </div>

@@ -10,6 +10,9 @@
   <link href="./assets/min/plugin-min.css" type="text/css" rel="stylesheet">
   <link href="./assets/min/custom-min.css" type="text/css" rel="stylesheet" >
   <link href="./assets/min/bootstrap.min.css" type="text/css" rel="stylesheet" >
+  <link rel="stylesheet" type="text/css" href="./assets/css/default.css" />
+  <link rel="stylesheet" type="text/css" href="./assets/css/component.css" />
+  <script src="js/modernizr.custom.js"></script>
 
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
@@ -45,12 +48,23 @@
   </script>-->
 </head>
 
-<body  >
+<body  style="background-color: #f2f2f2">
 <!--style="background: url(./assets/backgrounds/37.jpg) no-repeat;"-->
 <app>Loading...</app>
 <!--  Scripts-->
 <script src="./assets/min/plugin-min.js"></script>
 <script src="./assets/min/custom-min.js"></script>
+<script src="./assets/js/masonry.pkgd.min.js"></script>
+<script src="./assets/js/imagesloaded.js"></script>
+<script src="./assets/js/classie.js"></script>
+<script src="./assets/js/AnimOnScroll.js"></script>
+<script>
+  new AnimOnScroll( document.getElementById( 'grid' ), {
+    minDuration : 0.4,
+    maxDuration : 0.7,
+    viewportFactor : 0.2
+  } );
+</script>
 </body>
 
 

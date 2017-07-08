@@ -34,9 +34,11 @@ import { FilterPipe } from './filter.pipe';
 import {SearchPipe} from './search-pipe';
 import { NoofpeopleFilterPipe } from './noofpeople-filter.pipe';
 import { InterestsFilterPipe } from './interests-filter.pipe';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 @NgModule({
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     FormsModule,
     ReactiveFormsModule,
     HttpModule,
