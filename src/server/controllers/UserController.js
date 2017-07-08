@@ -160,7 +160,7 @@ module.exports = {
         })
       })
       .catch(function (err) {
-        res.status(401).send('Authentication failed.');
+        res.status(401).send('User does not exist.');
 
       });
   },
@@ -219,8 +219,9 @@ module.exports = {
   },
   getProfile: function (req, res) {
     console.log("helloo from the other side ----- getprofile", req.body);
-
-    if(req.body.email){
+    if (!req.body.email) {
+      return res.status(400).send('Incorrect request');
+    }
 
       User.findOne({email: req.body.email})
         .then( function (foundUser) {
@@ -232,7 +233,6 @@ module.exports = {
         .catch(function (err) {
           res.status(400).send(err);
         });
-    }
   },
 
   OnUploadImage: function (req, res) {
@@ -369,9 +369,28 @@ module.exports = {
     });
 
   },
+  uploadProfileImage: function (req, res) {
+    console.log("Reached", req.body);
+    User.findOne({
+      email: req.body.email
+    })
+      .then(function (foundUser) {
+        foundUser.image = req.body.image;
+        return User.update({
+          email: req.body.email
+        }, foundUser);
+      })
+      .then(function (updatedUser) {
+        console.log("successfully updated", updatedUser);
+        return res.json("Successfully updated !!");
+      })
+      .catch(function (err) {
+        return res.status(400).send(err);
+      });
+  }
 
 
-}
+};
 var rand = function() {
   return Math.random().toString(36).substr(2);
 };

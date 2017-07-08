@@ -1,6 +1,4 @@
-/**
- * Created by narin on 17/06/17.
- */
+
 import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { User } from '../models/usermodel';
 import { UserService } from '../services/index';
@@ -15,22 +13,22 @@ import { AlertService, AuthenticationService } from '../services/index';
 })
 
 export class ProfileManagementComponent implements OnInit {
-  @Output() featureSelected = new EventEmitter<string>();
-  OnSelect(feature: string) {
-    this.featureSelected.emit(feature);
-  }
-
   currentUser: User;
+  loadedFeature = '';
+  OnNavigate(feature: string) {
+    console.log('in management profile');
+    this.loadedFeature = feature;
 
+  }
   constructor(
     private router: Router,
     private userService: UserService,
     private alertService: AlertService) {
-    console.log('in management profile');
     this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
-    var temp  = localStorage.getItem('currentUser');
-    var json = JSON.parse(temp);
+    const  temp  = localStorage.getItem('currentUser');
+    const json = JSON.parse(temp);
     this.currentUser = json.user;
+    this.loadedFeature = 'My Profile';
   }
   ngOnInit() {
   }

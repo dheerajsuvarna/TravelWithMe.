@@ -11,5 +11,5 @@ export class User {
   age: Number;
   gender: string;
   nationality: string;
-  image: File;
+  image: string;
 }

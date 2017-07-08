@@ -24,6 +24,7 @@ router.post('/updateProfile', jwt({
 router.post('/reset-password', user.resetPassword);
 router.post('/reset-password-change', user.resetPasswordChange);
 
+
 // router.post('/uploadImage',jwt({
 //     secret: configPassport.secret}),
 //   user.onUploadImage);
@@ -46,5 +47,9 @@ router.get('/mytrip',jwt({
 router.get('/', function (req, res, next) {
   res.send('Express REST API');
 });
+
+router.post('/uploadProfileImage', jwt({
+  secret: configPassport.secret
+}), user.uploadProfileImage);
 
 module.exports = router;

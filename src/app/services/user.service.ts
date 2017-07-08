@@ -25,9 +25,6 @@ export class UserService {
   getUserProfile(email: any) {
     return this.http.post('api/user/getProfile', email, this.jwt()).map((response: Response) => response.json());
   }
-  uploadAvatar(user: User) {
-    return this.http.post('api/user/uploadImage', user, this.jwt()).map((response: Response) => response.json());
-  }
 
   resetPassword(user:User) {
 
@@ -38,7 +35,9 @@ export class UserService {
 
     return this.http.post('/api/user/reset-password-change', user).map((response: Response) => response.json());
   }
-  
+  uploadAvatar(user: User) {
+    return this.http.post('api/user/uploadProfileImage', user, this.jwt()).map((response: Response) => response.json());
+  }
   // private helper methods
 
   private jwt() {
