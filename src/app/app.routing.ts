@@ -12,11 +12,14 @@ import { MyTripsComponent} from './my-trips/my-trips.component';
 import { EmailVerificationComponent } from './email-verification/email-verification.component'
 // import{ EmailVerificationComponent} from './email-verification/email-verification.component';
 import { AddTripComponent} from './add-trip/add-trip.component'
-
+import {PasswordResetComponent} from './password-reset/password-reset.component';
+import {ResetPasswordChangeComponent} from './reset-password-change/reset-password-change.component';
 
 const appRoutes: Routes = [
 
   { path: 'email-verification/:token', component: EmailVerificationComponent },
+  { path: 'reset-password-change/:token', component: ResetPasswordChangeComponent },
+  { path: 'reset-password', component: PasswordResetComponent },
   { path: '', component: HomeComponent, canActivate: [AuthGuard] },
   { path: 'getProfile', component: UpdateProfileComponent, canActivate: [AuthGuard] },
   // { path: 'getProfile', component: ViewProfileComponent, canActivate: [AuthGuard] },
