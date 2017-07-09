@@ -14,7 +14,7 @@ var TripSchema = new Schema({
     type: String,
     required: true
   },
-  TripName: {
+  tripName: {
     type: String,
     required: true
   },
@@ -22,7 +22,7 @@ var TripSchema = new Schema({
     type: String,
     required: false
   },
-  Budget:{
+  budget:{
     type: Number,
     required: false
   },
