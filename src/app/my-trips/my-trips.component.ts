@@ -17,7 +17,7 @@ export class MyTripsComponent implements OnInit {
 
 
   public trips;
-  // public tripsIamAttending: Trip[] = [ this.trip2,this.trip];
+   public tripsIamAttending;
 
   constructor(private  tripService:AddTripService ) {
 
