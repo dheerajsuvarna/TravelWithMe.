@@ -18,13 +18,15 @@ module.exports = {
    var newTrip = new Trip({
      source: req.body.source,
      destination: req.body.destination,
-     Budget: req.body.Budget,
-     TripName: req.body.tripName,
+     budget: req.body.budget,
+     tripName: req.body.tripName,
      description: req.body.description,
      startDate: req.body.startDate,
      endDate: req.body.endDate,
      numOfPeople: req.body.numOfPeople,
-     user: req.body.user
+     user: req.body.user,
+     interests:req.body.interests
+
    });
 
    newTrip.save()
@@ -39,13 +41,24 @@ module.exports = {
  },
   mytrip: function (req,res) {
     Trip.find()
-      .then(function (trips){
+      .then(function (trips) {
         return res.json(trips);
       })
       .catch(function (err) {
         res.status(401).send(err);
 
       });
+  },
+
+    mytrips: function (req,res) {
+      Trip.find({'user': req.user._doc._id})
+        .then(function (trips){
+          return res.json(trips);
+        })
+        .catch(function (err) {
+          res.status(401).send(err);
+
+        });
   }
 
 }
