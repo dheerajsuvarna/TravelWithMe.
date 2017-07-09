@@ -4,13 +4,13 @@ import { Observable } from 'rxjs';
 import { Subject } from 'rxjs/Subject';
 
 import { Alert, AlertType } from '../models/alert';
-
+import { ToastrService } from 'toastr-ng2';
 @Injectable()
 export class AlertService {
   private subject = new Subject<Alert>();
   private keepAfterRouteChange = false;
 
-  constructor(private router: Router) {
+  constructor(private router: Router,private toastrService: ToastrService) {
     // clear alert messages on route change unless 'keepAfterRouteChange' flag is true
     router.events.subscribe(event => {
       if (event instanceof NavigationStart) {
@@ -30,19 +30,19 @@ export class AlertService {
   }
 
   success(message: string, keepAfterRouteChange = false) {
-    this.alert(AlertType.Success, message, keepAfterRouteChange);
+    this.toastrService.success( message );
   }
 
   error(message: string, keepAfterRouteChange = false) {
-    this.alert(AlertType.Error, message, keepAfterRouteChange);
+    this.toastrService.error( message );
   }
 
   info(message: string, keepAfterRouteChange = false) {
-    this.alert(AlertType.Info, message, keepAfterRouteChange);
+    this.toastrService.info(message );
   }
 
   warn(message: string, keepAfterRouteChange = false) {
-    this.alert(AlertType.Warning, message, keepAfterRouteChange);
+    this.toastrService.warning( message);
   }
 
   alert(type: AlertType, message: string, keepAfterRouteChange = false) {

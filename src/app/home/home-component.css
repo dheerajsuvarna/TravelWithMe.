@@ -1,0 +1,34 @@
+*{box-sizing:border-box;}
+body{font-family:Verdana;}
+
+.all-slides{
+  width: 125px;
+  height: 300px;
+  border: 1px solid black;
+  overflow: auto;
+}
+.slide{
+  width: 100px;
+  height: 59px;
+  border: 1px solid #ccc;
+  margin: 2px;
+  background-color: white;
+  padding: 1em;
+  transition: all 0.3s linear;
+}
+.sort-stop .slide{
+  transition: none; //prevent slide transition at end
+}
+.sorting .sortable-placeholder{
+  transition: height 0.3s linear; //compensate slide transition at begin
+height: 0px;
+}
+.sortable-placeholder{
+  height: 60px;
+}
+.slide.ui-sortable-helper{
+  transition: none;
+}
+.sortable-placeholder ~ .slide:not(.ui-sortable-helper){
+  transform: translateY(60px);
+}

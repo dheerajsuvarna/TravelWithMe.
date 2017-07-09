@@ -26,6 +26,8 @@ import {DropDownDirective} from './shared/dropdown.directive';
 import { AddTripComponent } from './add-trip/add-trip.component';
 import { PasswordResetComponent } from './password-reset/password-reset.component';
 import { ResetPasswordChangeComponent } from './reset-password-change/reset-password-change.component';
+import { ToastrModule } from 'toastr-ng2';
+import { AngularDraggableModule } from 'angular2-draggable';
 
 
 @NgModule({
@@ -33,7 +35,9 @@ import { ResetPasswordChangeComponent } from './reset-password-change/reset-pass
     BrowserModule,
     FormsModule,
     HttpModule,
-    routing
+    routing,
+    AngularDraggableModule,
+    ToastrModule.forRoot(),
   ],
   declarations: [
     AppComponent,
