@@ -29,18 +29,19 @@
     </div>
 
   </div>
-
-  <form action="/api/upload" method="post" enctype="multipart/form-data">
+<div>
+  <form action="/api/upload" method="post" enctype="multipart/form-data" #f="ngForm" novalidate>
     <div id="uploadPhoto" class="col s8 z-depth-4 card-panel" style="width:35%;height:275px;  ">
       <div class="text-center">
         <img src="{{getImage(currentUser.image)}}" [width]="200" [height]="200" />
       </div>
       <div class="row">
-        <input type="file" class="form-control" (change)="getInput($event)" name="myFile">
-        <button type="submit" class="btn btn-primary" [disabled]="!f.valid" (click)="UploadAvatar()">Upload Image</button>
+        <input type="file" class="validate" (change)="getInput($event)" name="myFile" >
+        <button type="button" class="btn green btn-primary z-depth-3" value="Submit" [disabled]="!fileValid" (click)="UploadAvatar()">Upload Image</button>
       </div>
     </div>
   </form>
+</div>
 
   <div id="basicInfo" class="col s12 z-depth-3 card-panel" style="width:45%;height:575px;margin-left:15%">
     <form class="col s12" name="form" #f="ngForm" novalidate>
@@ -152,7 +153,7 @@
       </form>
     </div>
     <br>
-    <button class="btn pink btn-primary z-depth-3" type="submit" value="Submit" [disabled]="!f.valid"
+    <button class="btn pink btn-primary z-depth-3" type="submit" value="Submit" [disabled]="!f.valid "
             style="" (click)="OnUpdateProfile()">Update Profile</button>
 
   </div>

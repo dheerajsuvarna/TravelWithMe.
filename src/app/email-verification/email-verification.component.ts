@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AlertService, UserService } from '../services/index';
 
-import {Router} from "@angular/router";
-import {User} from "../models/usermodel";
+import {Router} from '@angular/router';
+import {User} from '../models/usermodel';
 
 @Component({
   selector: 'app-email-verification',

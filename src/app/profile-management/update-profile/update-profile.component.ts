@@ -19,6 +19,7 @@ export class UpdateProfileComponent implements OnInit {
   returnUrl: string;
   currentUser: User;
   UpdateStatus: string;
+  fileValid: boolean;
 
 
   @Output() featureSelected = new EventEmitter<string>();
@@ -84,7 +85,9 @@ export class UpdateProfileComponent implements OnInit {
     this.userService.uploadAvatar(this.currentUser)
       .subscribe(
         data => {
-          this.alertService.success('Imaged Uploaded', true)
+          this.alertService.success('Imaged Uploaded', true);
+          this.loading = true;
+          this.fileValid = false;
         },
         error => {
           this.alertService.error(error);
@@ -95,21 +98,20 @@ export class UpdateProfileComponent implements OnInit {
   getImage(data) {
     if (data) {
       return data;
-    }
-    else {
+    } else {
       return "../../assets/img/avatar1.png";
     }
   }
   getInput(fileInput) {
-
+    this.fileValid  = false;
     const reader = new FileReader();
     reader.onload = ((e: any) => {
       this.currentUser.image = e.target.result;
+      this.fileValid = true;
     });
     if (fileInput.target.files[0].size > 1024 * 50) {
       this.alertService.error("Choose a smaller file with 50kb size");
-    }
-    else {
+    } else {
       reader.readAsDataURL(fileInput.target.files[0]);
     }
   }

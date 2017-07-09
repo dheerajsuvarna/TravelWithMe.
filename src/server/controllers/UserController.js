@@ -286,11 +286,13 @@ module.exports = {
 
     req.body.email = req.body.email.toLowerCase();
     User.findOne({email: req.body.email}, function (err, existingUser) {
+      console.log("Existing USer");
       if (existingUser)
         return res.status(400).send("User Already Exists");
     })
 
     TempUser.findOne({email: req.body.email}, function (err, existingUser) {
+      console.log("Existing USer")
       if (existingUser)
         return res.status(400).send("User Already Exists");
     });
