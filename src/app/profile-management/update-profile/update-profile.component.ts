@@ -99,7 +99,11 @@ export class UpdateProfileComponent implements OnInit {
     if (data) {
       return data;
     } else {
-      return "../../assets/img/avatar1.png";
+      if (this.currentUser.gender === 'Male') {
+        return '../../assets/img/avatar1.png';
+      } else {
+        return '../../assets/img/avatar2.png';
+      }
     }
   }
   getInput(fileInput) {
