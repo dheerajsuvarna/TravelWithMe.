@@ -87,8 +87,7 @@ module.exports = {
     }
     else
     {
-      var err = new Error('Not Found');
-      return res.status(401).send(err);
+      res.status(401).send('Email was not found!' )
     }
     })
   },
@@ -126,11 +125,11 @@ module.exports = {
         });
         res.json({
         });
-        return res.status(200).send('Password changed Successfully');
+        return res.status(200).send();
       }
       else
       {
-        return res.status(401).send("Email doesn't exist!");
+         res.status(401).send("Email doesn't exist!");
       }
     })
   },
@@ -365,6 +364,10 @@ module.exports = {
             console.log(err);
             res.status(400).send(err);
           });
+      }
+      else
+      {
+        res.status(401).send("Email was not found!");
       }
     });
 

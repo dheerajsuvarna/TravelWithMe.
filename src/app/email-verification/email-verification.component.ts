@@ -29,15 +29,14 @@ export class EmailVerificationComponent implements OnInit {
     var user = new User ();
 
     user.firstname = token[2];
-
-
     this.userService.confirmUser(user).subscribe(
       data => {
         this.alertService.success('Your Account Was Verified Successfully!', true);
          this.route.navigate(['/login']);
       },
       error => {
-        this.alertService.error(error);
+        console.log(error._body);
+        this.alertService.error(error._body);
         this.loading = false;
       });
   }
