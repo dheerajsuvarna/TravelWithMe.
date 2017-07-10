@@ -63,10 +63,11 @@ export class AddTripComponent implements OnInit {
       .subscribe(
         data => {
           window.location.reload();
-          this.router.navigate([this.returnUrl]);
+          this.alertService.success('New Trip plan created', true);
+          // this.router.navigate([this.returnUrl]);
         },
         error => {
-          this.alertService.error(error);
+          this.alertService.error('There was some problem While adding the trip.', true);
           this.loading = false;
         })
   }

@@ -8,32 +8,12 @@
   color:#FFF;
   border-radius:50px;
   text-align:center;
-  box-shadow: 2px 2px 3px #999;
+  box-shadow: 2px 2px 10px #999;
+  z-index: 2;
 }
 
 .my-float{
   margin-top:22px;
 }
-.menu {
 
-  overflow: hidden;
 
-  background-color: #D35400;
-
-  -webkit-clip-path: circle(3px at 35px 35px);
-  clip-path: circle(3px at 35px 35px);
-
-  transition: 1s;
-}
-
-.menu-button {
-}
-
-.menu-active {
-  -webkit-clip-path: circle(100% at center);
-  clip-path: circle(100% at center);
-}
-
-i {
-
-}

@@ -34,7 +34,7 @@ export class AlertService {
   }
 
   error(message: string, keepAfterRouteChange = false) {
-    this.toastrService.error( message );
+    this.toastrService.error( message, 'Error' );
   }
 
   info(message: string, keepAfterRouteChange = false) {
