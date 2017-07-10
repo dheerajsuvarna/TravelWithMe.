@@ -20,12 +20,12 @@ export class TripCardComponent implements OnInit {
   }
   ngOnInit() {
     if(!isNullOrUndefined(this.trip)&&!isNullOrUndefined(this.trip.interests ))
-      this.imageURI = '../../assets/tripImages/'+Interest[this.trip.interests[0]]+'.jpg';
+      this.imageURI = '../../assets/tripImages/'+this.trip.interests[0]+'.jpg';
 
     var stringUser  = localStorage.getItem('currentUser');
     var json = JSON.parse(stringUser);
     var currentUser = json.user;
-    this.isMyTrip = currentUser.email == this.trip.user.email;
+    this.isMyTrip = currentUser._id === this.trip.user;
 
   }
 

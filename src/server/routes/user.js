@@ -44,6 +44,10 @@ router.get('/mytrip',jwt({
   secret: configPassport.secret
 }), trip.mytrip);
 
+router.get('/mytrips',jwt({
+  secret: configPassport.secret
+}), trip.mytrips);
+
 router.get('/', function (req, res, next) {
   res.send('Express REST API');
 });

@@ -62,8 +62,8 @@ export class AddTripComponent implements OnInit {
     this.addTripService.addTrip(this.model)
       .subscribe(
         data => {
-          window.location.reload();
-          this.router.navigate([this.returnUrl]);
+          this.alertService.success("successful!");
+          this.router.navigate(["/mytrips"]);
         },
         error => {
           this.alertService.error(error);

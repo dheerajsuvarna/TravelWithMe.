@@ -15,6 +15,22 @@ export class AddTripService {
   {
     return this.http.post('/api/user/addtrip', trip, this.jwt()).map((response: Response) => response.json());
   }
+
+
+  myTrips(user:User)
+  {
+    // var data = {
+    //   user_id:user.email
+    // };
+    //
+    // var config = {
+    //   params: data,
+    // };
+    return this.http.get('/api/user/mytrips',this.jwt()).map((response: Response) => response.json());
+  }
+
+
+
   // private helper methods
 
   private jwt() {
