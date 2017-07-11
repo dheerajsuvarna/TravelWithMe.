@@ -2,9 +2,10 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import { User } from '../../models/usermodel';
 import { UserService } from '../../services/index';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute, Params } from '@angular/router';
 
 import { AlertService, AuthenticationService } from '../../services/index';
+
 // import {NgForm} from '@angular/forms';
 
 @Component({
@@ -41,6 +42,7 @@ export class UpdateProfileComponent implements OnInit {
 
   constructor(
     private router: Router,
+    private routes: ActivatedRoute,
     private userService: UserService,
     private alertService: AlertService) {
     this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
@@ -50,11 +52,12 @@ export class UpdateProfileComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log('in Oninit update profile');
+    console.log('******in Oninit update profile');
     this.getUserProfile();
+
   }
   getUserProfile() {
-
+    console.log('******in getUserProfile update profile');
     const sendData = {
       email : this.currentUser.email
     };
@@ -63,7 +66,7 @@ export class UpdateProfileComponent implements OnInit {
         currentUser => {
           this.currentUser = currentUser;
           this.currentUser.age =  Number(this.getAge(this.currentUser.birthdate));
-          console.log('******** Current User: ', this.currentUser);
+          // console.log('******** Current User: ', this.currentUser);
         }
         );
   }
