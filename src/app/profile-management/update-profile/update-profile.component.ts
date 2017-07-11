@@ -2,9 +2,10 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import { User } from '../../models/usermodel';
 import { UserService } from '../../services/index';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute, Params } from '@angular/router';
 
 import { AlertService, AuthenticationService } from '../../services/index';
+
 // import {NgForm} from '@angular/forms';
 
 @Component({
@@ -19,6 +20,7 @@ export class UpdateProfileComponent implements OnInit {
   returnUrl: string;
   currentUser: User;
   UpdateStatus: string;
+  fileValid: boolean;
 
 
   @Output() featureSelected = new EventEmitter<string>();
@@ -40,6 +42,7 @@ export class UpdateProfileComponent implements OnInit {
 
   constructor(
     private router: Router,
+    private routes: ActivatedRoute,
     private userService: UserService,
     private alertService: AlertService) {
     this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
@@ -49,11 +52,12 @@ export class UpdateProfileComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log('in Oninit update profile');
+    console.log('******in Oninit update profile');
     this.getUserProfile();
+
   }
   getUserProfile() {
-
+    console.log('******in getUserProfile update profile');
     const sendData = {
       email : this.currentUser.email
     };
@@ -62,7 +66,7 @@ export class UpdateProfileComponent implements OnInit {
         currentUser => {
           this.currentUser = currentUser;
           this.currentUser.age =  Number(this.getAge(this.currentUser.birthdate));
-          console.log('******** Current User: ', this.currentUser);
+          // console.log('******** Current User: ', this.currentUser);
         }
         );
   }
@@ -84,7 +88,9 @@ export class UpdateProfileComponent implements OnInit {
     this.userService.uploadAvatar(this.currentUser)
       .subscribe(
         data => {
-          this.alertService.success('Imaged Uploaded', true)
+          this.alertService.success('Imaged Uploaded', true);
+          this.loading = true;
+          this.fileValid = false;
         },
         error => {
           this.alertService.error(error);
@@ -95,21 +101,24 @@ export class UpdateProfileComponent implements OnInit {
   getImage(data) {
     if (data) {
       return data;
-    }
-    else {
-      return "../../assets/img/avatar1.png";
+    } else {
+      if (this.currentUser.gender === 'Male') {
+        return '../../assets/img/avatar1.png';
+      } else {
+        return '../../assets/img/avatar2.png';
+      }
     }
   }
   getInput(fileInput) {
-
+    this.fileValid  = false;
     const reader = new FileReader();
     reader.onload = ((e: any) => {
       this.currentUser.image = e.target.result;
+      this.fileValid = true;
     });
     if (fileInput.target.files[0].size > 1024 * 50) {
       this.alertService.error("Choose a smaller file with 50kb size");
-    }
-    else {
+    } else {
       reader.readAsDataURL(fileInput.target.files[0]);
     }
   }

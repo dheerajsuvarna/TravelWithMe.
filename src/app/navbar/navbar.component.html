@@ -30,11 +30,12 @@
 
 
               <!--<div class="collapse navbar-collapse">-->
+
                     <li *ngIf="loggedIn" class="dropdown"  appDropDown>
                       <a class="dropdown-toggle" role="button">Profile <span class="caret"></span></a>
                        <ul class="dropdown-menu">
                          <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"  *ngIf="loggedIn" >
-                           <a [routerLink] = "['/profileManagement']">My Profile</a></li>
+                           <a [routerLink] = "['/profileManagement', 'getProfile']">My Profile</a></li>
                         <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"  *ngIf="loggedIn" >
                           <a [routerLink] = "['/mytrips']">My Trips</a>
                         </li>
@@ -48,6 +49,7 @@
                         </li>
                        </ul>
                      </li>
+
               <!--</div>-->
           <!--<li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}" (click)="logout()" *ngIf="loggedIn">-->
             <!--<a [routerLink] = "['/logout']">Logout</a></li>-->

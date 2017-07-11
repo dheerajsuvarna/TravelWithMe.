@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AlertService, UserService } from '../services/index';
 
-import {Router} from "@angular/router";
-import {User} from "../models/usermodel";
+import {Router} from '@angular/router';
+import {User} from '../models/usermodel';
 
 @Component({
   selector: 'app-email-verification',
@@ -23,9 +23,8 @@ export class EmailVerificationComponent implements OnInit {
   }
   ngOnInit()
   {
-
     var s = this.route.url;
-  var token = s.split("/");
+    var token = s.split("/");
     var user = new User ();
 
     user.firstname = token[2];
