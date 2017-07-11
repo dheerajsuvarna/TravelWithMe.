@@ -19,18 +19,11 @@
 </style>
 
 <div style="background: rgba(70, 175, 80, 0.0)">
-  <div class="collapse navbar-collapse">
-    <div class="nav navbar-nav">
-      <li><a href="#"(click)="OnSelect('My Profile')">My Profile</a></li>
-      <li><a href="#" (click)="OnSelect('My Trips')">My Trips</a></li>
-      <li><a href="#" (click)="OnSelect('Add Trip')">Add Trip</a></li>
-      <li><a href="#" (click)="OnSelect('Messages')">Messages</a></li>
-      <li><a href="#" (click)="OnSelect('Settings')">Settings</a></li>
-    </div>
 
-  </div>
+
+
 <div>
-  <form action="/api/upload" method="post" enctype="multipart/form-data" #f="ngForm" novalidate>
+  <form method="post" enctype="multipart/form-data" #f="ngForm" novalidate>
     <div id="uploadPhoto" class="col s8 z-depth-4 card-panel" style="width:35%;height:275px;  ">
       <div class="text-center">
         <img src="{{getImage(currentUser.image)}}" [width]="200" [height]="200" />

@@ -14,6 +14,7 @@ import { EmailVerificationComponent } from './email-verification/email-verificat
 import { AddTripComponent} from './add-trip/add-trip.component'
 import {PasswordResetComponent} from './password-reset/password-reset.component';
 import {ResetPasswordChangeComponent} from './reset-password-change/reset-password-change.component';
+import {MessagesComponent} from './Messages/messages.component';
 
 const appRoutes: Routes = [
 
@@ -28,7 +29,13 @@ const appRoutes: Routes = [
   { path: 'landingPage', component: LandingPageComponent },
   { path: 'mytrips', component: MyTripsComponent, canActivate: [AuthGuard] },
 
-  { path: 'profileManagement', component: ProfileManagementComponent, canActivate: [AuthGuard] },
+  { path: 'profileManagement', component: ProfileManagementComponent, canActivate: [AuthGuard] , children: [
+     { path: 'getProfile', component: UpdateProfileComponent, canActivate: [AuthGuard] },
+    {path: 'mytrips', component: MyTripsComponent, canActivate: [AuthGuard]},
+    {path: 'addtrip', component: AddTripComponent, canActivate: [AuthGuard] },
+    {path: 'messages', component: MessagesComponent, canActivate: [AuthGuard] },
+    // {path: 'addtrip', component: AddTripComponent, canActivate: [AuthGuard] },
+  ]},
 
   { path: 'addtrip', component: AddTripComponent, canActivate: [AuthGuard] },
 

@@ -23,9 +23,8 @@ export class EmailVerificationComponent implements OnInit {
   }
   ngOnInit()
   {
-
     var s = this.route.url;
-  var token = s.split("/");
+    var token = s.split("/");
     var user = new User ();
 
     user.firstname = token[2];
