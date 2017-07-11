@@ -52,12 +52,12 @@ export class UpdateProfileComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log('in Oninit update profile');
+    console.log('******in Oninit update profile');
     this.getUserProfile();
 
   }
   getUserProfile() {
-
+    console.log('******in getUserProfile update profile');
     const sendData = {
       email : this.currentUser.email
     };
@@ -66,7 +66,7 @@ export class UpdateProfileComponent implements OnInit {
         currentUser => {
           this.currentUser = currentUser;
           this.currentUser.age =  Number(this.getAge(this.currentUser.birthdate));
-          console.log('******** Current User: ', this.currentUser);
+          // console.log('******** Current User: ', this.currentUser);
         }
         );
   }

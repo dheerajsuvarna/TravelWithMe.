@@ -24,13 +24,12 @@ export class ProfileManagementComponent implements OnInit {
     const  temp  = localStorage.getItem('currentUser');
     const json = JSON.parse(temp);
     this.currentUser = json.user;
+
+    this.router.navigate(['getProfile'], {relativeTo: this.routes, queryParamsHandling: 'preserve'});
   }
   ngOnInit() {
-    this.routes.params
-      .subscribe(
-        (params: Params) => {
-        }
-      );
+    console.log('-------', this.routes);
+     this.router.navigate(['getProfile'], {relativeTo: this.routes, queryParamsHandling: 'preserve'});
   }
 
 }

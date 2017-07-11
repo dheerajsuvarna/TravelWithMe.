@@ -14,4 +14,5 @@ export class DropDownDirective {
     this.isOpen = !this.isOpen;
 
   }
+
 }
