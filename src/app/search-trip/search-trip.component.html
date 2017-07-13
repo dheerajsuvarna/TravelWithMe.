@@ -58,6 +58,6 @@
     <h5> Return Date => {{searchReturnDate}}</h5>-->
   </div>
   <div id="search results" class="row card-panel z-depth-2 pull-right" style="margin-right: 14%;width: 72%;" >
-    <app-trip-card style="display: inline-block; margin: 10px;" *ngFor="let trip of trips | sourceFilter: searchSource | destinationFilter: searchDestination | traveldateFilter: searchTravelDate | budgetFilter : searchBudget "  ></app-trip-card>
+     <app-trip-card style="display: inline-block; margin: 10px;" *ngFor="let trip of trips | sourceFilter: searchSource | destinationFilter: searchDestination | traveldateFilter: searchTravelDate | budgetFilter : searchBudget "  ></app-trip-card>
   </div>
 </div>
