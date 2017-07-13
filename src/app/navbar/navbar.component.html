@@ -8,8 +8,7 @@
             <li><a href="#intro">Home</a></li>
 
             <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"  *ngIf="loggedIn" >
-              <a [routerLink] = "['/register']">Notifications</a></li>
-          <li><a href="#contact">Contact Us</a></li>
+              </li>
 
 
           <!--<li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"  *ngIf="loggedIn" >-->
@@ -26,7 +25,8 @@
 
           <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
             <a [routerLink] = "['/login']"  *ngIf="!loggedIn"  >Login</a></li>
-
+            <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"  *ngIf="loggedIn">
+              <a [routerLink] = "['/searchtrips']">Search</a>
 
 
               <!--<div class="collapse navbar-collapse">-->
