@@ -34,13 +34,15 @@ import { FilterPipe } from './filter.pipe';
 import {SearchPipe} from './search-pipe';
 import { NoofpeopleFilterPipe } from './noofpeople-filter.pipe';
 import { InterestsFilterPipe } from './interests-filter.pipe';
+import {GooglePlaceModule} from 'ng2-google-place-autocomplete';
 @NgModule({
   imports: [
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
     HttpModule,
-    routing
+    routing,
+    GooglePlaceModule
   ],
 
 

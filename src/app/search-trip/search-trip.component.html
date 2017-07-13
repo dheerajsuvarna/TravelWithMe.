@@ -10,8 +10,9 @@
           <table>
             <tr>
               <td>
-                <label for="source">Source</label>
-                <input id="source" class="form-control" type="text" formControlName="source"  placeholder="Source">
+                <label for="autocomplete">Source</label>
+                <input id="autocomplete" #search class="form-control" type="text" formControlName="source"  placeholder="Source"
+                       ng2-google-place-autocomplete>
               </td>
               <td>
                 <label for="destination">Destination</label>
