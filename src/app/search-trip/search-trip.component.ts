@@ -82,7 +82,7 @@ export class SearchTripComponent implements OnInit {
     this.trip.description = "Some description about the trip";
     this.trip.destination = "Miami";
     this.trip.source = "Munich";
-    this.trip.date= "22.07.2017";
+    this.trip.startDate= "22.07.2017";
     this.trip.user = this.user;
 
 
@@ -92,7 +92,7 @@ export class SearchTripComponent implements OnInit {
     this.trip2.description = "Some description about the trip";
     this.trip2.destination = "Deutsches Museum";
     this.trip2.source = "Munich";
-    this.trip2.date= "30.07.2017";
+    this.trip2.startDate= "30.07.2017";
     this.trip2.user = this.user;
 
     this.trip3.interests= [Interest.Arts];
@@ -101,7 +101,7 @@ export class SearchTripComponent implements OnInit {
     this.trip3.description = "Some description about the trip";
     this.trip3.destination = "Paris";
     this.trip3.source = "Munich";
-    this.trip3.date= "30.07.2017";
+    this.trip3.startDate= "30.07.2017";
     this.trip3.user = this.user;
 
     this.trip4.interests= [Interest.Music];
@@ -110,7 +110,7 @@ export class SearchTripComponent implements OnInit {
     this.trip4.description = "Some description about the trip";
     this.trip4.destination = "Austria";
     this.trip4.source = "Munich";
-    this.trip4.date= "30.07.2017";
+    this.trip4.startDate= "30.07.2017";
     this.trip4.user = this.user;
 
     this.trip5.interests= [Interest.Music];
@@ -119,7 +119,7 @@ export class SearchTripComponent implements OnInit {
     this.trip5.description = "Some description about the trip";
     this.trip5.destination = "London";
     this.trip5.source = "Russia";
-    this.trip5.date= "30.07.2017";
+    this.trip5.startDate= "30.07.2017";
     this.trip5.user = this.user;
   }
 

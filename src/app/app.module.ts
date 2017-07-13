@@ -77,9 +77,7 @@ import { InterestsFilterPipe } from './interests-filter.pipe';
     AddTripComponent,
     PasswordResetComponent,
     ResetPasswordChangeComponent,
-    MessagesComponent
-
-
+    MessagesComponent,
     SearchTripComponent,
     SourceFilterPipe,
     NoofpeopleFilterPipe,
