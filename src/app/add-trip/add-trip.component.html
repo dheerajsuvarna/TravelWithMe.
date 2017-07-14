@@ -16,70 +16,76 @@
   }
 </style>
 
+
 <div style="background: rgba(76, 175, 80, 0.0)">
   <!-- left column -->
 
 
-  <div id="basicInfo" class="col s12 z-depth-4 card-panel" style="width:45%;">
-    <p>Add Your Trip</p>
-    <form class="col s12" name="form" (ngSubmit)="addTrip()" #f="ngForm" novalidate>
+  <div id="basicInfo" class="col s12 z-depth-4 card-panel" style="width:45%;" >
+    <form name="form" (ngSubmit)="f.form.valid && addTrip()" #f="ngForm" novalidate>
       <div class="row">
-        <div class="input-field col s12">
-          <input id="trip_name" type="text" name="tripName" class="validate" [(ngModel)]="model.tripName" #tripName="ngModel" required >
+        <div class="input-field col s12" [ngClass]="{ 'has-error': f.submitted && !trip_name.valid }">
           <label for="trip_name">Trip Name</label>
+          <input id="trip_name" type="text" name="tripName" class="form-control" [(ngModel)]="model.tripName" #tripName="ngModel" required >
+          <div *ngIf="f.submitted && !tripName.valid" class="help-block">You must enter a trip name.</div>
         </div>
       </div>
       <div class="row">
-        <div class="input-field col s12">
-          <input id="source" type="text" name="source" class="validate" [(ngModel)]="model.source" #source="ngModel" required >
+        <div class="input-field col s12" [ngClass]="{ 'has-error': f.submitted && !source.valid }">
           <label for="source">From?</label>
+          <input id="source" type="text" name="source" class="form-control" [(ngModel)]="model.source" #source="ngModel" required >
+          <div *ngIf="f.submitted && !source.valid" class="help-block"></div>
         </div>
       </div>
       <div class="row">
-        <div class="input-field col s12">
-          <input id="destination" type="text" name="destination" class="validate" [(ngModel)]="model.destination" #destination="ngModel" required >
+        <div class="input-field col s12" [ngClass]="{ 'has-error': f.submitted && !destination.valid }">
           <label for="destination">Where To?</label>
+          <input id="destination" type="text" name="destination" class="form-control" [(ngModel)]="model.destination" #destination="ngModel" required >
+          <div *ngIf="f.submitted && !destination.valid" class="help-block">You must enter a destination</div>
         </div>
       </div>
 
       <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !startdate.valid }">
         <label for="startdate">From</label>
-        <input type="date" class="form-control" name="startdate" [(ngModel)]="model.startDate" placeholder="yyyy-MM-dd" min="1980-01-01" max="2000-12-31"
-               required #startdate="ngModel" required />
+        <input id="startdate" type="date" class="form-control" name="startdate" [(ngModel)]="model.startDate" placeholder="yyyy-MM-dd" min="2017-7-14" max="2000-12-31"
+               #startdate="ngModel" required />
 
         <div *ngIf="f.submitted && !startdate.valid" class="help-block">Date is required</div>
       </div>
 
       <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !enddate.valid }">
         <label for="enddate">Until</label>
-        <input type="date" class="form-control" name="enddate" [(ngModel)]="model.endDate" placeholder="yyyy-MM-dd" min="1980-01-01" max="2000-12-31"
-               required #enddate="ngModel" required />
+        <input id="enddate" type="date" class="form-control" name="enddate" [(ngModel)]="model.endDate" placeholder="yyyy-MM-dd" min="2017-7-14" max="2000-12-31"
+                #enddate="ngModel" required />
 
         <div *ngIf="f.submitted && !enddate.valid" class="help-block">Date is required</div>
       </div>
 
       <br>
       <div class="row">
-        <div class="input-field col s12">
-          <input id="budget" type="text" name="budget "class="validate" [(ngModel)]="model.budget" #budget="ngModel" required >
+        <div class="input-field col s12" [ngClass]="{ 'has-error': f.submitted && !budget.valid }">
           <label for="budget">Budget (max)</label>
+          <input id="budget" type="text" name="budget " class="form-control" [(ngModel)]="model.budget" #budget="ngModel" required >
+          <div *ngIf="f.submitted && !budget.valid" class="help-block">You must enter a budget range.</div>
         </div>
       </div>
       <br>
       <div class="row">
         <label>How Many People?</label>
-        <select class="browser-default" id="#numOfPeople" name="numOfPeople" [(ngModel)]="model.numOfPeople" #numOfPeople="ngModel" required>
-          <option value="1">1</option>
+        <div class="input-field col s12" [ngClass]="{ 'has-error': f.submitted && !numOfPeople.valid }">
+        <select class="browser-default" id="numOfPeople" class="form-control" name="numOfPeople" [(ngModel)]="model.numOfPeople" #numOfPeople="ngModel" required>
           <option value="2">2</option>
           <option value="3">3</option>
           <option value="4">4</option>
           <option value="5">5</option>
         </select>
+          </div>
       </div>
 
       <div class="row">
         <label>Interests:</label>
-        <select class="browser-default" name="interests" id="#interests" [(ngModel)]="model.interests" #interests="ngModel" required>
+        <div class="input-field col s12" [ngClass]="{ 'has-error': f.submitted && !interests.valid }">
+        <select class="browser-default" name="interests" class="form-control" id="#interests" [(ngModel)]="model.interests" #interests="ngModel" required>
           <option value="Books">Books</option>
           <option value="Arts">Arts</option>
           <option value="Camping">Camping</option>
@@ -91,25 +97,26 @@
           <option value="Party">Party</option>
           <option value="Swimming">Swimming</option>
         </select>
+          </div>
       </div>
 
       <div class="row">
-        <div class="input-field col s12">
-          <textarea id="textarea1" class="materialize-textarea" name="description" [(ngModel)]="model.description" #description="ngModel" required></textarea>
+        <div class="input-field col s12" [ngClass]="{ 'has-error': f.submitted && !description.valid }">
           <label for="textarea1">Write a description about the trip.</label>
+          <textarea id="textarea1" class="materialize-textarea" name="description" [(ngModel)]="model.description" #description="ngModel" required></textarea>
         </div>
       </div>
       <br>
       <br>
-      <button class="btn pink btn-primary z-depth-3" type="submit" value="Submit" style="margin-left: 5%">Add Trip</button>
+      <div class="form-group">
+        <button [disabled]="loading" class="btn pink btn-primary z-depth-3" type="submit" value="Submit" style="margin-left: 5%">Add Trip</button>
+        <img *ngIf="loading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+        <a [routerLink]="['/Landingpage']" class="btn btn-link">Cancel</a>
+      </div>
 
     </form>
 
   </div>
-
-
-
-
 
 
 </div>

@@ -15,6 +15,7 @@ import { AddTripComponent} from './add-trip/add-trip.component'
 import {PasswordResetComponent} from './password-reset/password-reset.component';
 import {ResetPasswordChangeComponent} from './reset-password-change/reset-password-change.component';
 import {MessagesComponent} from './Messages/messages.component';
+import {TripCardComponent} from './trip-card/trip-card.component'
 
 const appRoutes: Routes = [
 
@@ -38,6 +39,7 @@ const appRoutes: Routes = [
   ]},
 
   { path: 'addtrip', component: AddTripComponent, canActivate: [AuthGuard] },
+  { path: 'deletetrip', component: TripCardComponent, canActivate: [AuthGuard]},
 
 
 

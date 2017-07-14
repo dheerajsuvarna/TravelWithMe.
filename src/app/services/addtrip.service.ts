@@ -16,6 +16,10 @@ export class AddTripService {
     return this.http.post('/api/user/addtrip', trip, this.jwt()).map((response: Response) => response.json());
   }
 
+  deleteTrip(trip:Trip) {
+    console.log('im in deleteTrip service')
+    return this.http.post('/api/user/deletetrip', trip, this.jwt()).map((response: Response) => response.json());
+  }
 
   myTrips(user:User)
   {

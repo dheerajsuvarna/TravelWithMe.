@@ -59,6 +59,18 @@ module.exports = {
           res.status(401).send(err);
 
         });
+  },
+
+  deletetrip: function (req,res) {
+    console.log('we are in the controller')
+    Trip.findByIdAndRemove(req.body._id, function(err) {
+      if (err)
+        res.send(err);
+      else
+        res.json({ message: 'Offer Deleted!'});
+      console.log('deleted')
+    });
   }
+
 
 }
