@@ -12,6 +12,7 @@
         <li class="tab"  [routerLinkActive]="['active']"><a [routerLink] = "['/profileManagement','addtrip']">Add Trip</a></li>
         <li class="tab"  [routerLinkActive]="['active']"><a [routerLink] = "['/profileManagement','messages']">Messages</a></li>
         <li  class="tab" [routerLinkActive]="['active']"><a [routerLink] = "['/profileManagement','settings']">Settings</a></li>
+        <li class="tab"  [routerLinkActive]="['active']"(click)="logout()"><a [routerLink] = "['/logout']">Logout</a></li>
       </ul>
     </div>
   </div>

@@ -39,7 +39,8 @@ export class SearchTripComponent implements OnInit {
   public triptest;
 
 
-  public trips: Trip[] = [this.trip, this.trip2, this.trip3, this.trip4, this.trip5];
+  /*public trips: Trip[] = [this.trip, this.trip2, this.trip3, this.trip4, this.trip5];*/
+  public trips;
   public tripsIamAttending: Trip[] = [ this.trip2, this.trip];
   onFormSubmit(): void {
     this.searchSource = this.userForm.get('source').value;
@@ -129,9 +130,7 @@ export class SearchTripComponent implements OnInit {
     currentUser = json.user;
 
     this.tripService.searchTrips(currentUser).subscribe(
-      searchTrips => {this.triptest = searchTrips});
-
-    console.log(this.triptest);
+      searchTrips => {this.trips = searchTrips});
   }
 
 }

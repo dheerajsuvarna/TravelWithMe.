@@ -42,12 +42,12 @@ module.exports = {
   searchtrips: function (req,res) {
     Trip.find()
       .where('user').ne(req.user._doc._id)
+      .where('joinUser').ne(req.user._doc.email)
       .then(function (trips) {
         return res.json(trips);
       })
       .catch(function (err) {
         res.status(401).send(err);
-
       });
   },
 

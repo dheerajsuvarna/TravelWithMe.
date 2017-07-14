@@ -10,6 +10,7 @@
             <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"><a [routerLink] = "['/login']"  *ngIf="!loggedIn"  >Login</a></li>
             <li class="pull-right" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"  *ngIf="loggedIn"><a [routerLink] = "['/searchtrips']">Search</a></li>
             <li class="pull-right"><a href="#intro">Home</a></li>
+            <li class="pull-right"[routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}" (click)="logout()" ><a [routerLink] = "['/logout']"    *ngIf="loggedIn" >logout</a></li>
             <!--<li class="pull-right" *ngIf="loggedIn"  appDropDown><a>Profile</a>
                  <ul class="dropdown-menu">
                          <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"  *ngIf="loggedIn" >
