@@ -31,6 +31,9 @@
           <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
             <a [routerLink] = "['/login']"  *ngIf="!loggedIn"  >Login</a></li>
 
+            <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"  *ngIf="loggedIn">
+              <a [routerLink] = "['/searchtrips']">Search</a>
+
             <li><a class="dropdown-button col s12" href="#!" data-activates="dropdown1"><i class="material-icons  material-icons right ">
               account_circle arrow_drop_down </i>
               <!--<i class="material-icons right ">arrow_drop_down</i>-->
