@@ -8,7 +8,10 @@
 
     <div class="card-content" style="height: 60px">
       <span class="card-title activator grey-text text-darken-4">{{trip.tripName}}<i class="material-icons right">more_vert</i></span>
-      <a *ngIf="!isMyTrip" href="#"> &nbsp; &nbsp; Join this Trip!</a>
+      <a *ngIf="!isMyTrip && !tripJoined; else  notJoined" (click)="JoinTrip()" href="#"> &nbsp; &nbsp; Join this Trip!</a>
+      <ng-template #notJoined>
+        <a *ngIf="!isMyTrip" (click)="LeaveTrip()" href="#">Leave this Trip</a>
+      </ng-template>
     </div>
     <div style="background:lightblue;">
       <div style="  margin:10px;">

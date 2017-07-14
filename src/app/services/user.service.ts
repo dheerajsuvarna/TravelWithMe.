@@ -23,6 +23,7 @@ export class UserService {
     return this.http.post('/api/user/updateProfile',  user, this.jwt()).map((response: Response) => response.json());
   }
   getUserProfile(email: any) {
+    console.log('in services ', email);
     return this.http.post('api/user/getProfile', email, this.jwt()).map((response: Response) => response.json());
   }
 
