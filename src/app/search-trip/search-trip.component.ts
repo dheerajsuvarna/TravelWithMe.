@@ -30,6 +30,7 @@ export class SearchTripComponent implements OnInit {
   myForm: FormGroup;
   model: any = {};
   term: any;
+  public today;
   public trip: Trip = new Trip();
   public trip2: Trip = new Trip();
   public trip3: Trip = new Trip();
@@ -71,11 +72,12 @@ export class SearchTripComponent implements OnInit {
   }
   ngOnInit() {
     console.log("search Trip Init");
-
+    this.today = new Date().toJSON().slice(0,10).replace(/-/g,'.');
+    console.log(this.today);
     /*this.destination.valueChanges.subscribe(value => {
       this.term = value;
     });*/
-
+    console.log(this.today);
     this.user.firstname = "Bakri";
     this.user.lastname="Bitar";
     this.trip.interests= [Interest.Beach];
