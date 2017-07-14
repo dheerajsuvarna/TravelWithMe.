@@ -40,9 +40,12 @@ module.exports = {
      });
  },
   searchtrips: function (req,res) {
+    var date = new Date();
+    var today = date.getFullYear() + '-07-'+date.getDate();
     Trip.find()
       .where('user').ne(req.user._doc._id)
       .where('joinUser').ne(req.user._doc.email)
+      .where('startDate').gt(today)
       .then(function (trips) {
         return res.json(trips);
       })
