@@ -51,8 +51,8 @@ module.exports = {
   },
 
     mytrips: function (req,res) {
-      //Trip.find({'user': req.user._doc._id})
-      Trip.find()
+      Trip.find({'user': req.user._doc._id})
+      // Trip.find()
         .then(function (trips){
           return res.json(trips);
         })
