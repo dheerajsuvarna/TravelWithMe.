@@ -14,5 +14,6 @@ export class Trip {
   startDate:string;
   endDate:string;
   numOfPeople: Number;
+  joinUser: [string];
 }
 
