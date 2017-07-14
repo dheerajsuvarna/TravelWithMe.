@@ -1,5 +1,18 @@
 <div>
   <div class="navbar navbar-default">
+    <ul id="dropdown1" class="dropdown-content col s20">
+      <li class="col s12" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"  *ngIf="loggedIn">
+        <a [routerLink] = "['/profileManagement', 'getProfile']">Profile</a></li>
+      <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"  *ngIf="loggedIn">
+        <a [routerLink] = "['/mytrips']">My Trips</a></li>
+      <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"  *ngIf="loggedIn">
+        <a [routerLink] = "['/addtrip']">Add Trip</a></li>
+      <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"  *ngIf="loggedIn">
+        <a [routerLink] = "['/messages']">Messages</a></li>
+      <li class="divider"></li>
+      <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"  *ngIf="loggedIn">
+        <a [routerLink] = "['/logout']">LogOut</a></li>
+    </ul>
     <nav id="nav_f" class="default_color" role="navigation">
       <div class="container">
         <div class="nav-wrapper">
@@ -11,50 +24,19 @@
               </li>
 
 
-
-          <!--<li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"  *ngIf="loggedIn" >-->
-            <!--<a [routerLink] = "['/profileManagement']">Profile</a></li>-->
-           <!--<li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"  *ngIf="loggedIn" >-->
-            <!--<a [routerLink] = "['/mytrips']">My Trips</a></li>-->
-
-          <!--<li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"  *ngIf="loggedIn" >-->
-            <!--<a [routerLink] = "['/addtrip']">Add Trip</a></li>-->
-
-
           <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"  *ngIf="!loggedIn" >
             <a [routerLink] = "['/register']">Signup</a></li>
 
           <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
             <a [routerLink] = "['/login']"  *ngIf="!loggedIn"  >Login</a></li>
+
             <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"  *ngIf="loggedIn">
               <a [routerLink] = "['/searchtrips']">Search</a>
 
 
-              <!--<div class="collapse navbar-collapse">-->
-
-                    <li *ngIf="loggedIn" class="dropdown"  appDropDown>
-                      <a class="dropdown-toggle" role="button">Profile <span class="caret"></span></a>
-                       <ul class="dropdown-menu">
-                         <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"  *ngIf="loggedIn" >
-                           <a [routerLink] = "['/profileManagement', 'getProfile']">My Profile</a></li>
-                        <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"  *ngIf="loggedIn" >
-                          <a [routerLink] = "['/mytrips']">My Trips</a>
-                        </li>
-                        <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"  *ngIf="loggedIn" >
-                          <a [routerLink] = "['/addtrip']">Add Trip</a>
-                        </li>
-                        <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"  *ngIf="loggedIn">
-                          <a href="#">Messages</a></li>
-                        <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}" (click)="logout()" *ngIf="loggedIn">
-                          <a [routerLink] = "['/logout']">Logout</a>
-                        </li>
-                       </ul>
-                     </li>
-
-              <!--</div>-->
-          <!--<li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}" (click)="logout()" *ngIf="loggedIn">-->
-            <!--<a [routerLink] = "['/logout']">Logout</a></li>-->
-
+            <li><a class="dropdown-button col s12" href="#!" data-activates="dropdown1"><i class="material-icons  material-icons right ">
+              account_circle arrow_drop_down </i>
+            </a></li>
         </ul>
 
 
