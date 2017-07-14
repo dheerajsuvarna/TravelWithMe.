@@ -40,9 +40,9 @@ router.post('/addtrip', jwt({
   secret: configPassport.secret
 }), trip.addtrip);
 
-router.get('/mytrip',jwt({
+router.get('/searchtrips',jwt({
   secret: configPassport.secret
-}), trip.mytrip);
+}), trip.searchtrips);
 
 router.get('/mytrips',jwt({
   secret: configPassport.secret

@@ -27,6 +27,12 @@ export class ProfileManagementComponent implements OnInit {
 
     // this.router.navigate(['getProfile'], {relativeTo: this.routes, queryParamsHandling: 'preserve'});
   }
+  public logout() {
+    localStorage.removeItem('currentUser');
+    window.location.reload();
+
+    this.ngOnInit();
+  }
   ngOnInit() {
     console.log('-------', this.routes);
      // this.router.navigate(['getProfile'], {relativeTo: this.routes, queryParamsHandling: 'preserve'});

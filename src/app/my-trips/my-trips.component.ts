@@ -16,9 +16,8 @@ export class MyTripsComponent implements OnInit {
   user: User = new User();
 
 
-  public trips;
+   public trips;
    public tripsIamAttending;
-
   constructor(private  tripService:AddTripService ) {
 
   }
@@ -29,7 +28,5 @@ export class MyTripsComponent implements OnInit {
     currentUser = json.user;
      this.tripService.myTrips(currentUser).subscribe(
       myTrips => {this.trips= myTrips});
-
   }
-
 }
