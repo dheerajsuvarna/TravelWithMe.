@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
@@ -29,14 +29,36 @@ import { PasswordResetComponent } from './password-reset/password-reset.componen
 import { ResetPasswordChangeComponent } from './reset-password-change/reset-password-change.component';
 import {MessagesComponent} from './Messages/messages.component';
 
+
+
+import { SourceFilterPipe } from './source-filter.pipe';
+import { DestinationFilterPipe } from './destination-filter.pipe';
+import { TraveldateFilterPipe } from './traveldate-filter.pipe';
+import { ReturndateFilterPipe } from './returndate-filter.pipe';
+import { BudgetFilterPipe } from './budget-filter.pipe';
+import { SearchTripComponent } from './search-trip/search-trip.component';
+import { FilterPipe } from './filter.pipe';
+import {SearchPipe} from './search-pipe';
+import { NoofpeopleFilterPipe } from './noofpeople-filter.pipe';
+import { InterestsFilterPipe } from './interests-filter.pipe';
 @NgModule({
   imports: [
     BrowserModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpModule,
     routing
   ],
+
+
   declarations: [
+    SourceFilterPipe,
+    DestinationFilterPipe,
+    ReturndateFilterPipe,
+    TraveldateFilterPipe,
+    BudgetFilterPipe,
+    SearchPipe,
+    FilterPipe,
     AppComponent,
     AlertComponent,
     HomeComponent,
@@ -55,16 +77,20 @@ import {MessagesComponent} from './Messages/messages.component';
     AddTripComponent,
     PasswordResetComponent,
     ResetPasswordChangeComponent,
-    MessagesComponent
-
+    MessagesComponent,
+    SearchTripComponent,
+    SourceFilterPipe,
+    NoofpeopleFilterPipe,
+    InterestsFilterPipe,
   ],
-  providers: [
+   providers: [
     AuthGuard,
     AlertService,
     AuthenticationService,
     UserService,
     AddTripService
   ],
+  exports: [FilterPipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
