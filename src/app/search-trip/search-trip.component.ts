@@ -3,8 +3,7 @@ import {Trip} from '../models/tripmodel';
 import {Interest} from '../../models/Enums/Interest';
 import {User} from '../models/usermodel';
 import { FormBuilder, FormGroup , FormControl} from '@angular/forms';
-import { FilterPipe } from '../filter.pipe';
-import { SearchPipe } from '../search-pipe';
+import { AddTripService } from '../services/addtrip.service';
 
 @Component({
   selector: 'app-search-trip',
@@ -37,6 +36,7 @@ export class SearchTripComponent implements OnInit {
   public trip4: Trip = new Trip();
   public trip5: Trip = new Trip();
   user: User = new User();
+  public triptest;
 
 
   public trips: Trip[] = [this.trip, this.trip2, this.trip3, this.trip4, this.trip5];
@@ -62,13 +62,14 @@ export class SearchTripComponent implements OnInit {
       alert("Please Enter a valid Number for Budget");
     }
   }
-  constructor(fb: FormBuilder){
+  constructor(fb: FormBuilder, private  tripService:AddTripService ) {
     this.myForm = fb.group({
       'firstName' : [''],
       'lastName' : [''],
     });
   }
   ngOnInit() {
+    console.log("search Trip Init");
 
     /*this.destination.valueChanges.subscribe(value => {
       this.term = value;
@@ -121,6 +122,16 @@ export class SearchTripComponent implements OnInit {
     this.trip5.source = "Russia";
     this.trip5.startDate= "30.07.2017";
     this.trip5.user = this.user;
+
+    var currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    var temp  = localStorage.getItem('currentUser');
+    var json = JSON.parse(temp);
+    currentUser = json.user;
+
+    this.tripService.searchTrips(currentUser).subscribe(
+      searchTrips => {this.triptest = searchTrips});
+
+    console.log(this.triptest);
   }
 
 }

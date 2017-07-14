@@ -16,6 +16,11 @@ export class AddTripService {
     return this.http.post('/api/user/addtrip', trip, this.jwt()).map((response: Response) => response.json());
   }
 
+  searchTrips( trip: Trip )
+  {
+    console.log("Inside Search Trip Service");
+    return this.http.post('/api/user/searchtrips', this.jwt()).map((response: Response) => response.json());
+  }
 
   myTrips(user:User)
   {

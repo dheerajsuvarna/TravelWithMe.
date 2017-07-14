@@ -39,8 +39,9 @@ module.exports = {
        return res.status(400).send(err);
      });
  },
-  mytrip: function (req,res) {
+  searchtrips: function (req,res) {
     Trip.find()
+      .where('user').ne(req.user._doc._id)
       .then(function (trips) {
         return res.json(trips);
       })
