@@ -56,4 +56,8 @@ router.post('/uploadProfileImage', jwt({
   secret: configPassport.secret
 }), user.uploadProfileImage);
 
+router.post('/jointrip', jwt({
+  secret: configPassport.secret
+}), trip.joinTrip);
+
 module.exports = router;

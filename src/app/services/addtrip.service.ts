@@ -33,7 +33,11 @@ export class AddTripService {
     // };
     return this.http.get('/api/user/mytrips',this.jwt()).map((response: Response) => response.json());
   }
-
+  // User joins a trip
+  ManagejoinTrip(trip: Trip) {
+    console.log('I am in addtrip service');
+    return this.http.post('/api/user/jointrip', trip, this.jwt()).map((response: Response) => response.json());
+  }
 
 
   // private helper methods
