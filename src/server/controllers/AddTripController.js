@@ -63,6 +63,21 @@ module.exports = {
         });
   },
 
+  tripsImAttending: function (req,res) {
+   console.log(req.user._doc._id);
+    Trip.find({'joinUser':  req.user._doc.email})
+
+      .then(function (trips){
+        console.log(trips);
+        return res.json(trips);
+      })
+      .catch(function (err) {
+        res.status(401).send(err);
+
+      });
+  },
+
+
   joinTrip: function (req, res) {
    console.log('I am in joinTrip service+++++++');
    console.log('in Service  ', req.body);
