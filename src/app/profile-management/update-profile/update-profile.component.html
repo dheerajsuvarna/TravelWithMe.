@@ -37,16 +37,16 @@
 </div>
 
   <div id="basicInfo" class="col s12 z-depth-3 card-panel" style="width:45%;height:575px;margin-left:15%">
-    <form class="col s12" name="form" #f="ngForm" novalidate>
+    <form class="col s12" name="form" #f="ngForm" novalidate >
       <div class="row">
         <div class="input-field col s4">
           <label for="first_name">First Name</label>
           <br>
           <input id="first_name" type="text" class="validate"
                  [(ngModel)]="currentUser.firstname"
+                 #title="ngModel"
                  name = "first_name"
                  pattern="[a-zA-Z ]*" ngModel required >
-          <!--<div *ngIf="f.submitted && !firstname.valid" class="help-block">first name is required</div>-->
           <span *ngIf="currentUser.firstname === ''" class="help-block">First Name is required</span>
         </div>
         <div class="input-field col s4">
@@ -57,7 +57,6 @@
                  name="last_name"
                  #title="ngModel"
                  pattern="[a-zA-Z ]*" ngModel required >
-          <!--<label for="last_name" *ngIf="currentUser.lastname === ''">Last Name</label>-->
           <span *ngIf="currentUser.lastname === ''" class="help-block">Last Name is required</span>
         </div>
       </div>
@@ -67,22 +66,33 @@
           <br>
           <input id="email"
                  disabled [(ngModel)]="currentUser.email"
-                 type="text" name="email">
+                 type="text"
+                 name="email">
         </div>
       </div>
 
       <div class="row">
-        <input name="grp1" type="radio" [(ngModel)]="currentUser.gender" value="Male" [checked]="'Male'=== currentUser.gender" id="r1">
+        <input name="grp1" type="radio"
+               [(ngModel)]="currentUser.gender"
+               value="Male"
+               [checked]="'Male'=== currentUser.gender"
+               id="r1">
         <label for="r1">Male</label>
 
-        <input name="grp1" type="radio" [(ngModel)]="currentUser.gender" value="Female" [checked]="'Female'=== currentUser.gender"id="r2">
+        <input name="grp1" type="radio"
+               [(ngModel)]="currentUser.gender"
+               value="Female"
+               [checked]="'Female'=== currentUser.gender"
+               id="r2">
         <label for="r2">Female</label>
       </div>
       <div class="row">
         <label for="Age">Age</label>
         <div class="input-field col s12">
-          <input disabled value="{{currentUser.age}}" id="Age" type="text" class="validate" name="Age">
-          <!--<label for="disabled" *ngIf="!currentUser.age">Age</label>-->
+          <input id="Age"
+                 disabled [(ngModel)]="currentUser.age"
+                 type="text"
+                 name="Age">
         </div>
       </div>
       <br>
@@ -146,7 +156,7 @@
       </form>
     </div>
     <br>
-    <button class="btn pink btn-primary z-depth-3" type="submit" value="Submit" [disabled]="!f.valid "
+    <button class="btn pink btn-primary z-depth-3" type="submit" value="Submit" [disabled]="!f.valid"
             style="" (click)="OnUpdateProfile()">Update Profile</button>
 
   </div>

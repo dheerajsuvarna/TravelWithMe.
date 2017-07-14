@@ -51,7 +51,8 @@ module.exports = {
   },
 
     mytrips: function (req,res) {
-      Trip.find({'user': req.user._doc._id})
+      //Trip.find({'user': req.user._doc._id})
+      Trip.find()
         .then(function (trips){
           return res.json(trips);
         })
@@ -59,6 +60,35 @@ module.exports = {
           res.status(401).send(err);
 
         });
+  },
+
+  joinTrip: function (req, res) {
+   console.log('I am in joinTrip service+++++++');
+   console.log('in Service  ', req.body);
+   if(!req.body)
+     return res.status(400).send('Invalid Request');
+   Trip.findOne({tripName: req.body.tripName})
+     .then(function (foundTrip) {
+       console.log('found trip:', foundTrip);
+       if(req.body.joinUser) {
+         foundTrip.joinUser = req.body.joinUser;
+         console.log('locally update:  ',foundTrip);
+         return Trip.update({tripName: req.body.tripName}, foundTrip);
+
+       }
+     })
+     .then(function (updatedTrip) {
+       console.log('successfully updated', updatedTrip);
+       return res.json('Successful');
+
+     })
+     .catch(function (err) {
+       console.log('failed to update');
+       return res.status(404).send(err);
+
+     });
+
+    return res;
   }
 
-}
+};

@@ -4,7 +4,7 @@ import { User } from '../../models/usermodel';
 import { UserService } from '../../services/index';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 
-import { AlertService, AuthenticationService } from '../../services/index';
+import { AlertService } from '../../services/index';
 
 // import {NgForm} from '@angular/forms';
 
@@ -23,11 +23,6 @@ export class UpdateProfileComponent implements OnInit {
   fileValid: boolean;
 
 
-  @Output() featureSelected = new EventEmitter<string>();
-  OnSelect(feature: string) {
-    console.log('********on select*******', feature);
-    this.featureSelected.emit(feature);
-  }
   getAge(dateString) {
     // console.log("in getAge");
     const today = new Date();
@@ -65,8 +60,13 @@ export class UpdateProfileComponent implements OnInit {
       .subscribe(
         currentUser => {
           this.currentUser = currentUser;
-          this.currentUser.age =  Number(this.getAge(this.currentUser.birthdate));
-          // console.log('******** Current User: ', this.currentUser);
+          this.currentUser.age =  +this.getAge(this.currentUser.birthdate);
+           console.log('******** Current User: ', this.currentUser);
+        },
+        error => {
+          this.alertService.error(error);
+          console.log('Error=====>', error );
+          this.loading = false;
         }
         );
   }
@@ -117,7 +117,7 @@ export class UpdateProfileComponent implements OnInit {
       this.fileValid = true;
     });
     if (fileInput.target.files[0].size > 1024 * 50) {
-      this.alertService.error("Choose a smaller file with 50kb size");
+      this.alertService.error('Choose a smaller file with 50kb size');
     } else {
       reader.readAsDataURL(fileInput.target.files[0]);
     }

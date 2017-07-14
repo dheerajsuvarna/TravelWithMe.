@@ -235,10 +235,6 @@ module.exports = {
         });
   },
 
-  OnUploadImage: function (req, res) {
-    console.log(req.body);
-
-  },
   onUpdateProfile: function (req, res) {
     console.log("helloo from the other side  -- UpdateProfile");
     if (!req.body) {
@@ -262,8 +258,8 @@ module.exports = {
         })
         .then(function (updatedUser) {
           console.log(updatedUser);
-            console.log("successfully updated");
-            return res.json("Successfully updated !!");
+          console.log("successfully updated");
+          return res.json("Successfully updated !!");
          })
          .catch(function(err) {
             return res.status(401).send(err);
