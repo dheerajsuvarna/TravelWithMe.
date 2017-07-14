@@ -48,6 +48,11 @@ router.get('/mytrips',jwt({
   secret: configPassport.secret
 }), trip.mytrips);
 
+router.get('/trips-im-attending',jwt({
+  secret: configPassport.secret
+}), trip.tripsImAttending);
+
+
 router.get('/', function (req, res, next) {
   res.send('Express REST API');
 });

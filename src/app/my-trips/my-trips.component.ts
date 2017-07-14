@@ -27,6 +27,15 @@ export class MyTripsComponent implements OnInit {
     var json = JSON.parse(temp);
     currentUser = json.user;
      this.tripService.myTrips(currentUser).subscribe(
-      myTrips => {this.trips= myTrips});
+      myTrips => {this.trips= myTrips}
+
+      );
+     this.tripService.tripsImAttending(currentUser).subscribe(
+       tripsImAttending=>
+       {
+         this.tripsIamAttending = tripsImAttending
+
+       }
+     );
   }
 }
