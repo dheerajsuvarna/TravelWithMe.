@@ -52,27 +52,25 @@ module.exports = {
   },
 
     mytrips: function (req,res) {
-      Trip.find({'user': req.user._doc._id})
-      // Trip.find()
+      Trip.find({'user': req.user._doc._id}).populate('user')
         .then(function (trips){
           return res.json(trips);
         })
         .catch(function (err) {
-          res.status(401).send(err);
+          res.status(500).send(err);
 
         });
   },
 
   tripsImAttending: function (req,res) {
-   console.log(req.user._doc._id);
-    Trip.find({'joinUser':  req.user._doc.email})
+    Trip.find({'joinUser':  req.user._doc.email}).populate('user')
 
       .then(function (trips){
-        console.log(trips);
+
         return res.json(trips);
       })
       .catch(function (err) {
-        res.status(401).send(err);
+        res.status(500).send(err);
 
       });
   },
