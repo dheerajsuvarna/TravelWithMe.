@@ -7,6 +7,8 @@ import {isNullOrUndefined, isUndefined} from "util";
 import {showWarningOnce} from "tslint/lib/error";
 
 import { AlertService,  } from '../services/index';
+import {routing} from "../app.routing";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-trip-card',
@@ -15,13 +17,15 @@ import { AlertService,  } from '../services/index';
 })
 export class TripCardComponent implements OnInit {
 
+
  @Input() trip: Trip;
   imageURI: string;
   isMyTrip: boolean;
   currentUser: User;
   tripJoined = false;
   constructor(private  tripService: AddTripService  ,
-              private alertService: AlertService) {
+              private alertService: AlertService,
+              private router: Router) {
     this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
     const temp  = localStorage.getItem('currentUser');
     const json = JSON.parse(temp);
@@ -83,6 +87,16 @@ export class TripCardComponent implements OnInit {
     } else {
       this.alertService.error('You are not part of this trip');
     }
+  }
+
+  OpenChat()
+  {
+
+    var o :any;
+    o = this.trip;
+    var link = "/chat/" + o._id+'/'+this.trip.tripName;
+    this.router.navigate([link]);
+
   }
 
 }
