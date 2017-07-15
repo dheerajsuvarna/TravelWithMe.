@@ -8,7 +8,7 @@ import { routing } from './app.routing';
 
 import { AlertComponent } from './alert/alert.component';
 import { AuthGuard } from './guards/auth.guard';
-import { AlertService, AuthenticationService, UserService, AddTripService } from './services/index';
+import { AlertService, AuthenticationService, UserService, AddTripService, ChatService } from './services/index';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
@@ -41,6 +41,7 @@ import { FilterPipe } from './filter.pipe';
 import {SearchPipe} from './search-pipe';
 import { NoofpeopleFilterPipe } from './noofpeople-filter.pipe';
 import { InterestsFilterPipe } from './interests-filter.pipe';
+import { ChatComponent } from './chat/chat.component';
 @NgModule({
   imports: [
     BrowserModule,
@@ -82,13 +83,15 @@ import { InterestsFilterPipe } from './interests-filter.pipe';
     SourceFilterPipe,
     NoofpeopleFilterPipe,
     InterestsFilterPipe,
+    ChatComponent,
   ],
    providers: [
     AuthGuard,
     AlertService,
     AuthenticationService,
     UserService,
-    AddTripService
+    AddTripService,
+     ChatService
   ],
   exports: [FilterPipe],
   bootstrap: [AppComponent]
