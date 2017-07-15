@@ -11,10 +11,11 @@ module.exports = {
 
 
   getAll: function (req, res) {
-    console.log("in get all ");
-
-    Chat.find({room: req.params.room}, function (err, chats) {
+  var room=req.params.room;
+  room =  room.slice(1,room.lenght);
+    Chat.find({room: room}, function (err, chats) {
       if (err) return next(err);
+
       res.json(chats);
     });
   },
