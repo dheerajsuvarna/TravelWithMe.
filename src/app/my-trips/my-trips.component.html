@@ -1,17 +1,20 @@
 <div *ngIf="trips">
   <h2 style="margin: 10px" >My Trips</h2>
 <div style="horiz-align:center; vertical-align: top; margin-left: 40px;">
-<app-trip-card style="display: inline-block; margin: 10px;" *ngFor="let trip of trips"  [trip]="trip"></app-trip-card>
+<app-trip-card style="display: inline-block; margin: 10px;" *ngFor="let trip of trips "  [trip]="trip"></app-trip-card>
 </div>
 </div>
-<div *ngIf="!trips">
-  <h4 >You have not added any trip yet <a href="/addtrip" >Add trips now!</a></h4>
+<div *ngIf="!hasTrips">
+  <h4  [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}" > You have not added any trip yet  <a [routerLink] = "['/addtrip']">Join trips now!</a></h4>
+
 </div>
 
-<div *ngIf="!tripsIamAttending">
-  <h4 >You have not joined any trip yet <a href="/search" >Find trips now!</a></h4>
+<div *ngIf="!attendsTrips">
+
+  <h4  [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}" > You have not joined any trip yet  <a [routerLink] = "['/searchtrips']">Find trips now!</a></h4>
+
 </div>
-<div *ngIf="tripsIamAttending">
+<div *ngIf="attendsTrips">
 <h2  style="margin: 10px">Trips I am attending</h2>
 <div style="horiz-align:center; vertical-align: top; margin-left: 40px;">
 
