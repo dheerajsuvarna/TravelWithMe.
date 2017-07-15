@@ -43,6 +43,7 @@ import { NoofpeopleFilterPipe } from './noofpeople-filter.pipe';
 import { InterestsFilterPipe } from './interests-filter.pipe';
 import {ChatService} from "./services/chat.service";
 import { ChatComponent } from './chat/chat.component';
+import { ChatParentComponent } from './chat-parent/chat-parent.component';
 @NgModule({
   imports: [
     BrowserModule,
@@ -85,6 +86,7 @@ import { ChatComponent } from './chat/chat.component';
     NoofpeopleFilterPipe,
     InterestsFilterPipe,
     ChatComponent,
+    ChatParentComponent,
   ],
    providers: [
     AuthGuard,

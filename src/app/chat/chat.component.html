@@ -1,17 +1,17 @@
-<div class="container">
+<div class="container"  >
   <div class="row">
     <div class="col-md-5">
       <div class="panel panel-primary" *ngIf="joinned; else joinroom">
         <div class="panel-heading">
-          <span class="glyphicon glyphicon-comment"></span> {{ msgData.room }}
+          <span class="glyphicon glyphicon-comment"></span> {{ chatName }}
           <div class="btn-group pull-right">
             <button type="button" class="btn btn-default btn-xs" (click)="logout()">
               Logout
             </button>
           </div>
         </div>
-        <div #scrollMe class="panel-body">
-          <ul class="chat">
+        <div #scrollMe class="panel-body" style="height: 60%;width:80%;" >
+          <ul class="chat" style="height:400px;overflow:auto;" >
             <li *ngFor="let c of chats">
               <div class="left clearfix" >
                             <span class="chat-img pull-left">
@@ -47,7 +47,7 @@
             <div class="input-group">
               <input type="hidden" [(ngModel)]="msgData.room" name="room" />
               <input type="hidden" [(ngModel)]="msgData.nickname" name="nickname" />
-              <input id="btn-input" type="text" [(ngModel)]="msgData.message" name="message" class="form-control input-sm" placeholder="Type your message here..." required="" />
+              <input id="btn-input" type="text" [(ngModel)]="msgData.message" placeholder="Enter New Message" name="message" class="form-control input-sm" placeholder="Type your message here..." required="" />
               <span class="input-group-btn">
                             <button class="btn btn-warning btn-sm" id="btn-chat" [disabled]="!msgForm.form.valid">
                                 Send</button>

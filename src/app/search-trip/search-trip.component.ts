@@ -77,54 +77,10 @@ export class SearchTripComponent implements OnInit {
     /*this.destination.valueChanges.subscribe(value => {
       this.term = value;
     });*/
-    console.log(this.today);
-    this.user.firstname = "Bakri";
-    this.user.lastname="Bitar";
-    this.trip.interests= [Interest.Beach];
-    this.trip.tripName = "To the Beach";
-    this.trip.budget = 50;
-    this.trip.description = "Some description about the trip";
-    this.trip.destination = "Miami";
-    this.trip.source = "Munich";
-    this.trip.startDate= "22.07.2017";
-    this.trip.user = this.user;
 
 
-    this.trip2.interests= [Interest.Arts];
-    this.trip2.tripName = "To the Muesum";
-    this.trip2.budget = 30;
-    this.trip2.description = "Some description about the trip";
-    this.trip2.destination = "Deutsches Museum";
-    this.trip2.source = "Munich";
-    this.trip2.startDate= "30.07.2017";
-    this.trip2.user = this.user;
 
-    this.trip3.interests= [Interest.Arts];
-    this.trip3.tripName = "To the Muesum";
-    this.trip3.budget = 30;
-    this.trip3.description = "Some description about the trip";
-    this.trip3.destination = "Paris";
-    this.trip3.source = "Munich";
-    this.trip3.startDate= "30.07.2017";
-    this.trip3.user = this.user;
 
-    this.trip4.interests= [Interest.Music];
-    this.trip4.tripName = "To Austria";
-    this.trip4.budget = 30;
-    this.trip4.description = "Some description about the trip";
-    this.trip4.destination = "Austria";
-    this.trip4.source = "Munich";
-    this.trip4.startDate= "30.07.2017";
-    this.trip4.user = this.user;
-
-    this.trip5.interests= [Interest.Music];
-    this.trip5.tripName = "To London";
-    this.trip5.budget = 30;
-    this.trip5.description = "Some description about the trip";
-    this.trip5.destination = "London";
-    this.trip5.source = "Russia";
-    this.trip5.startDate= "30.07.2017";
-    this.trip5.user = this.user;
 
     var currentUser = JSON.parse(localStorage.getItem('currentUser'));
     var temp  = localStorage.getItem('currentUser');

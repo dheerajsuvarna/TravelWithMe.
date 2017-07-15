@@ -24,6 +24,8 @@
         <p  ><i class="fa fa-calendar" aria-hidden="true">    {{trip.startDate}} →  {{trip.endDate}} </i></p>
         <i class="fa fa-money" aria-hidden="true">    Budget: {{trip.budget}} <i class="fa fa-eur" aria-hidden="true"></i>
         </i>
+        <a class="btn-floating btn-large waves-effect waves-light red pull-right paddingCustom" *ngIf="(isMyTrip || tripJoined) && trip.joinUser.length!=0"  (click)="OpenChat()"><i class="material-icons">message</i></a>
+
       </div>
     </div>
     <div class="card-reveal">

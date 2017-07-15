@@ -1,6 +1,7 @@
-import { Component, OnInit, AfterViewChecked, ElementRef, ViewChild } from '@angular/core';
+import {Component, OnInit, AfterViewChecked, ElementRef, ViewChild, Input} from '@angular/core';
 import { ChatService } from '../services/chat.service';
 import * as io from "socket.io-client";
+import {User} from "../models/usermodel";
 
 @Component({
   selector: 'app-chat',
@@ -10,28 +11,40 @@ import * as io from "socket.io-client";
 export class ChatComponent implements OnInit, AfterViewChecked {
 
   @ViewChild('scrollMe') private myScrollContainer: ElementRef;
+  @Input() chatId: string;
+  @Input() chatName: string;
 
   chats: any;
   joinned: boolean = false;
   newUser = { nickname: '', room: '' };
   msgData = { room: '', nickname: '', message: '' };
   socket = io('http://localhost:3001');
+  currentUser:User;
 
-  constructor(private chatService: ChatService) {}
+  constructor(private chatService: ChatService) {
+
+
+
+  }
 
   ngOnInit() {
-    var user = { nickname: 'Bakri', room: '123' };
+    this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    var temp  = localStorage.getItem('currentUser');
+    var json = JSON.parse(temp);
+    this.currentUser = json.user;
+
+    var user = { nickname: this.currentUser.firstname + '  ' + this.currentUser.lastname, room: this.chatId };
     if(user!==null) {
       this.getChatByRoom(user.room);
-      this.msgData = { room: user.room, nickname: user.nickname, message: 'hey from chat.component.ts' }
+      this.msgData = { room: user.room, nickname: user.nickname, message: '' }
       this.joinned = true;
       this.scrollToBottom();
     }
     this.socket.on('new-message', function (data) {
 //      if(data.message.room === JSON.parse(localStorage.getItem("user")).room) {
-        if(data.message.room === '123') {
+        if(data.message.room === this.chatId) {
         this.chats.push(data.message);
-        this.msgData = { room: user.room, nickname: user.nickname, message: 'hey from  this.socket.on' }
+        this.msgData = { room: user.room, nickname: user.nickname, message: '' }
         this.scrollToBottom();
       }
     }.bind(this));
@@ -57,7 +70,7 @@ export class ChatComponent implements OnInit, AfterViewChecked {
 
   joinRoom() {
     var date = new Date();
-    localStorage.setItem("user", JSON.stringify(this.newUser));
+    localStorage.setItem("currentUser", JSON.stringify(this.newUser));
     this.getChatByRoom(this.newUser.room);
     this.msgData = { room: this.newUser.room, nickname: this.newUser.nickname, message: '' };
     this.joinned = true;
@@ -74,9 +87,9 @@ export class ChatComponent implements OnInit, AfterViewChecked {
 
   logout() {
     var date = new Date();
-    var user = JSON.parse(localStorage.getItem("user"));
+    var user = JSON.parse(localStorage.getItem("currentUser"));
     this.socket.emit('save-message', { room: user.room, nickname: user.nickname, message: 'Left this room', updated_at: date });
-    localStorage.removeItem("user");
+    localStorage.removeItem("currentUser");
     this.joinned = false;
   }
 
