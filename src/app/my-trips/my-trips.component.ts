@@ -16,8 +16,8 @@ export class MyTripsComponent implements OnInit {
   user: User = new User();
 
 
-   public trips;
-   public tripsIamAttending;
+   public trips : [Trip];
+   public tripsIamAttending: [Trip];
    public hasTrips;
    public attendsTrips;
   constructor(private  tripService:AddTripService ) {
@@ -32,7 +32,7 @@ export class MyTripsComponent implements OnInit {
       myTrips => {
         this.trips= myTrips;
         this.hasTrips = this.trips.length!=0;
-        this.trips = this.trips.sort((item1, item2): Number => compareByDate(item1 , item2 ));
+        this.trips = this.trips.sort((item1, item2): number => compareByDate(item1 , item2 ));
       }
       );
 
@@ -41,7 +41,7 @@ export class MyTripsComponent implements OnInit {
        {
          this.tripsIamAttending = tripsImAttending;
          this.attendsTrips = this.tripsIamAttending.length!=0;
-        this.tripsIamAttending = this.tripsIamAttending.sort((item1, item2): Number => compareByDate(item1 , item2 ))
+        this.tripsIamAttending = this.tripsIamAttending.sort((item1, item2): number => compareByDate(item1 , item2 ))
        }
      );
   }

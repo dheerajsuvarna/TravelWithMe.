@@ -28,7 +28,7 @@ var TripSchema = new Schema({
   },
   user: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'UserSchema'
+    ref: 'User'
   },
   interests:{
    type: [String],

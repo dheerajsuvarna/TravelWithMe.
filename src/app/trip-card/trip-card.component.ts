@@ -35,7 +35,10 @@ export class TripCardComponent implements OnInit {
     var stringUser  = localStorage.getItem('currentUser');
     var json = JSON.parse(stringUser);
     var currentUser = json.user;
-    this.isMyTrip = currentUser._id === this.trip.user;
+    var a: any;
+    a = this.trip.user;
+
+    this.isMyTrip = currentUser._id === a._id;
     if (this.trip.joinUser.indexOf(this.currentUser.email) > -1 ) {
       this.tripJoined = true;
     }
