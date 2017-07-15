@@ -9,6 +9,7 @@ var jwt = require('express-jwt');
 var router = express.Router();
 var user = require("../controllers/UserController.js");
 var trip = require("../controllers/AddTripController.js");
+var chat = require("../controllers/ChatController")
 
 // route for login action
 //router.post('/login', auth.doLogin);
@@ -24,6 +25,15 @@ router.post('/updateProfile', jwt({
 router.post('/reset-password', user.resetPassword);
 router.post('/reset-password-change', user.resetPasswordChange);
 
+
+////////////////
+
+
+router.get('/chat:room',chat.getAll);
+
+/* SAVE CHAT */
+
+router.post('/save-chat',chat.addMessage);
 
 // router.post('/uploadImage',jwt({
 //     secret: configPassport.secret}),

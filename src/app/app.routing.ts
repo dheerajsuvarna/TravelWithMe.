@@ -16,6 +16,7 @@ import {PasswordResetComponent} from './password-reset/password-reset.component'
 import {ResetPasswordChangeComponent} from './reset-password-change/reset-password-change.component';
 import {MessagesComponent} from './Messages/messages.component';
 import {SearchTripComponent} from "./search-trip/search-trip.component";
+import {ChatComponent} from "./chat/chat.component";
 
 const appRoutes: Routes = [
 
@@ -30,6 +31,7 @@ const appRoutes: Routes = [
   { path: 'landingPage', component: LandingPageComponent },
   { path: 'mytrips', component: MyTripsComponent, canActivate: [AuthGuard] },
   { path: 'searchtrips', component: SearchTripComponent, canActivate: [AuthGuard] },
+  { path: 'chat', component: ChatComponent, canActivate: [AuthGuard] },
 
   { path: 'profileManagement', component: ProfileManagementComponent, canActivate: [AuthGuard] , children: [
      { path: 'getProfile', component: UpdateProfileComponent, canActivate: [AuthGuard] },

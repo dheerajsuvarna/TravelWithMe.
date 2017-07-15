@@ -8,6 +8,7 @@ var app = require('./app');
 var debug = require('debug')('mean-app:server');
 var http = require('http');
 
+
 /**
  * Get port from environment and store in Express.
  */
@@ -20,6 +21,18 @@ app.set('port', port);
  */
 
 var server = http.createServer(app);
+var io = require('socket.io')(server);
+
+io.on('connection', function (socket) {
+  console.log('User connected');
+  socket.on('disconnect', function() {
+    console.log('User disconnected');
+  });
+  socket.on('save-message', function (data) {
+    console.log(data);
+    io.emit('new-message', { message: data });
+  });
+});
 
 /**
  * Listen on provided port, on all network interfaces.
