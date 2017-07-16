@@ -41,7 +41,7 @@
       <p>Description: {{trip.description}}</p>
       <p>Participants {{this.trip.joinUser.length}} of {{this.trip.numOfPeople}} for this Trip: <br>
         <a *ngFor="let user of trip.joinUser" (click)="viewProfile(user)" style="cursor:pointer;">
-          <span *ngIf="tripJoined"><br>{{user.firstname}} {{user.lastname}}</span></a></p>
+          <span ><br>{{user.firstname}} {{user.lastname}}</span></a></p>
 
       <h6 [hidden]="!showUser">
         <div class="col20 s20 " *ngIf="viewUser">

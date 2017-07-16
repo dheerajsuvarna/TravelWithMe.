@@ -35,6 +35,7 @@ export class ProfileManagementComponent implements OnInit {
   }
   ngOnInit() {
     console.log('-------', this.routes);
+    // window.location.reload();
      // this.router.navigate(['getProfile'], {relativeTo: this.routes, queryParamsHandling: 'preserve'});
   }
 
