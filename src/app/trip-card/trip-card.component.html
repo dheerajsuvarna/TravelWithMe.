@@ -1,6 +1,6 @@
 <div >
 
-  <div class="card sticky-action z-depth-2"  >
+  <div class="card sticky-action"  >
 
     <div class="card-image waves-effect waves-block waves-light">
       <img  class="activator" src="{{imageURI}}">
@@ -30,7 +30,13 @@
     </div>
     <div class="card-reveal">
       <span class="card-title grey-text text-darken-4">{{trip.tripName}}<i class="material-icons right">close</i></span>
-      <p>{{trip.description}}</p>
+      <p>Description: {{trip.description}}</p>
+      <p>Participants {{this.trip.joinUser.length}} of {{this.trip.numOfPeople}} for this Trip: <br>
+        <a *ngFor="let user of trip.joinUser" href="#" (click)="viewProfile(user)">{{user}}<br></a></p>
+      <h3 [hidden]="!showUser">
+        Your favorite hero is: {{viewUser}}
+      </h3>
+
     </div>
   </div>
 

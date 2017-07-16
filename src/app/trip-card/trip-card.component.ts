@@ -2,13 +2,18 @@ import { Component, OnInit,Input } from '@angular/core';
 import {Trip} from '../models/tripmodel';
 import {User} from '../models/usermodel';
 import {AddTripService} from '../services/addtrip.service';
-import {Interest} from '../../models/Enums/Interest';
+import {UserService} from '../services/user.service';
+
 import {isNullOrUndefined, isUndefined} from "util";
-import {showWarningOnce} from "tslint/lib/error";
+
 
 import { AlertService,  } from '../services/index';
+<<<<<<< HEAD
 import {routing} from "../app.routing";
 import {Router} from "@angular/router";
+=======
+import { Router, ActivatedRoute } from '@angular/router';
+>>>>>>> origin/nilofer_last
 
 @Component({
   selector: 'app-trip-card',
@@ -22,10 +27,14 @@ export class TripCardComponent implements OnInit {
   imageURI: string;
   isMyTrip: boolean;
   currentUser: User;
+  viewUser: User;
   tripJoined = false;
+  showUser = false;
   constructor(private  tripService: AddTripService  ,
               private alertService: AlertService,
-              private router: Router) {
+              private router: Router,
+              private userService: UserService) {
+
     this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
     const temp  = localStorage.getItem('currentUser');
     const json = JSON.parse(temp);
@@ -50,6 +59,10 @@ export class TripCardComponent implements OnInit {
   }
   JoinTrip() {
     console.log('In Join Trip******');
+    const len = this.trip.joinUser.length;
+    if (len === this.trip.numOfPeople) {
+      return this.alertService.error('This trip is already filled with participants..Please contact creator of this trip');
+    }
     this.trip.joinUser.push(this.currentUser.email);
     // console.log('selected trip===>', this.trip);
     this.tripService.ManagejoinTrip(this.trip)
@@ -89,13 +102,43 @@ export class TripCardComponent implements OnInit {
     }
   }
 
-  OpenChat()
-  {
 
-    var o :any;
+  OpenChat() {
+
+    var o: any;
     o = this.trip;
-    var link = "/chat/" + o._id+'/'+this.trip.tripName;
+    var link = "/chat/" + o._id + '/' + this.trip.tripName;
     this.router.navigate([link]);
+  }
+  getAge(dateString) {
+    // console.log("in getAge");
+    const today = new Date();
+    const birthDate = new Date(dateString);
+    var age = today.getFullYear() - birthDate.getFullYear();
+    const m = today.getMonth() - birthDate.getMonth();
+    if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+      age--;
+    }
+    return age;
+  }
+  viewProfile(user: any) {
+    console.log('I am in view Profile of user ', user);
+    const sendData = {
+      email : user
+    };
+    this.userService.getUserProfile(sendData)
+      .subscribe(
+        currentUser => {
+          this.viewUser = currentUser;
+          this.viewUser.age =  +this.getAge(this.viewUser.birthdate);
+          this.showUser = true;
+          console.log('******** Current User: ', this.viewUser);
+        },
+        error => {
+          this.alertService.error(error);
+          console.log('Error=====>', error );
+        }
+      );
 
   }
 

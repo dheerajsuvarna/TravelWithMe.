@@ -94,7 +94,7 @@ export class UpdateProfileComponent implements OnInit {
         },
         error => {
           this.alertService.error(error);
-          this.loading = false;
+          this.loading = true;
         }
       )
   }
