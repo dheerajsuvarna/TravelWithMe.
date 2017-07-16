@@ -23,8 +23,8 @@ export class AddTripService {
   }
   
   updateTrip(trip: Trip) {
-    return this.http.post('/api/user/updateTrip',  trip, this.jwt()).map((response: Response) => response.json());
-
+    return this.http.post('/api/user/updateTrip', trip, this.jwt()).map((response:Response) => response.json());
+  }
   searchTrips( user:User )
   {
     console.log("Inside Search Trip Service");

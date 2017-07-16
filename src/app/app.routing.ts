@@ -20,7 +20,6 @@ import {EditTripComponent} from './edit-trip/edit-trip.component'
 import {SearchTripComponent} from "./search-trip/search-trip.component";
 import {ChatComponent} from "./chat/chat.component";
 import {ChatParentComponent} from "./chat-parent/chat-parent.component";
->>>>>>> origin/master
 
 const appRoutes: Routes = [
 

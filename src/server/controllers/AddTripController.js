@@ -142,6 +142,9 @@ module.exports = {
       })
       .catch(function (err) {
         res.status(401).send(err);
+      })
+
+  },
 
   tripsImAttending: function (req,res) {
     Trip.find({'joinUser':  req.user._doc.email}).populate('user')
@@ -167,11 +170,8 @@ module.exports = {
         res.json({ message: 'Offer Deleted!'});
       console.log('deleted')
     });
-  }
-
-
-}
-
+  },
+  
 
   joinTrip: function (req, res) {
    console.log('I am in joinTrip service+++++++');

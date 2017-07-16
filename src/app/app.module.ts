@@ -82,7 +82,7 @@ import { ChatParentComponent } from './chat-parent/chat-parent.component';
     PasswordResetComponent,
     ResetPasswordChangeComponent,
     MessagesComponent,
-    EditTripComponent
+    EditTripComponent,
     SearchTripComponent,
     SourceFilterPipe,
     NoofpeopleFilterPipe,

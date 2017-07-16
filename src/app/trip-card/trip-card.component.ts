@@ -8,7 +8,6 @@ import { AddTripService, AlertService } from '../services/index';
 import {User} from '../models/usermodel';
 import {UserService} from '../services/user.service';
 
-import {isNullOrUndefined} from 'util';
 import { Router } from '@angular/router';
 
 @Component({
