@@ -13,4 +13,17 @@ export enum Interest {
   Swimming,
 
 
+    Museums,
+    Backpacking,
+    Hiking,
+    Trekking,
+    Historic_Sites,
+    Nature,
+    Carnavals,
+
+
+
+
+
+
 }
