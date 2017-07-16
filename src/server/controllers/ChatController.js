@@ -20,7 +20,7 @@ module.exports = {
   var room=req.params.room;
   room =  room.slice(1,room.lenght);
 
-    Trip.findOne({$or:[{_id: room,joinUser:req.user._doc.email},
+    Trip.findOne({$or:[{_id: room,joinUser:req.user._doc._id},
       {_id: room,user:req.user._doc._id}]})
       .then(function (trip){
         if(trip) {
@@ -38,7 +38,7 @@ module.exports = {
         })},
 
   addMessage: function (req, res, next) {
-    Trip.findOne({$or:[{_id: req.body.message.room,joinUser:req.body.user.email},
+    Trip.findOne({$or:[{_id: req.body.message.room,joinUser:req.body.user},
       {_id: req.body.message.room,user:req.body.user._id}]})
       .then(function (trip){
      if(trip)

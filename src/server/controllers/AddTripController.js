@@ -31,11 +31,11 @@ module.exports = {
 
    newTrip.save()
      .then(function (trip) {
-       console.log('success: trip added', newTrip)
+       console.log('success: trip added', newTrip);
        return res.json(newTrip)
      })
      .catch(function (err) {
-       console.log(err)
+       console.log(err);
        return res.status(400).send(err);
      });
  },
@@ -44,7 +44,7 @@ module.exports = {
   searchtrips: function (req,res) {
     Trip.find().populate('user')
       .where('user').ne(req.user._doc._id)
-      .where('joinUser').ne(req.user._doc.email)
+      .where('joinUser').ne(req.user._doc._id)
       .then(function (trips) {
         return res.json(trips);
       })
@@ -55,7 +55,7 @@ module.exports = {
 
     mytrips: function (req,res) {
 
-      Trip.find({'user': req.user._doc._id}).populate('user')
+      Trip.find({'user': req.user._doc._id}).populate('user').populate('joinUser')
 
       // Trip.find({'user': req.user._doc._id})
 
@@ -69,7 +69,7 @@ module.exports = {
   },
 
   tripsImAttending: function (req,res) {
-    Trip.find({'joinUser':  req.user._doc.email}).populate('user')
+    Trip.find({'joinUser':  req.user._doc._id}).populate('user').populate('joinUser')
 
       .then(function (trips){
 
@@ -87,28 +87,47 @@ module.exports = {
    console.log('in Service  ', req.body);
    if(!req.body)
      return res.status(400).send('Invalid Request');
-   Trip.findOne({tripName: req.body.tripName})
+   Trip.findOne({'_id':req.body.trip._id})
      .then(function (foundTrip) {
        console.log('found trip:', foundTrip);
-       if(req.body.joinUser) {
-         foundTrip.joinUser = req.body.joinUser;
+         foundTrip.joinUser.push(req.body.user);
          console.log('locally update:  ',foundTrip);
-         return Trip.update({tripName: req.body.tripName}, foundTrip);
+         return foundTrip.save();
 
-       }
      })
      .then(function (updatedTrip) {
-       console.log('successfully updated', updatedTrip);
+       console.log('successfully updated==>', updatedTrip);
        return res.json('Successful');
 
      })
      .catch(function (err) {
-       console.log('failed to update');
+       console.log(err);
        return res.status(404).send(err);
 
      });
 
     return res;
+  },
+
+  leaveTrip: function (req, res) {
+    console.log('I am in leave service+++++++');
+    console.log('in Service  ', req.body);
+    if(!req.body)
+      return res.status(400).send('Invalid Request');
+    Trip.update({'_id': req.body.trip}, {$pull:{'joinUser': req.user._doc._id}})
+      .then(function (updatedTrip) {
+        console.log('successfully updated==>', updatedTrip);
+        return res.json('Successful');
+
+      })
+      .catch(function (err) {
+        console.log(err);
+        return res.status(404).send(err);
+
+      });
+
+    return res;
   }
+
 
 };

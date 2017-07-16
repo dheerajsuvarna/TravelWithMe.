@@ -47,8 +47,8 @@ var TripSchema = new Schema({
     required: true
   },
   joinUser: [{
-    type: String,
-    default: 0
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User'
   }]
 });
 

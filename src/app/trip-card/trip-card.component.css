@@ -8,3 +8,7 @@
 .paddingCustom{
   margin-bottom: 1%;
 }
+
+a[click]{
+  cursor: pointer;
+}

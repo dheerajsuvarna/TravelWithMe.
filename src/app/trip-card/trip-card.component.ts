@@ -4,6 +4,7 @@ import {User} from '../models/usermodel';
 import {AddTripService} from '../services/addtrip.service';
 import {UserService} from '../services/user.service';
 
+
 import {isNullOrUndefined} from 'util';
 
 
@@ -11,6 +12,8 @@ import { AlertService,  } from '../services/index';
 
 
 import { Router } from '@angular/router';
+import {send} from "q";
+import {forEach} from "@angular/router/src/utils/collection";
 
 @Component({
   selector: 'app-trip-card',
@@ -39,8 +42,8 @@ export class TripCardComponent implements OnInit {
 
   }
   ngOnInit() {
-    if(!isNullOrUndefined(this.trip)&&!isNullOrUndefined(this.trip.interests ))
-      this.imageURI = '../../assets/tripImages/'+this.trip.interests[0]+'.jpg';
+    if (!isNullOrUndefined(this.trip)&&!isNullOrUndefined(this.trip.interests ))
+      this.imageURI = '../../assets/tripImages/'+this.trip.interests[0] + '.jpg';
 
     var stringUser  = localStorage.getItem('currentUser');
     var json = JSON.parse(stringUser);
@@ -49,8 +52,12 @@ export class TripCardComponent implements OnInit {
     a = this.trip.user;
 
     this.isMyTrip = currentUser._id === a._id;
-    if (this.trip.joinUser.indexOf(this.currentUser.email) > -1 ) {
-      this.tripJoined = true;
+
+    for ( let user of this.trip.joinUser) {
+      if (user.email === currentUser.email) {
+        this.tripJoined = true;
+        break;
+      }
     }
 
   }
@@ -60,55 +67,49 @@ export class TripCardComponent implements OnInit {
     if (len === this.trip.numOfPeople) {
       return this.alertService.error('This trip is already filled with participants..Please contact creator of this trip');
     }
-    this.trip.joinUser.push(this.currentUser.email);
-    this.trip.joinUser.push(this.currentUser.firstname + ' ' + this.currentUser.lastname);
+    const sendData = {
+      'trip': this.trip,
+      'user': this.currentUser
+    };
     // console.log('selected trip===>', this.trip);
-    this.tripService.ManagejoinTrip(this.trip)
+    this.tripService.ManagejoinTrip(sendData)
       .subscribe(
         trip => {
           console.log('*******In Join Trip******');
           // this.alertService.success('Trip Joined', true);
           console.log(this.trip);
           this.tripJoined = true;
-          window.location.reload();
+          // window.location.reload();
       },
       error => {
         this.alertService.error(error);
-        this.trip.joinUser.pop();
-        this.trip.joinUser.pop();
+        // this.trip.joinUser.pop();
+        // this.trip.joinUser.pop();
         // console.log('Error=====>', error );
       }
     );
   }
   LeaveTrip() {
-    let pos = this.trip.joinUser.indexOf(this.currentUser.email);
-    if (pos !== -1) {
-      this.trip.joinUser.splice(pos, 1);
-       pos = this.trip.joinUser.indexOf(this.currentUser.firstname + ' ' + this.currentUser.lastname);
-      if (pos !== -1) {
-        this.trip.joinUser.splice(pos, 1);
+    const sendData = {
+      'trip': this.trip
+    };
+   this.tripService.leaveTrip(sendData)
+     .subscribe(
+       trip => {
+         console.log('*******In leave Trip******');
+         // this.alertService.success('Trip Joined', true);
+         console.log(this.trip);
+         this.tripJoined = false;
+         // window.location.reload();
+       },
+       error => {
+         this.alertService.error(error);
+         // this.trip.joinUser.pop();
+         // this.trip.joinUser.pop();
+         // console.log('Error=====>', error );
+       }
+     );
 
-        this.tripService.ManagejoinTrip(this.trip)
-          .subscribe(
-            trip => {
-              // this.alertService.success('Left ' + this.trip.tripName + ' trip', true);
-              console.log('left trip', this.trip);
-              this.tripJoined = false;
-            },
-            error => {
-              this.alertService.error(error);
-              this.trip.joinUser.push(this.currentUser.email);
-              this.trip.joinUser.push(this.currentUser.firstname + ' ' + this.currentUser.lastname);
-              // console.log('Error=====>', error );
-            }
-          );
-      }
-      else {
-        this.alertService.error('System Error');
-      }
-    } else {
-      this.alertService.error('You are not part of this trip');
-    }
   }
 
 
@@ -130,17 +131,10 @@ export class TripCardComponent implements OnInit {
     }
     return age;
   }
-  viewProfile(user: string) {
+  viewProfile(user: any) {
     console.log('I am in view Profile of user ', user);
-
-    var pos = this.trip.joinUser.indexOf(user);
-    if (pos !== -1) {
-      pos = pos - 1;
-      if (pos === -1) {
-        return this.alertService.error('System Error');
-      }
       const sendData = {
-        email: this.trip.joinUser[pos]
+        email: user.email
       };
       this.userService.getUserProfile(sendData)
         .subscribe(
@@ -155,7 +149,6 @@ export class TripCardComponent implements OnInit {
             console.log('Error=====>', error);
           }
         );
-    }
   }
   Close() {
     this.showUser = false;
