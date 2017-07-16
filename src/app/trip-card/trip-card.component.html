@@ -24,6 +24,9 @@
         <p  ><i class="fa fa-calendar" aria-hidden="true">    {{trip.startDate}} →  {{trip.endDate}} </i></p>
         <i class="fa fa-money" aria-hidden="true">    Budget: {{trip.budget}} <i class="fa fa-eur" aria-hidden="true"></i>
         </i>
+        <br>
+        <button class="btn blue btn-primary" [routerLink] = "['/edittrip']" (click)="editTrip(trip._id, trip.tripName)">Edit</button>  <button class="btn blue btn-primary" (click)="deleteTrip(trip._id)">Delete</button>
+
         <a class="btn-floating btn-large waves-effect waves-light red pull-right paddingCustom" *ngIf="(isMyTrip || tripJoined) && trip.joinUser.length!=0"  (click)="OpenChat()"><i class="material-icons">message</i></a>
 
       </div>

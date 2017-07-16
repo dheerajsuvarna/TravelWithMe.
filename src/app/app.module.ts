@@ -44,6 +44,7 @@ import { InterestsFilterPipe } from './interests-filter.pipe';
 import {ChatService} from "./services/chat.service";
 import { ChatComponent } from './chat/chat.component';
 import { ChatParentComponent } from './chat-parent/chat-parent.component';
+import { EditTripComponent } from './edit-trip/edit-trip.component';
 @NgModule({
   imports: [
     BrowserModule,
@@ -87,6 +88,7 @@ import { ChatParentComponent } from './chat-parent/chat-parent.component';
     InterestsFilterPipe,
     ChatComponent,
     ChatParentComponent,
+    EditTripComponent,
   ],
    providers: [
     AuthGuard,

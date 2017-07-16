@@ -161,4 +161,37 @@ export class TripCardComponent implements OnInit {
     this.showUser = false;
   }
 
+  editTrip(id, tripName){
+    console.log('hello')
+    // console.log(this.trip.tripName)
+    //console.log(id)
+    var temp = id.toString();
+    //console.log(temp)
+    // this.router.navigate(["/edittrip" + atob(id) ]);
+    //this.router.navigate(['/edittrip', { tripID: id}]);
+    this.router.navigate(['/edittrip'], { queryParams: { tripID: temp, tripName: tripName } });
+  }
+
+
+  deleteTrip(id){
+    console.log('hello')
+    console.log(this.trip.tripName)
+    console.log(id)
+
+    this.tripService.deleteTrip(this.trip)
+      .subscribe(
+        data => {
+          this.alertService.success("successful!");
+          location.reload();
+          //this.router.navigate(["/mytrips"]);
+        },
+        error => {
+          this.alertService.error(error._body);
+          //this.loading = false;
+        })
+
+  }
+
+
+
 }

@@ -18,6 +18,10 @@ import {MessagesComponent} from './Messages/messages.component';
 import {SearchTripComponent} from "./search-trip/search-trip.component";
 import {ChatComponent} from "./chat/chat.component";
 import {ChatParentComponent} from "./chat-parent/chat-parent.component";
+import {TripCardComponent} from './trip-card/trip-card.component';
+import {EditTripComponent} from './edit-trip/edit-trip.component';
+
+
 
 const appRoutes: Routes = [
 
@@ -39,10 +43,14 @@ const appRoutes: Routes = [
     {path: 'mytrips', component: MyTripsComponent, canActivate: [AuthGuard]},
     {path: 'addtrip', component: AddTripComponent, canActivate: [AuthGuard] },
     {path: 'messages', component: MessagesComponent, canActivate: [AuthGuard] },
+    { path: 'deletetrip', component: TripCardComponent, canActivate: [AuthGuard]},
+    { path: 'edittrip', component: EditTripComponent, canActivate: [AuthGuard]},
     // {path: 'addtrip', component: AddTripComponent, canActivate: [AuthGuard] },
   ]},
 
   { path: 'addtrip', component: AddTripComponent, canActivate: [AuthGuard] },
+  { path: 'deletetrip', component: TripCardComponent, canActivate: [AuthGuard]},
+  { path: 'edittrip', component: EditTripComponent, canActivate: [AuthGuard]},
 
 
 
