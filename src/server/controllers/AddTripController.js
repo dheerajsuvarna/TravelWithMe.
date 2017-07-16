@@ -42,7 +42,7 @@ module.exports = {
 
 
   searchtrips: function (req,res) {
-    Trip.find().populate('user')
+    Trip.find()
       .where('user').ne(req.user._doc._id)
       .where('joinUser').ne(req.user._doc.email)
       .where('startDate').gte(this.today)
