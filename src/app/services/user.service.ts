@@ -26,8 +26,8 @@ export class UserService {
     console.log('in services ', email);
     return this.http.post('api/user/getProfile', email, this.jwt()).map((response: Response) => response.json());
   }
-
-  resetPassword(user:User) {
+  
+resetPassword(user:User) {
 
     return this.http.post('/api/user/reset-password', user).map((response: Response) => response.json());
   }

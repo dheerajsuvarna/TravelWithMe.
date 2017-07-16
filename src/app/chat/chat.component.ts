@@ -2,6 +2,7 @@ import {Component, OnInit, AfterViewChecked, ElementRef, ViewChild, Input} from 
 import { ChatService } from '../services/chat.service';
 import * as io from "socket.io-client";
 import {User} from "../models/usermodel";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-chat',
@@ -21,7 +22,9 @@ export class ChatComponent implements OnInit, AfterViewChecked {
   socket = io('http://localhost:3001');
   currentUser:User;
 
-  constructor(private chatService: ChatService) {
+  constructor(private chatService: ChatService,
+              private router: Router,
+  ) {
 
 
 
@@ -35,8 +38,8 @@ export class ChatComponent implements OnInit, AfterViewChecked {
 
     var user = { nickname: this.currentUser.firstname + '  ' + this.currentUser.lastname, room: this.chatId };
     if(user!==null) {
-      this.getChatByRoom(user.room);
-      this.msgData = { room: user.room, nickname: user.nickname, message: '' }
+     this.getChatByRoom(user.room);
+     this.msgData = { room: user.room, nickname: user.nickname, message: '' }
       this.joinned = true;
       this.scrollToBottom();
     }
@@ -61,10 +64,12 @@ export class ChatComponent implements OnInit, AfterViewChecked {
   }
 
   getChatByRoom(room) {
-    this.chatService.getChatByRoom(room).then((res) => {
+    var req = {room:room,user:this.currentUser};
+
+    this.chatService.getChatByRoom(req).then((res) => {
       this.chats = res;
     }, (err) => {
-      console.log(err);
+      this.router.navigate(['/']);
     });
   }
 
@@ -78,7 +83,8 @@ export class ChatComponent implements OnInit, AfterViewChecked {
   }
 
   sendMessage() {
-    this.chatService.saveChat(this.msgData).then((result) => {
+    var req = {message:this.msgData,user:this.currentUser};
+    this.chatService.saveChat(req).then((result) => {
       this.socket.emit('save-message', result);
     }, (err) => {
       console.log(err);

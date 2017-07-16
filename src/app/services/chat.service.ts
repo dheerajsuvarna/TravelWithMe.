@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http, Headers } from '@angular/http';
+import {Http, Headers, RequestOptions} from '@angular/http';
 import 'rxjs/add/operator/map';
 
 @Injectable()
@@ -7,10 +7,10 @@ export class ChatService {
 
   constructor(private http: Http) { }
 
-  getChatByRoom(room) {
+  getChatByRoom(req) {
 
     return new Promise((resolve, reject) => {
-      this.http.get('api/user/chat:' + room)
+      this.http.get('api/user/chat:' + req.room,this.jwt())
         .map(res => res.json())
         .subscribe(res => {
           resolve(res);
@@ -30,6 +30,14 @@ export class ChatService {
           reject(err);
         });
     });
+  }
+  private jwt() {
+    // create authorization header with jwt token
+    let currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    if (currentUser && currentUser.token) {
+      let headers = new Headers({'Authorization': 'Bearer ' + currentUser.token});
+      return new RequestOptions({headers: headers});
+    }
   }
 
 }

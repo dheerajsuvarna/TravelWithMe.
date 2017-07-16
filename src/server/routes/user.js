@@ -29,7 +29,9 @@ router.post('/reset-password-change', user.resetPasswordChange);
 ////////////////
 
 
-router.get('/chat:room',chat.getAll);
+router.get('/chat:room',jwt({
+  secret: configPassport.secret
+}),chat.getAll);
 
 /* SAVE CHAT */
 
@@ -62,6 +64,18 @@ router.get('/trips-im-attending',jwt({
   secret: configPassport.secret
 }), trip.tripsImAttending);
 
+router.post('/updateTrip', jwt({
+    secret: configPassport.secret}),
+  trip.updateTrip);
+
+router.post('/deletetrip',jwt({
+  secret: configPassport.secret
+}), trip.deletetrip);
+
+
+router.post('/gettrip',jwt({
+  secret: configPassport.secret
+}), trip.gettrip);
 
 router.get('/', function (req, res, next) {
   res.send('Express REST API');

@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ChatParentComponent } from './chat-parent.component';
+import { EditTripComponent } from './edit-trip.component';
 
-describe('ChatParentComponent', () => {
-  let component: ChatParentComponent;
-  let fixture: ComponentFixture<ChatParentComponent>;
+describe('EditTripComponent', () => {
+  let component: EditTripComponent;
+  let fixture: ComponentFixture<EditTripComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ChatParentComponent ]
+      declarations: [ EditTripComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ChatParentComponent);
+    fixture = TestBed.createComponent(EditTripComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -1,6 +1,6 @@
 <div >
 
-  <div class="card sticky-action z-depth-2"  >
+  <div class="card sticky-action"  >
 
     <div class="card-image waves-effect waves-block waves-light">
       <img  class="activator" src="{{imageURI}}">
@@ -8,9 +8,9 @@
 
     <div class="card-content" style="height: 60px">
       <span class="card-title activator grey-text text-darken-4">{{trip.tripName}}<i class="material-icons right">more_vert</i></span>
-      <a *ngIf="!isMyTrip && !tripJoined; else  notJoined" (click)="JoinTrip()" href="#"> &nbsp; &nbsp; Join this Trip!</a>
+      <a *ngIf="!isMyTrip && !tripJoined; else  notJoined" (click)="JoinTrip()" href="!"> &nbsp; &nbsp; Join this Trip!</a>
       <ng-template #notJoined>
-        <a *ngIf="!isMyTrip" (click)="LeaveTrip()" href="#">Leave this Trip</a>
+        <a *ngIf="!isMyTrip" (click)="LeaveTrip()" href="!">Leave this Trip</a>
       </ng-template>
     </div>
     <div style="background:lightblue;">
@@ -24,13 +24,40 @@
         <p  ><i class="fa fa-calendar" aria-hidden="true">    {{trip.startDate}} →  {{trip.endDate}} </i></p>
         <i class="fa fa-money" aria-hidden="true">    Budget: {{trip.budget}} <i class="fa fa-eur" aria-hidden="true"></i>
         </i>
+        <br>
+        <button class="btn blue btn-primary" [routerLink] = "['/edittrip']" (click)="editTrip(trip._id, trip.tripName)">Edit</button>  <button class="btn blue btn-primary" (click)="deleteTrip(trip._id)">Delete</button>
+
         <a class="btn-floating btn-large waves-effect waves-light red pull-right paddingCustom" *ngIf="(isMyTrip || tripJoined) && trip.joinUser.length!=0"  (click)="OpenChat()"><i class="material-icons">message</i></a>
 
       </div>
     </div>
     <div class="card-reveal">
       <span class="card-title grey-text text-darken-4">{{trip.tripName}}<i class="material-icons right">close</i></span>
-      <p>{{trip.description}}</p>
+      <p>Description: {{trip.description}}</p>
+      <p>Participants {{(this.trip.joinUser.length)/2}} of {{this.trip.numOfPeople}} for this Trip: <br>
+        <a *ngFor="let user of trip.joinUser" href="#!" (click)="viewProfile(user)">
+          <span *ngIf="!(user.endsWith('.de'))"><br>{{user}}</span></a></p>
+
+      <h6 [hidden]="!showUser">
+        <div class="col20 s20 " *ngIf="viewUser">
+          <a class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons" (click)="Close()">close</i></a>
+          <h5 class="header" >{{viewUser.firstname}} {{viewUser.lastname}}</h5>
+          <div class="card horizontal">
+            <div class="card-image small">
+              <img src={{viewUser.image}}>
+            </div>
+              <div class="card-content">
+                <p>Age: {{viewUser.age}}</p>
+                <p>Gender: {{viewUser.gender}}</p>
+                <p>Country: {{viewUser.nationality}}</p>
+                <p>About: {{viewUser.description}}</p>
+              </div>
+
+            </div>
+          </div>
+
+      </h6>
+
     </div>
   </div>
 
