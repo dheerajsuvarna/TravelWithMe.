@@ -52,7 +52,11 @@ module.exports = {
   },
 
     mytrips: function (req,res) {
+
       Trip.find({'user': req.user._doc._id}).populate('user')
+
+      // Trip.find({'user': req.user._doc._id})
+
         .then(function (trips){
           return res.json(trips);
         })
