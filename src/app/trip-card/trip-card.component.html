@@ -7,10 +7,12 @@
     </div>
 
     <div class="card-content" style="height: 60px">
-      <span class="card-title activator grey-text text-darken-4">{{trip.tripName}}<i class="material-icons right">more_vert</i></span>
-      <a *ngIf="!isMyTrip && !tripJoined; else  notJoined" (click)="JoinTrip()" href="!"> &nbsp; &nbsp; Join this Trip!</a>
+      <span class="card-title activator grey-text text-darken-4">{{trip.tripName}}
+        <i class="material-icons right">more_vert</i></span>
+
+      <button *ngIf="!isMyTrip && !tripJoined; else  notJoined" (click)="JoinTrip()"> &nbsp; &nbsp; Join this Trip!</button>
       <ng-template #notJoined>
-        <a *ngIf="!isMyTrip" (click)="LeaveTrip()" href="!">Leave this Trip</a>
+        <button *ngIf="!isMyTrip" (click)="LeaveTrip()">Leave this Trip</button>
       </ng-template>
     </div>
     <div style="background:lightblue;">
@@ -24,19 +26,22 @@
         <p  ><i class="fa fa-calendar" aria-hidden="true">    {{trip.startDate}} →  {{trip.endDate}} </i></p>
         <i class="fa fa-money" aria-hidden="true">    Budget: {{trip.budget}} <i class="fa fa-eur" aria-hidden="true"></i>
         </i>
+        <a class="btn-floating btn-large waves-effect waves-light red pull-right paddingCustom"
+           *ngIf="(isMyTrip || tripJoined) && trip.joinUser.length!=0"
+           (click)="OpenChat()">
+          <i class="material-icons">message</i></a>
         <br>
         <button *ngIf="isOwner" class="btn blue btn-primary" [routerLink] = "['/edittrip']" (click)="editTrip(trip._id, trip.tripName)">Edit</button>  <button *ngIf="isOwner" class="btn blue btn-primary" (click)="deleteTrip(trip._id)">Delete</button>
 
-        <a class="btn-floating btn-large waves-effect waves-light red pull-right paddingCustom" *ngIf="(isMyTrip || tripJoined) && trip.joinUser.length!=0"  (click)="OpenChat()"><i class="material-icons">message</i></a>
 
       </div>
     </div>
     <div class="card-reveal">
       <span class="card-title grey-text text-darken-4">{{trip.tripName}}<i class="material-icons right">close</i></span>
       <p>Description: {{trip.description}}</p>
-      <p>Participants {{(this.trip.joinUser.length)/2}} of {{this.trip.numOfPeople}} for this Trip: <br>
-        <a *ngFor="let user of trip.joinUser" href="#!" (click)="viewProfile(user)">
-          <span *ngIf="!(user.endsWith('.de'))"><br>{{user}}</span></a></p>
+      <p>Participants {{this.trip.joinUser.length}} of {{this.trip.numOfPeople}} for this Trip: <br>
+        <a *ngFor="let user of trip.joinUser" (click)="viewProfile(user)" style="cursor:pointer;">
+          <span *ngIf="tripJoined"><br>{{user.firstname}} {{user.lastname}}</span></a></p>
 
       <h6 [hidden]="!showUser">
         <div class="col20 s20 " *ngIf="viewUser">

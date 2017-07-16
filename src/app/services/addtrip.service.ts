@@ -32,9 +32,13 @@ export class AddTripService {
   }
 
   // User joins a trip
-  ManagejoinTrip(trip: Trip) {
-    console.log('I am in addtrip service');
+  ManagejoinTrip(trip: any) {
+    console.log('I am in join trip service');
     return this.http.post('/api/user/jointrip', trip, this.jwt()).map((response: Response) => response.json());
+  }
+  leaveTrip(trip: any) {
+    console.log('I am in leave service');
+    return this.http.post('/api/user/leavetrip', trip, this.jwt()).map((response: Response) => response.json());
   }
 
   deleteTrip(trip:Trip) {

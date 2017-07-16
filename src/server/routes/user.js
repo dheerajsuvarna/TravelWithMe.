@@ -89,4 +89,8 @@ router.post('/jointrip', jwt({
   secret: configPassport.secret
 }), trip.joinTrip);
 
+router.post('/leavetrip', jwt({
+  secret: configPassport.secret
+}), trip.leaveTrip);
+
 module.exports = router;
