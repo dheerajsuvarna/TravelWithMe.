@@ -8,9 +8,9 @@
 
     <div class="card-content" style="height: 60px">
       <span class="card-title activator grey-text text-darken-4">{{trip.tripName}}<i class="material-icons right">more_vert</i></span>
-      <a *ngIf="!isMyTrip && !tripJoined; else  notJoined" (click)="JoinTrip()" href="#"> &nbsp; &nbsp; Join this Trip!</a>
+      <a *ngIf="!isMyTrip && !tripJoined; else  notJoined" (click)="JoinTrip()" href="!"> &nbsp; &nbsp; Join this Trip!</a>
       <ng-template #notJoined>
-        <a *ngIf="!isMyTrip" (click)="LeaveTrip()" href="#">Leave this Trip</a>
+        <a *ngIf="!isMyTrip" (click)="LeaveTrip()" href="!">Leave this Trip</a>
       </ng-template>
     </div>
     <div style="background:lightblue;">
@@ -29,11 +29,29 @@
     <div class="card-reveal">
       <span class="card-title grey-text text-darken-4">{{trip.tripName}}<i class="material-icons right">close</i></span>
       <p>Description: {{trip.description}}</p>
-      <p>Participants {{this.trip.joinUser.length}} of {{this.trip.numOfPeople}} for this Trip: <br>
-        <a *ngFor="let user of trip.joinUser" href="#" (click)="viewProfile(user)">{{user}}<br></a></p>
-      <h3 [hidden]="!showUser">
-        Your favorite hero is: {{viewUser}}
-      </h3>
+      <p>Participants {{(this.trip.joinUser.length)/2}} of {{this.trip.numOfPeople}} for this Trip: <br>
+        <a *ngFor="let user of trip.joinUser" href="#!" (click)="viewProfile(user)">
+          <span *ngIf="!(user.endsWith('.de'))"><br>{{user}}</span></a></p>
+
+      <h6 [hidden]="!showUser">
+        <div class="col20 s20 " *ngIf="viewUser">
+          <a class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons" (click)="Close()">close</i></a>
+          <h5 class="header" >{{viewUser.firstname}} {{viewUser.lastname}}</h5>
+          <div class="card horizontal">
+            <div class="card-image small">
+              <img src={{viewUser.image}}>
+            </div>
+              <div class="card-content">
+                <p>Age: {{viewUser.age}}</p>
+                <p>Gender: {{viewUser.gender}}</p>
+                <p>Country: {{viewUser.nationality}}</p>
+                <p>About: {{viewUser.description}}</p>
+              </div>
+
+            </div>
+          </div>
+
+      </h6>
 
     </div>
   </div>
