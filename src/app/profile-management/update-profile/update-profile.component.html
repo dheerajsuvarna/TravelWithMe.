@@ -46,7 +46,7 @@
                  [(ngModel)]="currentUser.firstname"
                  #title="ngModel"
                  name = "first_name"
-                 pattern="[a-zA-Z ]*" ngModel required >
+                 pattern="[a-zA-Z ]*" style="-webkit-text-fill-color: white" ngModel required >
           <span *ngIf="currentUser.firstname === ''" class="help-block">First Name is required</span>
         </div>
         <div class="input-field col s4">
@@ -56,8 +56,8 @@
                  [(ngModel)]="currentUser.lastname"
                  name="last_name"
                  #title="ngModel"
-                 pattern="[a-zA-Z ]*" ngModel required >
-          <span *ngIf="currentUser.lastname === ''" class="help-block">Last Name is required</span>
+                 pattern="[a-zA-Z ]*" ngModel style="-webkit-text-fill-color: white" required >
+          <span *ngIf="currentUser.lastname === ''" class="help-block" >Last Name is required</span>
         </div>
       </div>
       <div class="row">
@@ -67,7 +67,7 @@
           <input id="email"
                  disabled [(ngModel)]="currentUser.email"
                  type="text"
-                 name="email">
+                 name="email" style="-webkit-text-fill-color: white">
         </div>
       </div>
 
@@ -92,7 +92,7 @@
           <input id="Age"
                  disabled [(ngModel)]="currentUser.age"
                  type="text"
-                 name="Age">
+                 name="Age" style="-webkit-text-fill-color: white">
         </div>
       </div>
       <br>
@@ -149,7 +149,7 @@
           <label>About Me</label>
           <div class="input-field col s12">
             <textarea id="textarea1" class="materialize-textarea" [(ngModel)]="currentUser.description" name="description"
-                      #text="ngModel" required></textarea>
+                      #text="ngModel" style="-webkit-text-fill-color: white" required></textarea>
             <label for="textarea1"*ngIf="currentUser.description === ''">Tell us a little about you.</label>
           </div>
         </div>
