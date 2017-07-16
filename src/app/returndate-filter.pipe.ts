@@ -5,8 +5,13 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class ReturndateFilterPipe implements PipeTransform {
 
-  transform(value: any, args?: any): any {
-    return null;
+  transform(value: any, date: any,isFlexible: any): any {
+    if (date === undefined || date === null) {
+      return value;
+    }
+    if (isFlexible){
+    }
+    return value.filter((item) => item.endDate.includes(date));
   }
 
 }

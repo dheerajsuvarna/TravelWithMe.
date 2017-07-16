@@ -7,9 +7,11 @@ import {visitValue} from "@angular/compiler/src/util";
   name: 'budgetFilter'
 })
 export class BudgetFilterPipe implements PipeTransform {
-  transform(value: any, budget: any): any {
+  transform(value: any, budget: any, isFlexible: any): any {
     if (budget === undefined || budget === null) {
       return value;
+    }
+    if (isFlexible){
     }
    return value.filter((item) => {
       if (item.budget < budget) {

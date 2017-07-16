@@ -41,13 +41,12 @@ module.exports = {
  },
   searchtrips: function (req,res) {
    var date = new Date();
-   var d = date.getDate();
-   var y = date.getFullYear();
-   today = y + '-7-' +d;
-   console.log(today);
+   today = date.getFullYear() + '-07-' +date.getDate();
+   console.log(date.getMonth());
     Trip.find()
       .where('user').ne(req.user._doc._id)
       .where('joinUser').ne(req.user._doc.email)
+      .where('startDate').gte(this.today)
       .populate('user')
       .then(function (trips) {
         return res.json(trips);

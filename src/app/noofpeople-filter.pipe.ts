@@ -5,9 +5,11 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class NoofpeopleFilterPipe implements PipeTransform {
 
-  transform(value: any, noofpeople: any): any {
+  transform(value: any, noofpeople: any, isFlexible: any): any {
     if (noofpeople === undefined || noofpeople === null) {
       return value;
+    }
+    if (isFlexible){
     }
     return value.filter((item) => {
         if (item.noofpeople < noofpeople) {
