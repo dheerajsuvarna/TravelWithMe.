@@ -24,7 +24,7 @@
 
 <div>
   <form method="post" enctype="multipart/form-data" #f="ngForm" novalidate>
-    <div id="uploadPhoto" class="col s8 z-depth-4 card-panel" style="width:35%;height:275px;  ">
+    <div id="uploadPhoto" class="col s8 z-depth-2 card-panel" style="width:35%;height:275px;background-color: dimgrey;margin-left: 5%;  ">
       <div class="text-center">
         <img src="{{getImage(currentUser.image)}}" [width]="200" [height]="200" />
       </div>
@@ -36,7 +36,7 @@
   </form>
 </div>
 
-  <div id="basicInfo" class="col s12 z-depth-3 card-panel" style="width:45%;height:575px;margin-left:15%">
+  <div id="basicInfo" class="col s12 z-depth-3 card-panel pull-right" style="width:45%;height:575px;background-color: dimgrey">
     <form class="col s12" name="form" #f="ngForm" novalidate >
       <div class="row">
         <div class="input-field col s4">
@@ -96,7 +96,7 @@
         </div>
       </div>
       <br>
-      <div class="form-group">
+      <div class="form-group" style="background-color: dimgrey">
         <label for="country">Nationality</label>
         <select id="country" class="browser-default" [(ngModel)]="currentUser.nationality" name="country">
           <option value="" disabled selected>Select Country</option>
@@ -141,8 +141,8 @@
     </form>
 
   </div>
-  <div class="col s12 z-depth-3 card-panel" id="aboutBox" style="width:35%;height:275px;margin-right: 62%;
-  margin-bottom:0%;margin-top:-20%">
+  <div class="col s12 z-depth-3 card-panel" id="aboutBox" style="width:35%;height:275px;margin-right: 60%;
+  margin-bottom:2%;margin-top:-21%;background-color: dimgrey">
     <div class="row">
       <form class="col s12">
         <div class="row">
