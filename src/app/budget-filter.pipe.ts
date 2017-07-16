@@ -12,7 +12,17 @@ export class BudgetFilterPipe implements PipeTransform {
       return value;
     }
     if (isFlexible){
+      return value.filter((item) => {
+          if (item.budget < (1.3 * budget)) {
+            return item;
+          }
+        }
+      );
     }
+    console.log("in budget filter");
+    console.log("budget - "+ budget);
+    console.log(isFlexible);
+    console.log(value);
    return value.filter((item) => {
       if (item.budget < budget) {
         return item;

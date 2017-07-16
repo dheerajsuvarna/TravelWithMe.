@@ -55,7 +55,7 @@ export class SearchTripComponent implements OnInit {
     this.searchInterests = this.userForm.get('interests').value;
     this.isFlexible = this.userForm.get('switchValue').value;
     console.log("the value should appear here");
-    console.log(this.searchInterests);
+    console.log(this.userForm.get('switchValue').value);
     this.formatAndValidateInput();
   }
   formatAndValidateInput(): void {
@@ -63,6 +63,11 @@ export class SearchTripComponent implements OnInit {
     this.searchDestination = this.searchDestination.toLowerCase();
     this.searchInterests = this.searchInterests.toLowerCase();
     this.searchTravelDate = this.searchTravelDate.replace(".","-");
+    if(this.isFlexible.isNull()){
+      this.isFlexible = false;
+      console.log("check this out");
+      console.log(this.isFlexible);
+    }
     if (this.searchBudget.isNumber()) {
     }else {
       alert("Please Enter a valid Number for Budget");
@@ -75,7 +80,6 @@ export class SearchTripComponent implements OnInit {
     });
   }
   ngOnInit() {
-    this.isFlexible = false;
     console.log("search Trip Init");
     this.today = new Date().toJSON().slice(0,10).replace(/-/g,'.');
     console.log(this.today);

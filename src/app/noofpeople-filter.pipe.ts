@@ -10,6 +10,12 @@ export class NoofpeopleFilterPipe implements PipeTransform {
       return value;
     }
     if (isFlexible){
+      return value.filter((item) => {
+          if (item.noofpeople < (noofpeople * 1.5)) {
+            return item;
+          }
+        }
+      );
     }
     return value.filter((item) => {
         if (item.noofpeople < noofpeople) {
