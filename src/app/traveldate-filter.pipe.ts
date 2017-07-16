@@ -5,15 +5,16 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class TraveldateFilterPipe implements PipeTransform {
 
-  transform(value: any, date: any): any {
+  transform(value: any, date: Date, isFlexible: any): any {
     if (date === undefined || date === null) {
-      console.log("in travel date function")
       return value;
     }
-    console.log("In Travel Date function part 2");
-    console.log(value);
-    console.log(date);
-    return value.filter((item) => item.date.includes(date));
+    if(isFlexible ){
+      console.log("Flexible Date");
+      console.log(date);
+      return value.filter((item) => item.startDate.includes(date));
+    }
+    return value.filter((item) => item.startDate.includes(date));
   }
 
 }

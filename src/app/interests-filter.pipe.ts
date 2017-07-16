@@ -9,7 +9,10 @@ export class InterestsFilterPipe implements PipeTransform {
     if (interests === undefined || interests === null) {
       return value;
     }
-    return value.filter((item) => item.interests.toLowerCase().includes(interests));
+    console.log("inside interests filter");
+    console.log(interests);
+    console.log(value);
+    return value.filter((item) => item.interests.includes(interests));
   }
 
 }

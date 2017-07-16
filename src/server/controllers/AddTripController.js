@@ -45,6 +45,8 @@ module.exports = {
     Trip.find().populate('user')
       .where('user').ne(req.user._doc._id)
       .where('joinUser').ne(req.user._doc.email)
+      .where('startDate').gte(this.today)
+      .populate('user')
       .then(function (trips) {
         return res.json(trips);
       })
