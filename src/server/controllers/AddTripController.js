@@ -42,6 +42,8 @@ module.exports = {
 
 
   searchtrips: function (req,res) {
+   date = new Date();
+   today= date.getFullYear() + "-07-" + date.getDate();
     Trip.find()
       .where('user').ne(req.user._doc._id)
       .where('joinUser').ne(req.user._doc.email)
