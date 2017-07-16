@@ -89,7 +89,7 @@ export class EditTripComponent implements OnInit {
     this.currentTrip[0].budget = e
   }
   onPeopleChange (e) {
-    this.currentTrip[0].budget = e
+    this.currentTrip[0].numOfPeople = e
   }
   onInterestChange (e) {
     this.currentTrip[0].interests = e

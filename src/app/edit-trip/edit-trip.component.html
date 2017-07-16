@@ -72,32 +72,27 @@
       <br>
       <div class="row">
         <label>How Many People?</label>
-        <div class="input-field col s12" [ngClass]="{ 'has-error': f.submitted && !numOfPeople.valid }">
-          <select class="browser-default" value="{{currentTrip[0].numOfPeople}}" id="numOfPeople" class="form-control" name="numOfPeople" (ngModelChange)="onPeopleChange($event)" [(ngModel)]="model.numOfPeople" #numOfPeople="ngModel" required>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-          </select>
-        </div>
+        <select class="browser-default" value="{{currentTrip[0].numOfPeople}}" id="#numOfPeople"  name="numOfPeople" (ngModelChange)="onPeopleChange($event)" [(ngModel)]="model.numOfPeople" #numOfPeople="ngModel" required>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+        </select>
       </div>
-
       <div class="row">
         <label>Interests:</label>
-        <div class="input-field col s12" [ngClass]="{ 'has-error': f.submitted && !interests.valid }">
-          <select class="browser-default" name="interests" value="{{currentTrip[0].interests}}" class="form-control" id="#interests" (ngModelChange)="onInterestChange($event)" [(ngModel)]="model.interests" #interests="ngModel" required>
-            <option value="Books">Books</option>
-            <option value="Arts">Arts</option>
-            <option value="Camping">Camping</option>
-            <option value="Dancing">Dancing</option>
-            <option value="Fishing">Fishing</option>
-            <option value="Movies">Movies</option>
-            <option value="Music">Music</option>
-            <option value="Mountains">Mountains</option>
-            <option value="Party">Party</option>
-            <option value="Swimming">Swimming</option>
-          </select>
-        </div>
+        <select class="browser-default" name="interests" id="#interests" value="{{currentTrip[0].interests}}" (ngModelChange)="onInterestChange($event)" [(ngModel)]="model.interests" #interests="ngModel" required>
+          <option value="Books">Books</option>
+          <option value="Arts">Arts</option>
+          <option value="Camping">Camping</option>
+          <option value="Dancing">Dancing</option>
+          <option value="Fishing">Fishing</option>
+          <option value="Movies">Movies</option>
+          <option value="Music">Music</option>
+          <option value="Mountains">Mountains</option>
+          <option value="Party">Party</option>
+          <option value="Swimming">Swimming</option>
+        </select>
       </div>
 
       <div class="row">
