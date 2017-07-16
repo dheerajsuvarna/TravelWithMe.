@@ -16,11 +16,11 @@
   }
 </style>
 
-<div style="background: rgba(76, 175, 80, 0.0)">
+<div style="background: rgba(76, 175, 80, 0.0)" style="margin-left: 25%;">
   <!-- left column -->
 
 
-  <div id="basicInfo" class="col s12 z-depth-4 card-panel" style="width:45%;">
+  <div id="basicInfo" class="col s12 z-depth-4 card-panel" style="width:60%;margin: auto;background-color: dimgrey;">
     <form class="col s12" name="form" (ngSubmit)="f.form.valid && addTrip()" #f="ngForm" novalidate>
       <div class="row">
         <div class="input-field col s12" [ngClass]="{ 'has-error': f.submitted && !tripName.valid }">

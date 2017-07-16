@@ -1,15 +1,14 @@
-
 <div>
   <div class="navbar navbar-default">
     <ul id="dropdown1" class="dropdown-content col s20">
       <li class="col s12" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"  *ngIf="loggedIn">
         <a [routerLink] = "['/profileManagement', 'getProfile']">Profile</a></li>
-      <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"  *ngIf="loggedIn">
-        <a [routerLink] = "['/mytrips']">My Trips</a></li>
-      <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"  *ngIf="loggedIn">
-        <a [routerLink] = "['/addtrip']">Add Trip</a></li>
-      <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"  *ngIf="loggedIn">
-        <a [routerLink] = "['/messages']">Messages</a></li>
+      <!--<li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"  *ngIf="loggedIn">-->
+      <!--<a [routerLink] = "['/mytrips']">My Trips</a></li>-->
+      <!--<li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"  *ngIf="loggedIn">-->
+      <!--<a [routerLink] = "['/addtrip']">Add Trip</a></li>-->
+      <!--<li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"  *ngIf="loggedIn">-->
+      <!--<a [routerLink] = "['/messages']">Messages</a></li>-->
       <li class="divider"></li>
       <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}" (click)="logout()"  *ngIf="loggedIn">
         <a [routerLink] = "['/logout']">LogOut</a></li>
@@ -21,38 +20,50 @@
           <a [routerLink] ="['/landingPage']" class="brand-logo" style="margin-left: 10%"><strong>Travel With Me</strong></a>
           <ul class="pull-right" style="margin-right: 2%">
 
-            <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"  *ngIf="!loggedIn" ><a [routerLink] = "['/register']">Signup</a></li>
-            <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"><a [routerLink] = "['/login']"  *ngIf="!loggedIn"  >Login</a></li>
-            <li class="pull-right" *ngIf="loggedIn"><a class="dropdown-button col s14" href="#!" data-activates="dropdown1">
-              <i class="material-icons  material-icons right  "> account_circle  arrow_drop_down </i>
+            <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"
+                *ngIf="!loggedIn" ><a [routerLink] = "['/register']">Signup</a></li>
+
+            <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
+              <a [routerLink] = "['/login']" *ngIf="!loggedIn"  >Login</a></li>
+            <li><a href="#intro">Home</a></li>
+
+            <li class="pull-right" *ngIf="loggedIn"><a class="dropdown-button " href="#!" data-activates="dropdown1">
+              <i class="material-icons  material-icons right-align img-thumbnail"> account_circle  arrow_drop_down </i>
             </a></li>
-            <li class="pull-right" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"  *ngIf="loggedIn"><a [routerLink] = "['/searchtrips']">Search</a></li>
-            <li class="pull-right" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"  *ngIf="loggedIn"><a [routerLink] = "['/chat']">Chat</a></li>
-            <li class="pull-right"><a href="#intro">Home</a></li>
+            <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"  *ngIf="loggedIn">
+              <a [routerLink] = "['/addtrip']">Add Trip</a></li>
+            <li class="pull-right" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"
+                *ngIf="loggedIn"><a [routerLink] = "['/searchtrips']">Search</a></li>
 
-            <li class="pull-right"[routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}" (click)="logout()" ><a [routerLink] = "['/logout']"    *ngIf="loggedIn" >logout</a></li>
-
-
-        </ul>
-
-
-        <ul id="nav-mobile" class="side-nav">
-          <li><a href="#intro" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}" *ngIf="!loggedIn">Home</a></li>
-          <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"  *ngIf="loggedIn" >
-            <a [routerLink] = "['/profileManagement']">Profile</a></li>
-          <!--<li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"  *ngIf="loggedIn" ><a [routerLink] = "['/viewProfile']">Profile</a></li>-->
-          <!--<li><a href="#contact">Contact</a></li>-->
-          <li><a href="#mytrips" *ngIf="loggedIn">My Trips</a></li>
-          <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"  *ngIf="!loggedIn" >
-            <a [routerLink] = "['/register']">Signup</a></li>
-          <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
-            <a [routerLink] = "['/login']"  *ngIf="!loggedIn"  >Login</a></li>
-          <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}" (click)="logout()">
-            <a [routerLink] = "['/logout']"    *ngIf="loggedIn">Logout</a></li>
-        </ul>
-        <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
+            <!--<li class="pull-right" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"-->
+            <!--*ngIf="loggedIn"><a [routerLink] = "['/chat']">Chat</a></li>-->
 
 
+
+            <!--<li class="pull-right"[routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"-->
+            <!--(click)="logout()" ><a [routerLink] = "['/logout']"  *ngIf="loggedIn" >logout</a></li>-->
+
+
+          </ul>
+
+          <div>
+            <ul id="nav-mobile" class="side-nav">
+              <li><a href="#intro" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}" *ngIf="!loggedIn">Home</a></li>
+              <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"  *ngIf="loggedIn" >
+                <a [routerLink] = "['/profileManagement']">Profile</a></li>
+              <!--<li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"  *ngIf="loggedIn" ><a [routerLink] = "['/viewProfile']">Profile</a></li>-->
+              <!--<li><a href="#contact">Contact</a></li>-->
+              <li><a href="#mytrips" *ngIf="loggedIn">My Trips</a></li>
+              <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"  *ngIf="!loggedIn" >
+                <a [routerLink] = "['/register']">Signup</a></li>
+              <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
+                <a [routerLink] = "['/login']"  *ngIf="!loggedIn"  >Login</a></li>
+              <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}" (click)="logout()">
+                <a [routerLink] = "['/logout']"    *ngIf="loggedIn">Logout</a></li>
+            </ul>
+            <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
+
+          </div>
 
 
 
