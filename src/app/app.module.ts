@@ -41,6 +41,9 @@ import { FilterPipe } from './filter.pipe';
 import {SearchPipe} from './search-pipe';
 import { NoofpeopleFilterPipe } from './noofpeople-filter.pipe';
 import { InterestsFilterPipe } from './interests-filter.pipe';
+import {ChatService} from "./services/chat.service";
+import { ChatComponent } from './chat/chat.component';
+import { ChatParentComponent } from './chat-parent/chat-parent.component';
 @NgModule({
   imports: [
     BrowserModule,
@@ -82,13 +85,16 @@ import { InterestsFilterPipe } from './interests-filter.pipe';
     SourceFilterPipe,
     NoofpeopleFilterPipe,
     InterestsFilterPipe,
+    ChatComponent,
+    ChatParentComponent,
   ],
    providers: [
     AuthGuard,
     AlertService,
     AuthenticationService,
     UserService,
-    AddTripService
+    AddTripService,
+     ChatService
   ],
   exports: [FilterPipe],
   bootstrap: [AppComponent]

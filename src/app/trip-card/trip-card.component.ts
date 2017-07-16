@@ -4,11 +4,13 @@ import {User} from '../models/usermodel';
 import {AddTripService} from '../services/addtrip.service';
 import {UserService} from '../services/user.service';
 
-import {isNullOrUndefined, isUndefined} from "util";
+import {isNullOrUndefined} from 'util';
 
 
 import { AlertService,  } from '../services/index';
-import { Router, ActivatedRoute } from '@angular/router';
+
+
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-trip-card',
@@ -16,6 +18,7 @@ import { Router, ActivatedRoute } from '@angular/router';
   styleUrls: ['./trip-card.component.css']
 })
 export class TripCardComponent implements OnInit {
+
 
  @Input() trip: Trip;
   imageURI: string;
@@ -26,9 +29,9 @@ export class TripCardComponent implements OnInit {
   showUser = false;
   constructor(private  tripService: AddTripService  ,
               private alertService: AlertService,
-              private route: ActivatedRoute,
               private router: Router,
               private userService: UserService) {
+
     this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
     const temp  = localStorage.getItem('currentUser');
     const json = JSON.parse(temp);
@@ -42,7 +45,10 @@ export class TripCardComponent implements OnInit {
     var stringUser  = localStorage.getItem('currentUser');
     var json = JSON.parse(stringUser);
     var currentUser = json.user;
-    this.isMyTrip = currentUser._id === this.trip.user;
+    var a: any;
+    a = this.trip.user;
+
+    this.isMyTrip = currentUser._id === a._id;
     if (this.trip.joinUser.indexOf(this.currentUser.email) > -1 ) {
       this.tripJoined = true;
     }
@@ -105,6 +111,14 @@ export class TripCardComponent implements OnInit {
     }
   }
 
+
+  OpenChat() {
+
+    var o: any;
+    o = this.trip;
+    var link = '/chat/' + o._id + '/' + this.trip.tripName;
+    this.router.navigate([link]);
+  }
   getAge(dateString) {
     // console.log("in getAge");
     const today = new Date();
@@ -118,6 +132,7 @@ export class TripCardComponent implements OnInit {
   }
   viewProfile(user: string) {
     console.log('I am in view Profile of user ', user);
+
     var pos = this.trip.joinUser.indexOf(user);
     if (pos !== -1) {
       pos = pos - 1;

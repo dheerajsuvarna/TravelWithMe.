@@ -24,15 +24,14 @@ export class AddTripService {
 
   myTrips(user:User)
   {
-    // var data = {
-    //   user_id:user.email
-    // };
-    //
-    // var config = {
-    //   params: data,
-    // };
     return this.http.get('/api/user/mytrips',this.jwt()).map((response: Response) => response.json());
   }
+
+  tripsImAttending(user:User)
+  {
+    return this.http.get('/api/user/trips-im-attending',this.jwt()).map((response: Response) => response.json());
+  }
+
   // User joins a trip
   ManagejoinTrip(trip: Trip) {
     console.log('I am in addtrip service');
