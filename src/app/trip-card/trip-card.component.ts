@@ -19,6 +19,7 @@ import { Router } from '@angular/router';
 })
 export class TripCardComponent implements OnInit {
 
+  public isOwner: boolean;
 
  @Input() trip: Trip;
   imageURI: string;
@@ -31,12 +32,10 @@ export class TripCardComponent implements OnInit {
               private alertService: AlertService,
               private router: Router,
               private userService: UserService) {
-
     this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
     const temp  = localStorage.getItem('currentUser');
     const json = JSON.parse(temp);
     this.currentUser = json.user;
-
   }
   ngOnInit() {
     if(!isNullOrUndefined(this.trip)&&!isNullOrUndefined(this.trip.interests ))
@@ -47,7 +46,9 @@ export class TripCardComponent implements OnInit {
     var currentUser = json.user;
     var a: any;
     a = this.trip.user;
-
+      if(this.trip.user.email.match(this.currentUser.email)){
+        this.isOwner = true;
+      }
     this.isMyTrip = currentUser._id === a._id;
     if (this.trip.joinUser.indexOf(this.currentUser.email) > -1 ) {
       this.tripJoined = true;
