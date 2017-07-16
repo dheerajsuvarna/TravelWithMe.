@@ -36,6 +36,10 @@ router.post('/getProfile', jwt({
   secret: configPassport.secret
 }), user.getProfile);
 
+router.post('/updateTrip', jwt({
+    secret: configPassport.secret}),
+  trip.updateTrip);
+
 router.post('/addtrip', jwt({
   secret: configPassport.secret
 }), trip.addtrip);
@@ -47,6 +51,10 @@ router.get('/mytrip',jwt({
 router.get('/mytrips',jwt({
   secret: configPassport.secret
 }), trip.mytrips);
+
+router.post('/gettrip',jwt({
+  secret: configPassport.secret
+}), trip.gettrip);
 
 router.post('/deletetrip',jwt({
   secret: configPassport.secret

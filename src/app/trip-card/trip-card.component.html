@@ -16,14 +16,13 @@
         <p >
           Posted by: <a *ngIf="!isMyTrip"   href="#">{{trip.user.firstname}} {{trip.user.lastname}}️   </a>
           <a *ngIf="isMyTrip"   href="#">You️   </a>
-          <a *ngIf="isMyTrip"   href="#">Delete   </a>
         </p>
         <p ><i class="fa fa-map-marker"></i>  {{trip.source}} → {{trip.destination}} </p>
         <p  ><i class="fa fa-calendar" aria-hidden="true">    {{trip.startDate}} →  {{trip.endDate}} </i></p>
         <i class="fa fa-money" aria-hidden="true">    Budget: {{trip.budget}} <i class="fa fa-eur" aria-hidden="true"></i>
         </i>
         <br>
-        <button class="btn blue btn-primary" >Edit</button>  <button class="btn blue btn-primary" (click)="deleteTrip(trip._id)">Delete</button>
+        <button class="btn blue btn-primary" [routerLink] = "['/edittrip']" (click)="editTrip(trip._id, trip.tripName)">Edit</button>  <button class="btn blue btn-primary" (click)="deleteTrip(trip._id)">Delete</button>
       </div>
     </div>
     <div class="card-reveal">

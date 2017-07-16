@@ -28,6 +28,7 @@ import { AddTripComponent } from './add-trip/add-trip.component';
 import { PasswordResetComponent } from './password-reset/password-reset.component';
 import { ResetPasswordChangeComponent } from './reset-password-change/reset-password-change.component';
 import {MessagesComponent} from './Messages/messages.component';
+import { EditTripComponent } from './edit-trip/edit-trip.component';
 
 @NgModule({
   imports: [
@@ -55,7 +56,8 @@ import {MessagesComponent} from './Messages/messages.component';
     AddTripComponent,
     PasswordResetComponent,
     ResetPasswordChangeComponent,
-    MessagesComponent
+    MessagesComponent,
+    EditTripComponent
 
   ],
   providers: [

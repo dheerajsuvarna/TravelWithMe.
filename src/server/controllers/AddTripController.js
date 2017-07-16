@@ -61,6 +61,83 @@ module.exports = {
         });
   },
 
+  updateTrip: function (req, res) {
+    console.log("helloo from the other side  -- UpdateTrip");
+    if (!req.body) {
+      return res.status(400).send('Incorrect request');
+    }
+    Trip.find({'_id': req.body._id})
+      .then( function(foundTrip) {
+        if (req.body.tripName)
+          foundTrip.tripName = req.body.tripName;
+        console.log(foundTrip.tripName)
+        if (req.body.source)
+          foundTrip.source = req.body.source;
+        if (req.body.destination)
+          foundTrip.destination = req.body.destination;
+        if (req.body.description)
+          foundTrip.description = req.body.description;
+        if (req.body.budget)
+          foundTrip.budget = req.body.budget;
+        if (req.body.user)
+          foundTrip.user = req.body.user;
+        if (req.body.startDate)
+          foundTrip.startDate = req.body.startDate;
+        if (req.body.endDate)
+          foundTrip.endDate = req.body.endDate;
+        if (req.body.numOfPeople)
+          foundTrip.numOfPeople = req.body.numOfPeople;
+        if (req.body.interests)
+          foundTrip.interests = req.body.interests;
+
+        Trip.update( { _id: req.body._id },
+          {
+            $set: {
+              tripName: foundTrip.tripName,
+              source: foundTrip.source,
+              destination: foundTrip.destination,
+              description: foundTrip.description,
+              budget: foundTrip.budget,
+              startDate: foundTrip.startDate,
+              endDate: foundTrip.endDate,
+              numOfPeople: foundTrip.numOfPeople,
+              interests: foundTrip.interests,
+              
+              //this are set of names ex; ['name1', 'name2']
+            },
+          },
+          function(err, results) {
+            if(err) res.status(500).send(err);
+            console.log(results);
+
+
+          }
+        );
+        console.log(foundTrip.tripName)
+      })
+      .then(function (updatedTrip) {
+        console.log(updatedTrip);
+        console.log("successfully updated");
+        return res.json("Successfully updated !!");
+      })
+      .catch(function(err) {
+        return res.status(401).send(err);
+      })
+
+  },
+
+
+  gettrip: function (req,res) {
+    Trip.find({'_id': req.body.firstname})
+      .then(function (trip){
+        return res.json(trip);
+      })
+      .catch(function (err) {
+        res.status(401).send(err);
+
+      });
+  },
+
   deletetrip: function (req,res) {
     console.log('we are in the controller')
     Trip.findByIdAndRemove(req.body._id, function(err) {

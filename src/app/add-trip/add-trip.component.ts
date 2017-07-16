@@ -36,7 +36,7 @@ export class AddTripComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.trip.interests= [Interest.Beach];
+    /*this.trip.interests= [Interest.Beach];
     this.trip.tripName = "Beach Party";
     this.trip.budget = 50;
     this.trip.description = "Some description about the trip";
@@ -45,8 +45,8 @@ export class AddTripComponent implements OnInit {
     this.trip.startDate= "22.07.2017";
     this.trip.endDate= "30.07.2017";
     this.trip.user = this.currentUser;
-    this.trip.numOfPeople = 5;
-    console.log("inisde init")
+    this.trip.numOfPeople = 5;*/
+    console.log("inside init")
     console.log(this.trip)
   }
 
@@ -66,7 +66,7 @@ export class AddTripComponent implements OnInit {
           this.router.navigate(["/mytrips"]);
         },
         error => {
-          this.alertService.error(error);
+          this.alertService.error(error._body);
           this.loading = false;
         })
   }

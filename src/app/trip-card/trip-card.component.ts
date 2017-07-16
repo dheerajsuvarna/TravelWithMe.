@@ -54,4 +54,17 @@ export class TripCardComponent implements OnInit {
 
   }
 
+  editTrip(id, tripName){
+    console.log('hello')
+   // console.log(this.trip.tripName)
+    //console.log(id)
+    var temp = id.toString();
+    //console.log(temp)
+   // this.router.navigate(["/edittrip" + atob(id) ]);
+    //this.router.navigate(['/edittrip', { tripID: id}]);
+    this.router.navigate(['/edittrip'], { queryParams: { tripID: temp, tripName: tripName } });
+  }
+
+
+
 }
