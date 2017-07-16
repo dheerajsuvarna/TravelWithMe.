@@ -141,7 +141,7 @@ export class TripCardComponent implements OnInit {
     return age;
   }
   viewProfile(user: any) {
-    console.log('I am in view Profile of user ', user);
+    console.log('I am in view Profile of user ', user._id);
       const sendData = {
         email: user.email
       };
