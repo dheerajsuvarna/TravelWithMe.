@@ -17,6 +17,10 @@ import {ResetPasswordChangeComponent} from './reset-password-change/reset-passwo
 import {MessagesComponent} from './Messages/messages.component';
 import {TripCardComponent} from './trip-card/trip-card.component';
 import {EditTripComponent} from './edit-trip/edit-trip.component'
+import {SearchTripComponent} from "./search-trip/search-trip.component";
+import {ChatComponent} from "./chat/chat.component";
+import {ChatParentComponent} from "./chat-parent/chat-parent.component";
+>>>>>>> origin/master
 
 const appRoutes: Routes = [
 
@@ -30,6 +34,8 @@ const appRoutes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'landingPage', component: LandingPageComponent },
   { path: 'mytrips', component: MyTripsComponent, canActivate: [AuthGuard] },
+  { path: 'searchtrips', component: SearchTripComponent, canActivate: [AuthGuard] },
+  { path: 'chat/:room/:name', component: ChatParentComponent, canActivate: [AuthGuard] },
 
   { path: 'profileManagement', component: ProfileManagementComponent, canActivate: [AuthGuard] , children: [
      { path: 'getProfile', component: UpdateProfileComponent, canActivate: [AuthGuard] },

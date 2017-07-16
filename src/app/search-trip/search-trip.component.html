@@ -1,0 +1,67 @@
+<!--<p>
+  search-trip works!
+</p>-->
+
+<div id="mainDiv">
+  <div id="SearchBar" class="form-group container">
+    <div class="card-panel z-depth-2 row">
+      <form class="form-group col-lg-8 col-md-4 col-sm-2" [formGroup]="userForm" (ngSubmit)="onFormSubmit()">
+        <div id="inputFields1" class="row">
+          <table>
+            <tr>
+              <td>
+                <label for="source">Source</label>
+                <input id="source" class="form-control" type="text" formControlName="source"  placeholder="Source">
+              </td>
+              <td>
+                <label for="destination">Destination</label>
+                <input  id="destination" class="form-control" type="text"formControlName="destination"  placeholder="Destination">
+              </td>
+              <td>
+                <label for="traveldate">Travel Date</label>
+                <input id="traveldate" class="form-control" type="text" formControlName="travelDate"  placeholder="dd.mm.yyyy">
+              </td>
+              <td>
+                <label for="returndate">Return Date</label>
+                <input id="returndate" class="form-control" type="text" formControlName="returnDate" placeholder="dd.mm.yyyy">
+              </td>
+            </tr>
+          </table>
+        </div>
+        <div id="inputFields2" class="row">
+          <table>
+            <tr>
+              <td>
+                <label for="budget"><strong>Budget</strong></label>
+                <input id="budget"  class="form-control" type="text" formControlName="budget"  placeholder="Budget">
+              </td>
+              <td>
+                <label for="noofpeople">Max People</label>
+                <input id="noofpeople"   type="text" class="form-control" formControlName="noofpeople"  placeholder="Max People">
+              </td>
+              <td>
+                <label for="interests">Interests</label>
+                <input id="interests" class="form-control" type="text" formControlName="Interests"  placeholder="Interests">
+              </td>
+              <td>
+                <button type="submit" id="searchButton" class="btn waves-button-input pull-right ripple">Search</button>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </form>
+    </div>
+    <!--<br>
+    <h5> Source => {{searchSource}}</h5>
+    <h5> Destination => {{searchDestination}}</h5>
+    <h5> Travel Date => {{searchTravelDate}}</h5>
+    <h5> Return Date => {{searchReturnDate}}</h5>-->
+  </div>
+<div class="card z-depth-2" style="margin:auto; width: 72%;">
+  <div style="horiz-align:center; vertical-align: top; margin-left: 2%;">
+    <app-trip-card style="display: inline-block; margin: 10px;" *ngFor="let trip of trips| sourceFilter: searchSource | destinationFilter: searchDestination | traveldateFilter: searchTravelDate | budgetFilter : searchBudget "  [trip]="trip"></app-trip-card>
+  </div>
+</div>
+</div>
+
+

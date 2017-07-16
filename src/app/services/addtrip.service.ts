@@ -16,6 +16,7 @@ export class AddTripService {
     return this.http.post('/api/user/addtrip', trip, this.jwt()).map((response: Response) => response.json());
   }
 
+
   deleteTrip(trip:Trip) {
     console.log('im in deleteTrip service')
     return this.http.post('/api/user/deletetrip', trip, this.jwt()).map((response: Response) => response.json());
@@ -23,17 +24,15 @@ export class AddTripService {
   
   updateTrip(trip: Trip) {
     return this.http.post('/api/user/updateTrip',  trip, this.jwt()).map((response: Response) => response.json());
+
+  searchTrips( user:User )
+  {
+    console.log("Inside Search Trip Service");
+    return this.http.get('/api/user/searchtrips', this.jwt()).map((response: Response) => response.json());
   }
 
   myTrips(user:User)
   {
-    // var data = {
-    //   user_id:user.email
-    // };
-    //
-    // var config = {
-    //   params: data,
-    // };
     return this.http.get('/api/user/mytrips',this.jwt()).map((response: Response) => response.json());
   }
   
@@ -41,6 +40,16 @@ export class AddTripService {
     return this.http.post('/api/user/gettrip', user, this.jwt()).map((response: Response) => response.json());
   }
 
+  tripsImAttending(user:User)
+  {
+    return this.http.get('/api/user/trips-im-attending',this.jwt()).map((response: Response) => response.json());
+  }
+
+  // User joins a trip
+  ManagejoinTrip(trip: Trip) {
+    console.log('I am in addtrip service');
+    return this.http.post('/api/user/jointrip', trip, this.jwt()).map((response: Response) => response.json());
+  }
 
 
   // private helper methods

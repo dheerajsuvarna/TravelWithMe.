@@ -4,17 +4,16 @@
     <!--<div class="col-md-12">-->
 <!--<app-update-profile></app-update-profile>-->
 <div class="container">
-  <!--<div class="row">-->
-  <div class="collapse navbar-collapse">
-    <div class="nav navbar-nav">
-      <!--<ul class="nav nav-tabs">-->
-        <li routerLinkActive="active"><a [routerLink] = "['/profileManagement', 'getProfile']">My Profile</a></li>
-        <li  routerLinkActive="active"><a [routerLink] = "['/profileManagement','mytrips']" >My Trips</a></li>
-        <li routerLinkActive="active"><a [routerLink] = "['/profileManagement','addtrip']">Add Trip</a></li>
-        <li  routerLinkActive="active"><a [routerLink] = "['/profileManagement','messages']">Messages</a></li>
-        <li  routerLinkActive="active"><a [routerLink] = "['/profileManagement','settings']">Settings</a></li>
-      <!--</ul>-->
-    <!--</div>-->
+  <div class="row">
+  <div class="nav-content">
+      <ul class="tabs tabs-transparent">
+        <li class="tab"  [routerLinkActive]="['active']"><a [routerLink] = "['/profileManagement', 'getProfile']">My Profile</a></li>
+        <li class="tab"  [routerLinkActive]="['active']"><a [routerLink] = "['/profileManagement','mytrips']" >My Trips</a></li>
+        <li class="tab"  [routerLinkActive]="['active']"><a [routerLink] = "['/profileManagement','addtrip']">Add Trip</a></li>
+        <li class="tab"  [routerLinkActive]="['active']"><a [routerLink] = "['/profileManagement','messages']">Messages</a></li>
+        <li  class="tab" [routerLinkActive]="['active']"><a [routerLink] = "['/profileManagement','settings']">Settings</a></li>
+        <li class="tab"  [routerLinkActive]="['active']"(click)="logout()"><a [routerLink] = "['/logout']">Logout</a></li>
+      </ul>
     </div>
   </div>
   </div>

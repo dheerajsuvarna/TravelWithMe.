@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
@@ -30,14 +30,39 @@ import { ResetPasswordChangeComponent } from './reset-password-change/reset-pass
 import {MessagesComponent} from './Messages/messages.component';
 import { EditTripComponent } from './edit-trip/edit-trip.component';
 
+
+
+import { SourceFilterPipe } from './source-filter.pipe';
+import { DestinationFilterPipe } from './destination-filter.pipe';
+import { TraveldateFilterPipe } from './traveldate-filter.pipe';
+import { ReturndateFilterPipe } from './returndate-filter.pipe';
+import { BudgetFilterPipe } from './budget-filter.pipe';
+import { SearchTripComponent } from './search-trip/search-trip.component';
+import { FilterPipe } from './filter.pipe';
+import {SearchPipe} from './search-pipe';
+import { NoofpeopleFilterPipe } from './noofpeople-filter.pipe';
+import { InterestsFilterPipe } from './interests-filter.pipe';
+import {ChatService} from "./services/chat.service";
+import { ChatComponent } from './chat/chat.component';
+import { ChatParentComponent } from './chat-parent/chat-parent.component';
 @NgModule({
   imports: [
     BrowserModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpModule,
     routing
   ],
+
+
   declarations: [
+    SourceFilterPipe,
+    DestinationFilterPipe,
+    ReturndateFilterPipe,
+    TraveldateFilterPipe,
+    BudgetFilterPipe,
+    SearchPipe,
+    FilterPipe,
     AppComponent,
     AlertComponent,
     HomeComponent,
@@ -58,15 +83,22 @@ import { EditTripComponent } from './edit-trip/edit-trip.component';
     ResetPasswordChangeComponent,
     MessagesComponent,
     EditTripComponent
-
+    SearchTripComponent,
+    SourceFilterPipe,
+    NoofpeopleFilterPipe,
+    InterestsFilterPipe,
+    ChatComponent,
+    ChatParentComponent,
   ],
-  providers: [
+   providers: [
     AuthGuard,
     AlertService,
     AuthenticationService,
     UserService,
-    AddTripService
+    AddTripService,
+     ChatService
   ],
+  exports: [FilterPipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

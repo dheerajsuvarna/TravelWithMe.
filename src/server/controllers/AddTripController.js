@@ -39,27 +39,35 @@ module.exports = {
        return res.status(400).send(err);
      });
  },
-  mytrip: function (req,res) {
-    Trip.find()
+
+
+  searchtrips: function (req,res) {
+    Trip.find().populate('user')
+      .where('user').ne(req.user._doc._id)
+      .where('joinUser').ne(req.user._doc.email)
       .then(function (trips) {
         return res.json(trips);
       })
       .catch(function (err) {
         res.status(401).send(err);
-
       });
   },
 
     mytrips: function (req,res) {
-      Trip.find({'user': req.user._doc._id})
+
+      Trip.find({'user': req.user._doc._id}).populate('user')
+
+      // Trip.find({'user': req.user._doc._id})
+
         .then(function (trips){
           return res.json(trips);
         })
         .catch(function (err) {
-          res.status(401).send(err);
+          res.status(500).send(err);
 
         });
   },
+
 
   updateTrip: function (req, res) {
     console.log("helloo from the other side  -- UpdateTrip");
@@ -135,8 +143,20 @@ module.exports = {
       .catch(function (err) {
         res.status(401).send(err);
 
+  tripsImAttending: function (req,res) {
+    Trip.find({'joinUser':  req.user._doc.email}).populate('user')
+
+      .then(function (trips){
+
+        return res.json(trips);
+      })
+      .catch(function (err) {
+        res.status(500).send(err);
+
+
       });
   },
+
 
   deletetrip: function (req,res) {
     console.log('we are in the controller')
@@ -151,3 +171,36 @@ module.exports = {
 
 
 }
+
+
+  joinTrip: function (req, res) {
+   console.log('I am in joinTrip service+++++++');
+   console.log('in Service  ', req.body);
+   if(!req.body)
+     return res.status(400).send('Invalid Request');
+   Trip.findOne({tripName: req.body.tripName})
+     .then(function (foundTrip) {
+       console.log('found trip:', foundTrip);
+       if(req.body.joinUser) {
+         foundTrip.joinUser = req.body.joinUser;
+         console.log('locally update:  ',foundTrip);
+         return Trip.update({tripName: req.body.tripName}, foundTrip);
+
+       }
+     })
+     .then(function (updatedTrip) {
+       console.log('successfully updated', updatedTrip);
+       return res.json('Successful');
+
+     })
+     .catch(function (err) {
+       console.log('failed to update');
+       return res.status(404).send(err);
+
+     });
+
+    return res;
+  }
+
+};
+

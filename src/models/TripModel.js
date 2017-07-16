@@ -28,7 +28,7 @@ var TripSchema = new Schema({
   },
   user: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'UserSchema'
+    ref: 'User'
   },
   interests:{
    type: [String],
@@ -45,7 +45,11 @@ var TripSchema = new Schema({
   numOfPeople: {
     type: Number,
     required: true
-  }
+  },
+  joinUser: [{
+    type: String,
+    default: 0
+  }]
 });
 
 module.exports = mongoose.model('TripPlan', TripSchema);
