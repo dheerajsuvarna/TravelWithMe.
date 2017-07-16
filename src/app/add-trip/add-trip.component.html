@@ -21,24 +21,26 @@
 
 
   <div id="basicInfo" class="col s12 z-depth-4 card-panel" style="width:45%;">
-    <p>Add Your Trip</p>
-    <form class="col s12" name="form" (ngSubmit)="addTrip()" #f="ngForm" novalidate>
+    <form class="col s12" name="form" (ngSubmit)="f.form.valid && addTrip()" #f="ngForm" novalidate>
       <div class="row">
-        <div class="input-field col s12">
+        <div class="input-field col s12" [ngClass]="{ 'has-error': f.submitted && !tripName.valid }">
           <input id="trip_name" type="text" name="tripName" class="validate" [(ngModel)]="model.tripName" #tripName="ngModel" required >
           <label for="trip_name">Trip Name</label>
+          <div *ngIf="f.submitted && !tripName.valid" class="help-block">*You must enter a trip name</div>
         </div>
       </div>
       <div class="row">
-        <div class="input-field col s12">
+        <div class="input-field col s12" [ngClass]="{ 'has-error': f.submitted && !source.valid }">
           <input id="source" type="text" name="source" class="validate" [(ngModel)]="model.source" #source="ngModel" required >
           <label for="source">From?</label>
+          <div *ngIf="f.submitted && !source.valid" class="help-block">*You must enter a source</div>
         </div>
       </div>
       <div class="row">
-        <div class="input-field col s12">
+        <div class="input-field col s12" [ngClass]="{ 'has-error': f.submitted && !destination.valid }">
           <input id="destination" type="text" name="destination" class="validate" [(ngModel)]="model.destination" #destination="ngModel" required >
           <label for="destination">Where To?</label>
+          <div *ngIf="f.submitted && !source.valid" class="help-block">*You must enter a destination</div>
         </div>
       </div>
 
@@ -47,7 +49,7 @@
         <input type="date" class="form-control" name="startdate" [(ngModel)]="model.startDate" placeholder="yyyy-MM-dd" min="1980-01-01" max="2000-12-31"
                required #startdate="ngModel" required />
 
-        <div *ngIf="f.submitted && !startdate.valid" class="help-block">Date is required</div>
+        <div *ngIf="f.submitted && !startdate.valid" class="help-block">*Date is required</div>
       </div>
 
       <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !enddate.valid }">
@@ -55,14 +57,15 @@
         <input type="date" class="form-control" name="enddate" [(ngModel)]="model.endDate" placeholder="yyyy-MM-dd" min="1980-01-01" max="2000-12-31"
                required #enddate="ngModel" required />
 
-        <div *ngIf="f.submitted && !enddate.valid" class="help-block">Date is required</div>
+        <div *ngIf="f.submitted && !enddate.valid" class="help-block">*Date is required</div>
       </div>
 
       <br>
       <div class="row">
-        <div class="input-field col s12">
+        <div class="input-field col s12" [ngClass]="{ 'has-error': f.submitted && !budget.valid }">
           <input id="budget" type="text" name="budget "class="validate" [(ngModel)]="model.budget" #budget="ngModel" required >
           <label for="budget">Budget (max)</label>
+          <div *ngIf="f.submitted && !budget.valid" class="help-block">*Budget is required</div>
         </div>
       </div>
       <br>
@@ -93,9 +96,10 @@
       </div>
 
       <div class="row">
-        <div class="input-field col s12">
+        <div class="input-field col s12" [ngClass]="{ 'has-error': f.submitted && !description.valid }">
           <textarea id="textarea1" class="materialize-textarea" name="description" [(ngModel)]="model.description" #description="ngModel" required></textarea>
           <label for="textarea1">Write a description about the trip.</label>
+          <div *ngIf="f.submitted && !budget.valid" class="help-block">*Description is required</div>
         </div>
       </div>
       <br>
