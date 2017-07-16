@@ -10,20 +10,27 @@
           <table>
             <tr>
               <td>
-                <label for="source">Source</label>
+                <label for="source" style="-webkit-text-fill-color: #03a9f4">Source</label>
                 <input id="source" class="form-control" type="text" formControlName="source"  placeholder="Source">
               </td>
               <td>
-                <label for="destination">Destination</label>
+                <label for="destination" style="-webkit-text-fill-color: #03a9f4">Destination</label>
                 <input  id="destination" class="form-control" type="text"formControlName="destination"  placeholder="Destination">
               </td>
               <td>
-                <label for="traveldate">Travel Date</label>
-                <input id="traveldate" class="form-control" type="text" formControlName="travelDate"  placeholder="dd.mm.yyyy">
+                <label *ngIf="!isFlexible" for="traveldate" style="-webkit-text-fill-color: #03a9f4" >Start Date</label>
+                <label *ngIf="isFlexible" for="traveldate" style="-webkit-text-fill-color: #e91e63" >Start Date</label>
+                <input id="traveldate" class="form-control" type="date" formControlName="travelDate"  placeholder="dd.mm.yyyy">
               </td>
               <td>
-                <label for="returndate">Return Date</label>
-                <input id="returndate" class="form-control" type="text" formControlName="returnDate" placeholder="dd.mm.yyyy">
+                <label *ngIf="!isFlexible" for="returndate" style="-webkit-text-fill-color: #03a9f4">Return Date</label>
+                <label *ngIf="isFlexible" for="returndate" style="-webkit-text-fill-color: #e91e63">Return Date</label>
+                <input id="returndate" class="form-control" type="date" formControlName="returnDate" placeholder="dd.mm.yyyy">
+              </td>
+              <td>
+                <label *ngIf="!isFlexible" for="budget" style="-webkit-text-fill-color: #03a9f4"><strong>Budget</strong></label>
+                <label *ngIf="isFlexible" for="budget" style="-webkit-text-fill-color: #e91e63"><strong>Budget</strong></label>
+                <input id="budget"  class="form-control" type="text" formControlName="budget"  placeholder="Budget" >
               </td>
             </tr>
           </table>
@@ -31,20 +38,42 @@
         <div id="inputFields2" class="row">
           <table>
             <tr>
-              <td>
-                <label for="budget"><strong>Budget</strong></label>
-                <input id="budget"  class="form-control" type="text" formControlName="budget"  placeholder="Budget">
-              </td>
-              <td>
-                <label for="noofpeople">Max People</label>
+              <td><div class="input-field col s10">
+                <label *ngIf="!isFlexible" for="noofpeople" style="-webkit-text-fill-color: #03a9f4">Max People</label>
+                <label *ngIf='isFlexible' for="noofpeople" style="-webkit-text-fill-color: #e91e63">Max People</label>
                 <input id="noofpeople"   type="text" class="form-control" formControlName="noofpeople"  placeholder="Max People">
+              </div>
               </td>
               <td>
-                <label for="interests">Interests</label>
-                <input id="interests" class="form-control" type="text" formControlName="Interests"  placeholder="Interests">
+
+                <label for="interests" style="-webkit-text-fill-color: #03a9f4">Interests</label>
+                <div class="input-field col s12">
+                <select class="browser-default" name="interests" id="interests" formControlName="interests" >
+                  <option value="Books">Books</option>
+                  <option value="Arts">Arts</option>
+                  <option value="Camping">Camping</option>
+                  <option value="Dancing">Dancing</option>
+                  <option value="Fishing">Fishing</option>
+                  <option value="Movies">Movies</option>
+                  <option value="Music">Music</option>
+                  <option value="Mountains">Mountains</option>
+                  <option value="Party">Party</option>
+                  <option value="Swimming">Swimming</option>
+                </select>
+                </div>
               </td>
               <td>
-                <button type="submit" id="searchButton" class="btn waves-button-input pull-right ripple">Search</button>
+                <div class="switch">
+                  <label style="-webkit-text-fill-color: #03a9f4">
+                    Strict Match
+                    <input type="checkbox" id="switch" formControlName="switchValue">
+                    <span class="lever"></span>
+                    Flexible
+                  </label>
+                </div>
+              </td>
+              <td>
+                <button type="submit" id="searchButton" class="btn waves-button-input pull-right ripple" style="">Search</button>
               </td>
             </tr>
           </table>
@@ -59,7 +88,7 @@
   </div>
 <div class="card z-depth-2" style="margin:auto; width: 72%;">
   <div style="horiz-align:center; vertical-align: top; margin-left: 2%;">
-    <app-trip-card style="display: inline-block; margin: 10px;" *ngFor="let trip of trips| sourceFilter: searchSource | destinationFilter: searchDestination | traveldateFilter: searchTravelDate | budgetFilter : searchBudget "  [trip]="trip"></app-trip-card>
+    <app-trip-card style="display: inline-block; margin: 10px;" *ngFor="let trip of trips| sourceFilter: searchSource | destinationFilter: searchDestination | traveldateFilter: searchTravelDate:isFlexible|returndateFilter: searchReturnDate: isFlexible | budgetFilter : searchBudget: isFlexible | noofpeopleFilter: searchNoofpeople:isFlexible | interestsFilter: searchInterests"  [trip]="trip"></app-trip-card>
   </div>
 </div>
 </div>

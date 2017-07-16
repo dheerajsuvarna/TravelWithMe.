@@ -22,6 +22,7 @@ import {forEach} from "@angular/router/src/utils/collection";
 })
 export class TripCardComponent implements OnInit {
 
+  public isOwner: boolean;
 
  @Input() trip: Trip;
   imageURI: string;
@@ -34,12 +35,10 @@ export class TripCardComponent implements OnInit {
               private alertService: AlertService,
               private router: Router,
               private userService: UserService) {
-
     this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
     const temp  = localStorage.getItem('currentUser');
     const json = JSON.parse(temp);
     this.currentUser = json.user;
-
   }
   ngOnInit() {
     if (!isNullOrUndefined(this.trip)&&!isNullOrUndefined(this.trip.interests ))
@@ -50,7 +49,9 @@ export class TripCardComponent implements OnInit {
     var currentUser = json.user;
     var a: any;
     a = this.trip.user;
-
+      if(this.trip.user.email.match(this.currentUser.email)){
+        this.isOwner = true;
+      }
     this.isMyTrip = currentUser._id === a._id;
 
     for ( let user of this.trip.joinUser) {
@@ -79,6 +80,7 @@ export class TripCardComponent implements OnInit {
           // this.alertService.success('Trip Joined', true);
           console.log(this.trip);
           this.tripJoined = true;
+          this.trip.joinUser.push(this.currentUser);
           // window.location.reload();
       },
       error => {
@@ -100,6 +102,13 @@ export class TripCardComponent implements OnInit {
          // this.alertService.success('Trip Joined', true);
          console.log(this.trip);
          this.tripJoined = false;
+         for ( var i = 0; i < this.trip.joinUser.length; i++) {
+           if (this.trip.joinUser[i].email === this.currentUser.email) {
+             this.trip.joinUser.splice(i, 1);
+             this.tripJoined = false;
+             break;
+           }
+         }
          // window.location.reload();
        },
        error => {
@@ -153,5 +162,38 @@ export class TripCardComponent implements OnInit {
   Close() {
     this.showUser = false;
   }
+
+  editTrip(id, tripName){
+    console.log('hello')
+    // console.log(this.trip.tripName)
+    //console.log(id)
+    var temp = id.toString();
+    //console.log(temp)
+    // this.router.navigate(["/edittrip" + atob(id) ]);
+    //this.router.navigate(['/edittrip', { tripID: id}]);
+    this.router.navigate(['/edittrip'], { queryParams: { tripID: temp, tripName: tripName } });
+  }
+
+
+  deleteTrip(id){
+    console.log('hello')
+    console.log(this.trip.tripName)
+    console.log(id)
+
+    this.tripService.deleteTrip(this.trip)
+      .subscribe(
+        data => {
+          this.alertService.success("successful!");
+          location.reload();
+          //this.router.navigate(["/mytrips"]);
+        },
+        error => {
+          this.alertService.error(error._body);
+          //this.loading = false;
+        })
+
+  }
+
+
 
 }

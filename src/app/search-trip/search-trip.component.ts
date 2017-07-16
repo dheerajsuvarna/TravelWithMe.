@@ -16,10 +16,12 @@ export class SearchTripComponent implements OnInit {
     destination: new FormControl(),
     travelDate: new FormControl(),
     returnDate: new FormControl(),
+    switchValue: new FormControl(),
     budget: new FormControl(),
     noofpeople: new FormControl(),
     interests: new FormControl()
   });
+  isFlexible: any;
   searchSource: any;
   searchDestination: any;
   searchTravelDate: any;
@@ -51,16 +53,23 @@ export class SearchTripComponent implements OnInit {
     this.searchBudget = this.userForm.get('budget').value;
     this.searchNoofpeople = this.userForm.get('noofpeople').value;
     this.searchInterests = this.userForm.get('interests').value;
+    this.isFlexible = this.userForm.get('switchValue').value;
+    console.log("the value should appear here");
+    console.log(this.userForm.get('switchValue').value);
     this.formatAndValidateInput();
   }
   formatAndValidateInput(): void {
     this.searchSource = this.searchSource.toLowerCase();
     this.searchDestination = this.searchDestination.toLowerCase();
     this.searchInterests = this.searchInterests.toLowerCase();
+    this.searchTravelDate = this.searchTravelDate.replace(".","-");
+    if(this.isFlexible.isNull()){
+      this.isFlexible = false;
+      console.log("check this out");
+      console.log(this.isFlexible);
+    }
     if (this.searchBudget.isNumber()) {
     }else {
-      console.log(this.searchBudget.isNumber());
-      console.log('inside else');
       alert("Please Enter a valid Number for Budget");
     }
   }

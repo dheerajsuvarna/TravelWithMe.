@@ -16,7 +16,7 @@ export class ChatParentComponent implements OnInit {
     var s = this.route.url;
     var token = s.split("/");
     this.chatIdParent = token[2];
-    this.chatName = token[3].replace("%20"," ");
+    this.chatName = token[3].split("%20").join(" ");
   }
 
 }

@@ -1,0 +1,117 @@
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+<style>
+  #basicInfo, #uploadPhoto{
+    margin-right:10px;
+    float:left;
+    margin-left: 40px;
+  }
+  #basicInfo{
+    margin-right: 10px;
+  }
+  #aboutBox{
+    float:right;
+    margin-right:43px;
+  }
+</style>
+
+
+<div style="background: rgba(76, 175, 80, 0.0)">
+  <!-- left column -->
+
+
+  <div id="basicInfo" class="col s12 z-depth-4 card-panel" style="width:45%;" >
+    <form name="form" (ngSubmit)="f.form.valid && editTrip()" #f="ngForm" novalidate>
+      <div class="row">
+        <div class="input-field col s12" [ngClass]="{ 'has-error': f.submitted && !trip_name.valid }">
+          <label for="trip_name">Trip Name</label>
+          <input id="trip_name" value="{{currentTrip[0].tripName}}" type="text" name="tripName" class="form-control" (ngModelChange)="onNameChange($event)" [(ngModel)]="model.tripName" #tripName="ngModel" required >
+          <div *ngIf="f.submitted && !tripName.valid" class="help-block">You must enter a trip name.</div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s12" [ngClass]="{ 'has-error': f.submitted && !source.valid }">
+          <label for="source">From?</label>
+          <input id="source" type="text" value="{{currentTrip[0].source}}" name="source" class="form-control"  (ngModelChange)="onSourceChange($event)" [(ngModel)]="model.source" #source="ngModel" required >
+          <div *ngIf="f.submitted && !source.valid" class="help-block"></div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s12" [ngClass]="{ 'has-error': f.submitted && !destination.valid }">
+          <label for="destination">Where To?</label>
+          <input id="destination" type="text" value="{{currentTrip[0].destination}}" name="destination" class="form-control" (ngModelChange)="onDestinationChange($event)" [(ngModel)]="model.destination" #destination="ngModel" required >
+          <div *ngIf="f.submitted && !destination.valid" class="help-block">You must enter a destination</div>
+        </div>
+      </div>
+
+      <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !startdate.valid }">
+        <label for="startdate">From</label>
+        <input id="startdate" type="date" class="form-control" name="startdate" value="{{currentTrip[0].startDate}}" (ngModelChange)="onStartChange($event)" [(ngModel)]="model.startDate" placeholder="yyyy-MM-dd" min="2017-7-14" max="2000-12-31"
+               #startdate="ngModel" required />
+
+        <div *ngIf="f.submitted && !startdate.valid" class="help-block">Date is required</div>
+      </div>
+
+      <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !enddate.valid }">
+        <label for="enddate">Until</label>
+        <input id="enddate" type="date" class="form-control" value="{{currentTrip[0].endDate}}" name="enddate" (ngModelChange)="onEndChange($event)" [(ngModel)]="model.endDate" placeholder="yyyy-MM-dd" min="2017-7-14" max="2000-12-31"
+               #enddate="ngModel" required />
+
+        <div *ngIf="f.submitted && !enddate.valid" class="help-block">Date is required</div>
+      </div>
+
+      <br>
+      <div class="row">
+        <div class="input-field col s12" [ngClass]="{ 'has-error': f.submitted && !budget.valid }">
+          <label for="budget">Budget (max)</label>
+          <input id="budget" type="text" name="budget " value="{{currentTrip[0].budget}}" class="form-control" (ngModelChange)="onBudgetChange($event)" [(ngModel)]="model.budget" #budget="ngModel" required >
+          <div *ngIf="f.submitted && !budget.valid" class="help-block">You must enter a budget range.</div>
+        </div>
+      </div>
+      <br>
+      <div class="row">
+        <label>How Many People?</label>
+        <select class="browser-default" value="{{currentTrip[0].numOfPeople}}" id="#numOfPeople"  name="numOfPeople" (ngModelChange)="onPeopleChange($event)" [(ngModel)]="model.numOfPeople" #numOfPeople="ngModel" required>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+        </select>
+      </div>
+      <div class="row">
+        <label>Interests:</label>
+        <select class="browser-default" name="interests" id="#interests" value="{{currentTrip[0].interests}}" (ngModelChange)="onInterestChange($event)" [(ngModel)]="model.interests" #interests="ngModel" required>
+          <option value="Books">Books</option>
+          <option value="Arts">Arts</option>
+          <option value="Camping">Camping</option>
+          <option value="Dancing">Dancing</option>
+          <option value="Fishing">Fishing</option>
+          <option value="Movies">Movies</option>
+          <option value="Music">Music</option>
+          <option value="Mountains">Mountains</option>
+          <option value="Party">Party</option>
+          <option value="Swimming">Swimming</option>
+        </select>
+      </div>
+
+      <div class="row">
+        <div class="input-field col s12" [ngClass]="{ 'has-error': f.submitted && !description.valid }">
+          <label for="textarea1">Write a description about the trip.</label>
+          <textarea id="textarea1" class="materialize-textarea" name="description" value="{{currentTrip[0].description}}" (ngModelChange)="onDescriptionChange($event)" [(ngModel)]="model.description" #description="ngModel" required></textarea>
+        </div>
+      </div>
+      <br>
+      <br>
+      <div class="form-group">
+        <button [disabled]="loading" class="btn pink btn-primary z-depth-3" type="submit" (click)="editTrip()" value="Submit" style="margin-left: 5%">Update Trip</button>
+        <img *ngIf="loading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+        <a [routerLink]="['/Landingpage']" class="btn btn-link">Cancel</a>
+      </div>
+
+    </form>
+
+  </div>
+
+
+</div>

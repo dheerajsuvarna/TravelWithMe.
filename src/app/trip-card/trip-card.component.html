@@ -30,6 +30,9 @@
            *ngIf="(isMyTrip || tripJoined) && trip.joinUser.length!=0"
            (click)="OpenChat()">
           <i class="material-icons">message</i></a>
+        <br>
+        <button *ngIf="isOwner" class="btn blue btn-primary" [routerLink] = "['/edittrip']" (click)="editTrip(trip._id, trip.tripName)">Edit</button>  <button class="btn blue btn-primary" (click)="deleteTrip(trip._id)">Delete</button>
+
 
       </div>
     </div>
