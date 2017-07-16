@@ -5,27 +5,56 @@ var configPassport = require('../config/passport');
 var jwt = require('jsonwebtoken');
 var _ = require('lodash');
 var bcrypt = require('bcryptjs');
+var Trip = require('../../models/TripModel');
+
 
 
 module.exports = {
 
 
   getAll: function (req, res) {
+
+    console.log(req.user._doc);
+
+
   var room=req.params.room;
   room =  room.slice(1,room.lenght);
-    Chat.find({room: room}, function (err, chats) {
-      if (err) return next(err);
 
-      res.json(chats);
-    });
-  },
+    Trip.findOne({$or:[{_id: room,joinUser:req.user._doc.email},
+      {_id: room,user:req.user._doc._id}]})
+      .then(function (trip){
+        if(trip) {
+          console.log(trip);
+
+          Chat.find({room: room}, function (err, chats) {
+            if (err) return next(err);
+
+            res.json(chats);
+          });
+        }
+        else{
+          return res.status(401).send('User is not owner or joined!');
+        }
+        })},
 
   addMessage: function (req, res, next) {
-    console.log("in add message");
-    Chat.create(req.body, function (err, post) {
-      if (err) return next(err);
-      res.json(post);
-    });
+    Trip.findOne({$or:[{_id: req.body.message.room,joinUser:req.body.user.email},
+      {_id: req.body.message.room,user:req.body.user._id}]})
+      .then(function (trip){
+     if(trip)
+     {
+       Chat.create(req.body.message, function (err, post) {
+         if (err) return next(err);
+         res.json(post);
+       });
+     }
+     else{
+       return res.status(401).send('User is not owner or joined!');
+     }
+    })
+      .catch(function (err) {
+        res.status(401).send(err);
 
+      });
   }
 }

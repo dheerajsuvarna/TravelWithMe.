@@ -18,7 +18,6 @@ export class AddTripService {
 
   searchTrips( user:User )
   {
-    console.log("Inside Search Trip Service");
     return this.http.get('/api/user/searchtrips', this.jwt()).map((response: Response) => response.json());
   }
 

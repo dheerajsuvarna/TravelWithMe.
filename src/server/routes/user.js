@@ -29,7 +29,9 @@ router.post('/reset-password-change', user.resetPasswordChange);
 ////////////////
 
 
-router.get('/chat:room',chat.getAll);
+router.get('/chat:room',jwt({
+  secret: configPassport.secret
+}),chat.getAll);
 
 /* SAVE CHAT */
 
