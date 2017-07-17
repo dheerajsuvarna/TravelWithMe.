@@ -26,6 +26,8 @@
         <p  ><i class="fa fa-calendar" aria-hidden="true">    {{trip.startDate}} →  {{trip.endDate}} </i></p>
         <i class="fa fa-money" aria-hidden="true">    Budget: {{trip.budget}} <i class="fa fa-eur" aria-hidden="true"></i>
         </i>
+        <p><i class="fa fa-users" aria-hidden="true">   Max. number of participants:{{trip.numOfPeople}}</i>
+        </p>
         <a class="btn-floating btn-large waves-effect waves-light red pull-right paddingCustom"
            *ngIf="(isMyTrip || tripJoined) && trip.joinUser.length!=0"
            (click)="OpenChat()">
@@ -53,15 +55,15 @@
             <div class="card-image small">
               <img src={{viewUser.image}}>
             </div>
-              <div class="card-content">
-                <p>Age: {{viewUser.age}}</p>
-                <p>Gender: {{viewUser.gender}}</p>
-                <p>Country: {{viewUser.nationality}}</p>
-                <p>About: {{viewUser.description}}</p>
-              </div>
-
+            <div class="card-content">
+              <p>Age: {{viewUser.age}}</p>
+              <p>Gender: {{viewUser.gender}}</p>
+              <p>Country: {{viewUser.nationality}}</p>
+              <p>About: {{viewUser.description}}</p>
             </div>
+
           </div>
+        </div>
 
       </h6>
 
