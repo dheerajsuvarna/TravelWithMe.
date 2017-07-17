@@ -26,7 +26,7 @@
 
             <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
               <a [routerLink] = "['/login']" *ngIf="!loggedIn"  >Login</a></li>
-            <li><a href="#intro">Home</a></li>
+            <li><a [routerLink] = "['/']">Home</a></li>
 
             <li class="pull-right" *ngIf="loggedIn"><a class="dropdown-button " href="#!" data-activates="dropdown1">
               <i class="material-icons  material-icons right-align img-thumbnail"> account_circle  arrow_drop_down </i>
@@ -49,12 +49,12 @@
 
           <div>
         <ul id="nav-mobile" class="side-nav">
-          <li><a href="#intro" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}" *ngIf="!loggedIn">Home</a></li>
+          <li><a [routerLinkActive]="['active']" [routerLink] = "['/']" [routerLinkActiveOptions]="{exact:true}" *ngIf="!loggedIn">Home</a></li>
           <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"  *ngIf="loggedIn" >
             <a [routerLink] = "['/profileManagement']">Profile</a></li>
           <!--<li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"  *ngIf="loggedIn" ><a [routerLink] = "['/viewProfile']">Profile</a></li>-->
           <!--<li><a href="#contact">Contact</a></li>-->
-          <li><a href="#mytrips" *ngIf="loggedIn">My Trips</a></li>
+          <!--<li><a href="#mytrips" *ngIf="loggedIn">My Trips</a></li>-->
           <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"  *ngIf="!loggedIn" >
             <a [routerLink] = "['/register']">Signup</a></li>
           <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">

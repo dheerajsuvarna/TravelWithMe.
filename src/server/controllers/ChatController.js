@@ -24,11 +24,8 @@ module.exports = {
       {_id: room,user:req.user._doc._id}]})
       .then(function (trip){
         if(trip) {
-          console.log(trip);
-
           Chat.find({room: room}, function (err, chats) {
             if (err) return next(err);
-
             res.json(chats);
           });
         }
