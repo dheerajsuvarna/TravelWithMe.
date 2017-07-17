@@ -59,19 +59,41 @@ export class SearchTripComponent implements OnInit {
     this.formatAndValidateInput();
   }
   formatAndValidateInput(): void {
+    if(this.searchSource != null)
     this.searchSource = this.searchSource.toLowerCase();
+
+    if(this.searchDestination!=null)
     this.searchDestination = this.searchDestination.toLowerCase();
-    this.searchInterests = this.searchInterests.toLowerCase();
-    this.searchTravelDate = this.searchTravelDate.replace(".","-");
-    if(this.isFlexible.isNull()){
+
+    if(this.searchInterests!=null)
+      this.searchInterests = this.searchInterests.toLowerCase();
+
+    if(this.searchTravelDate!=null)
+      this.searchTravelDate = this.searchTravelDate.replace(".","-");
+
+    if(this.isFlexible==null)
       this.isFlexible = false;
-      console.log("check this out");
-      console.log(this.isFlexible);
+
+    if(this.isFlexible)
+    {
+      if(this.searchTravelDate!=null) {
+
+        var today = new Date (this.searchTravelDate);
+        today.setDate(today.getDate() -3);
+        var res = today.toISOString().slice(0,10).replace(/-/g,"-");
+        this.searchTravelDate = res;
+      }
+      if(this.searchReturnDate!=null)
+        var today = new Date (this.searchReturnDate);
+      today.setDate(today.getDate() +3);
+      var res = today.toISOString().slice(0,10).replace(/-/g,"-");
+      this.searchReturnDate = res;
     }
-    if (this.searchBudget.isNumber()) {
-    }else {
-      alert("Please Enter a valid Number for Budget");
-    }
+
+    // if (this.searchBudget==null )
+    // {
+    //   this.searchBudget =999999;
+    // }
   }
   constructor(fb: FormBuilder, private  tripService:AddTripService ) {
     this.myForm = fb.group({

@@ -30,7 +30,7 @@
               <td>
                 <label *ngIf="!isFlexible" for="budget" style="-webkit-text-fill-color: #03a9f4"><strong>Budget</strong></label>
                 <label *ngIf="isFlexible" for="budget" style="-webkit-text-fill-color: #e91e63"><strong>Budget</strong></label>
-                <input id="budget"  class="form-control" type="text" formControlName="budget"  placeholder="Budget" >
+                <input id="budget"  class="form-control" type="number" formControlName="budget"  placeholder="Budget" >
               </td>
             </tr>
           </table>
@@ -41,7 +41,7 @@
               <td><div class="input-field col s10">
                 <label *ngIf="!isFlexible" for="noofpeople" style="-webkit-text-fill-color: #03a9f4">Max People</label>
                 <label *ngIf='isFlexible' for="noofpeople" style="-webkit-text-fill-color: #e91e63">Max People</label>
-                <input id="noofpeople"   type="text" class="form-control" formControlName="noofpeople"  placeholder="Max People">
+                <input id="noofpeople"   type="number" class="form-control" formControlName="noofpeople"  placeholder="Max People">
               </div>
               </td>
               <td>
