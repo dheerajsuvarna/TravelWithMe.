@@ -179,7 +179,7 @@ console.log(req);
         return res.json("Successfully updated !!");
       })
       .catch(function(err) {
-        return res.status(401).send(err);
+        return res.status(500).send(err);
       })
 
   },
@@ -226,8 +226,7 @@ console.log(req);
 
       })
       .catch(function (err) {
-        console.log(err);
-        return res.status(404).send(err);
+        return res.status(500).send(err);
 
       });
 

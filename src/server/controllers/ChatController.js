@@ -14,9 +14,6 @@ module.exports = {
 
   getAll: function (req, res) {
 
-    console.log(req.user._doc);
-
-
   var room=req.params.room;
   room =  room.slice(1,room.lenght);
 
@@ -30,7 +27,7 @@ module.exports = {
           });
         }
         else{
-          return res.status(401).send('User is not owner or joined!');
+          return res.status(500).send('User is not owner nor joined!');
         }
         })},
 
@@ -46,11 +43,11 @@ module.exports = {
        });
      }
      else{
-       return res.status(401).send('User is not owner or joined!');
+       return res.status(401).send('User is not owner nor joined!');
      }
     })
       .catch(function (err) {
-        res.status(401).send(err);
+        res.status(500).send(err);
 
       });
   }

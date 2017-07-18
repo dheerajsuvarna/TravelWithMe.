@@ -360,8 +360,7 @@ module.exports = {
             nev.sendConfirmationEmail(newUser.email);
           })
           .catch(function (err) {
-            console.log(err);
-            res.status(400).send(err);
+            res.status(500).send(err);
           });
       }
     });
@@ -383,7 +382,7 @@ module.exports = {
         return res.json("Successfully updated !!");
       })
       .catch(function (err) {
-        return res.status(400).send(err);
+        return res.status(500).send(err);
       });
   }
 
