@@ -1,4 +1,9 @@
 import { NgModule } from '@angular/core';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {MdIconModule} from '@angular/material';
+import {MdProgressSpinnerModule} from '@angular/material';
+import {MdDatepickerModule} from '@angular/material';
+
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
@@ -51,6 +56,10 @@ import { EditTripComponent } from './edit-trip/edit-trip.component';
     FormsModule,
     ReactiveFormsModule,
     HttpModule,
+    BrowserAnimationsModule,
+    MdIconModule,
+    MdProgressSpinnerModule,
+    MdDatepickerModule,
     routing
   ],
 

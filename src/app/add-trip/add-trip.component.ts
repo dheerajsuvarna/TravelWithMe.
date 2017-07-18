@@ -20,6 +20,7 @@ export class AddTripComponent implements OnInit {
   returnUrl: string;
   loading = false;
   currentUser: User;
+  todaydate : Date;
   public trip: Trip =new Trip();
   constructor(
    /* private router: Router,
@@ -33,6 +34,7 @@ export class AddTripComponent implements OnInit {
     var temp  = localStorage.getItem('currentUser');
     var json = JSON.parse(temp);
     this.currentUser = json.user;
+    this.todaydate =  new Date();
   }
 
   ngOnInit() {

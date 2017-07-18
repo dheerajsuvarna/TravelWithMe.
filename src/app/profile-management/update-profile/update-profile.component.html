@@ -46,7 +46,7 @@
                  [(ngModel)]="currentUser.firstname"
                  #title="ngModel"
                  name = "first_name"
-                 pattern="[a-zA-Z ]*" style="-webkit-text-fill-color: white" ngModel required >
+                 pattern="[a-zA-Z ]*" style="-webkit-text-fill-color: White" ngModel required >
           <span *ngIf="currentUser.firstname === ''" class="help-block">First Name is required</span>
         </div>
         <div class="input-field col s4">
@@ -56,7 +56,7 @@
                  [(ngModel)]="currentUser.lastname"
                  name="last_name"
                  #title="ngModel"
-                 pattern="[a-zA-Z ]*" ngModel style="-webkit-text-fill-color: white" required >
+                 pattern="[a-zA-Z ]*" ngModel style="-webkit-text-fill-color: White" required >
           <span *ngIf="currentUser.lastname === ''" class="help-block" >Last Name is required</span>
         </div>
       </div>
