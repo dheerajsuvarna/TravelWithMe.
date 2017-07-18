@@ -25,6 +25,8 @@ export class SearchTripComponent implements OnInit {
   searchSource: any;
   searchDestination: any;
   searchTravelDate: any;
+  tdUL: any;
+  rdUL: any;
   searchReturnDate: any;
   searchBudget: any;
   searchNoofpeople: any;
@@ -35,14 +37,7 @@ export class SearchTripComponent implements OnInit {
   public today;
   public trip: Trip = new Trip();
   public trip2: Trip = new Trip();
-  public trip3: Trip = new Trip();
-  public trip4: Trip = new Trip();
-  public trip5: Trip = new Trip();
   user: User = new User();
-  public triptest;
-
-
-  /*public trips: Trip[] = [this.trip, this.trip2, this.trip3, this.trip4, this.trip5];*/
   public trips;
   public tripsIamAttending: Trip[] = [ this.trip2, this.trip];
   onFormSubmit(): void {
@@ -77,17 +72,22 @@ export class SearchTripComponent implements OnInit {
     if(this.isFlexible)
     {
       if(this.searchTravelDate!=null) {
-
         var today = new Date (this.searchTravelDate);
-        today.setDate(today.getDate() -3);
+        today.setDate(today.getDate() -1);
         var res = today.toISOString().slice(0,10).replace(/-/g,"-");
         this.searchTravelDate = res;
+        today.setDate(today.getDate() +2);
+        res = today.toISOString().slice(0,10).replace(/-/g,"-");
+        this.tdUL = res;
       }
       if(this.searchReturnDate!=null) {
         var today = new Date(this.searchReturnDate);
-        today.setDate(today.getDate() + 3);
+        today.setDate(today.getDate() - 1);
         var res = today.toISOString().slice(0, 10).replace(/-/g, "-");
         this.searchReturnDate = res;
+        today.setDate(today.getDate() + 2);
+        res = today.toISOString().slice(0, 10).replace(/-/g, "-");
+        this.rdUL = res;
       }
       }
 

@@ -1,8 +1,8 @@
 <div >
 
-  <div class="card sticky-action" style="width: 400px" >
+  <div class="card sticky-action z-depth-3" style="width: 400px" >
 
-    <div class="card-image waves-effect waves-block waves-light">
+    <div class="card-image waves-effect waves-block waves-light ">
       <img  class="activator" src="{{imageURI}}" style="height: 300px; width: 400px">
     </div>
 
@@ -26,7 +26,7 @@
         <p  ><i class="fa fa-calendar" aria-hidden="true">    {{trip.startDate}} →  {{trip.endDate}} </i></p>
         <i class="fa fa-money" aria-hidden="true">    Budget: {{trip.budget}} <i class="fa fa-eur" aria-hidden="true"></i>
         </i>
-        <a class="btn-floating btn-large waves-effect waves-light red pull-right paddingCustom"
+        <a class="btn-floating btn-large waves-effect waves-light red pull-right paddingCustom z-depth-5"
            *ngIf="(isMyTrip || tripJoined) && trip.joinUser.length!=0"
            (click)="OpenChat()">
           <i class="material-icons">message</i></a>
