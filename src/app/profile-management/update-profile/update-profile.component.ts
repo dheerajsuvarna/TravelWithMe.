@@ -64,7 +64,7 @@ export class UpdateProfileComponent implements OnInit {
            console.log('******** Current User: ', this.currentUser);
         },
         error => {
-          this.alertService.error(error);
+          this.alertService.error(error._body);
           console.log('Error=====>', error );
           this.loading = false;
         }
@@ -78,7 +78,7 @@ export class UpdateProfileComponent implements OnInit {
           this.alertService.success('Profile Updated', true);
         },
         error => {
-          this.alertService.error(error);
+          this.alertService.error(error._body);
           this.loading = false;
         });
   }
@@ -93,7 +93,7 @@ export class UpdateProfileComponent implements OnInit {
           this.fileValid = false;
         },
         error => {
-          this.alertService.error(error);
+          this.alertService.error(error._body);
           this.loading = true;
         }
       )
