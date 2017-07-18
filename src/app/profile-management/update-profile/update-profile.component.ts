@@ -75,7 +75,9 @@ export class UpdateProfileComponent implements OnInit {
     this.userService.onUpdateProfile(this.currentUser)
       .subscribe(
         data => {
+          // window.location.reload();
           this.alertService.success('Profile Updated', true);
+
         },
         error => {
           this.alertService.error(error._body);

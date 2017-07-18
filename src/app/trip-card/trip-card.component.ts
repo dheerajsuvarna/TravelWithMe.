@@ -164,7 +164,7 @@ export class TripCardComponent implements OnInit {
   }
 
   editTrip(id, tripName){
-    console.log('hello')
+    console.log('hello');
     // console.log(this.trip.tripName)
     //console.log(id)
     var temp = id.toString();
