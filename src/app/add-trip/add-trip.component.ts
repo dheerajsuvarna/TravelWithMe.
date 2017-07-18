@@ -22,8 +22,6 @@ export class AddTripComponent implements OnInit {
   currentUser: User;
   todaydate : Date;
   public trip: Trip =new Trip();
-  today: any
-  
   constructor(
    /* private router: Router,
     //private userService: UserService,
@@ -40,7 +38,6 @@ export class AddTripComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.today = new Date().toJSON().split('T')[0];
     this.trip.interests= [Interest.Beach];
     this.trip.tripName = "Beach Party";
     this.trip.budget = 50;
