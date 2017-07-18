@@ -80,13 +80,14 @@ export class SearchTripComponent implements OnInit {
         this.tdUL = res;
         today.setDate(today.getDate() -2);
         res = today.toISOString().slice(0,10).replace(/-/g,"-");
+        this.tdLL = res;
       }
       if(this.searchReturnDate!=null) {
         var today = new Date(this.searchReturnDate);
         today.setDate(today.getDate() + 1);
         var res = today.toISOString().slice(0, 10).replace(/-/g, "-");
         this.rdUL = res;
-        today.setDate(today.getDate() + 2);
+        today.setDate(today.getDate() - 2);
         res = today.toISOString().slice(0, 10).replace(/-/g, "-");
         this.rdLL = res;
       }
