@@ -110,7 +110,7 @@ export class EditTripComponent implements OnInit {
           this.router.navigate(["/mytrips"]);
         },
         error => {
-          this.alertService.error(error);
+          this.alertService.error(error._body);
           this.loading = false;
         });
   }
