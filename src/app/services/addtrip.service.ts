@@ -16,6 +16,10 @@ export class AddTripService {
     return this.http.post('/api/user/addtrip', trip, this.jwt()).map((response: Response) => response.json());
   }
 
+  getAllParticipants(tripId:String)
+  {
+    return this.http.get('/api/user/get-all-participants', this.jwtWithParam(tripId)).map((response: Response) => response.json());
+  }
   searchTrips( user:User )
   {
     return this.http.get('/api/user/searchtrips', this.jwt()).map((response: Response) => response.json());
@@ -68,5 +72,19 @@ export class AddTripService {
       return new RequestOptions({ headers: headers });
     }
   }
+
+
+
+
+  private jwtWithParam(object : any) {
+    // create authorization header with jwt token
+    let currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    if (currentUser && currentUser.token) {
+      let headers = new Headers({ 'Authorization': 'Bearer ' + currentUser.token });
+      return new RequestOptions({ headers: headers,body:object});
+    }
+  }
+
+
 
 }
