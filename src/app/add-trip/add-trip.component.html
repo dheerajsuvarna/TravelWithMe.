@@ -46,7 +46,7 @@
 
       <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !startdate.valid }">
         <label for="startdate">From</label>
-        <input type="date" class="form-control" name="startdate" [(ngModel)]="model.startDate" placeholder="yyyy-MM-dd"
+        <input type="date" class="form-control" name="startdate" [(ngModel)]="model.startDate" placeholder="yyyy-MM-dd" min="1980-01-01" max="2000-12-31"
                required #startdate="ngModel" required />
 
         <div *ngIf="f.submitted && !startdate.valid" class="help-block">*Date is required</div>
@@ -54,7 +54,7 @@
 
       <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !enddate.valid }">
         <label for="enddate">Until</label>
-        <input type="date" class="form-control" name="enddate" [(ngModel)]="model.endDate" placeholder="yyyy-MM-dd"
+        <input type="date" class="form-control" name="enddate" [(ngModel)]="model.endDate" placeholder="yyyy-MM-dd" min="1980-01-01" max="2000-12-31"
                required #enddate="ngModel" required />
 
         <div *ngIf="f.submitted && !enddate.valid" class="help-block">*Date is required</div>

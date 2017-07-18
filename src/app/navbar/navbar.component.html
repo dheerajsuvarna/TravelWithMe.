@@ -1,7 +1,7 @@
 
 <div>
-  <div class="navbar navbar-default">
-    <ul id="dropdown1" class="dropdown-content col s20">
+  <div class="navbar navbar-default" >
+    <ul id="dropdown1" class="dropdown-content col">
       <li class="col s12" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"  *ngIf="loggedIn">
         <a [routerLink] = "['/profileManagement', 'getProfile']">Profile</a></li>
       <!--<li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"  *ngIf="loggedIn">-->
@@ -28,13 +28,13 @@
               <a [routerLink] = "['/login']" *ngIf="!loggedIn"  >Login</a></li>
             <li><a [routerLink] = "['/']"><md-icon>home</md-icon></a></li>
 
-            <li class="pull-right" *ngIf="loggedIn"><a class="dropdown-button " href="#!" data-activates="dropdown1">
-              <i class="material-icons  material-icons right-align img-thumbnail"> account_circle  arrow_drop_down </i>
+            <li class="pull-right" *ngIf="loggedIn"><a class="dropdown-button" href="#!" data-activates="dropdown1">
+              <md-icon> account_circle  arrow_drop_down</md-icon>
             </a></li>
             <!--<li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"  *ngIf="loggedIn">-->
               <!--<a [routerLink] = "['/addtrip']">Add Trip</a></li>-->
             <li class="pull-right" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"
-                *ngIf="loggedIn"><a [routerLink] = "['/searchtrips']">Search</a></li>
+                *ngIf="loggedIn"><a [routerLink] = "['/searchtrips']"><md-icon>search</md-icon>Trips</a></li>
 
             <!--<li class="pull-right" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"-->
                 <!--*ngIf="loggedIn"><a [routerLink] = "['/chat']">Chat</a></li>-->
