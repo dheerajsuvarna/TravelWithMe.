@@ -29,7 +29,7 @@ export class PasswordResetComponent implements OnInit {
           this.loading = false;
         },
         error => {
-          this.alertService.error(error);
+          this.alertService.error(error._body);
           this.loading = false;
         });
 
