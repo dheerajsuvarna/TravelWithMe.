@@ -5,7 +5,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class TraveldateFilterPipe implements PipeTransform {
 
-  transform(value: any, date: Date, isFlexible: any, upperLimit: any): any {
+  transform(value: any, date: Date, isFlexible: any, upperLimit: any, lowerlimit:any): any {
     if (date === undefined || date === null ) {
       return value;
     }
@@ -14,6 +14,8 @@ export class TraveldateFilterPipe implements PipeTransform {
         if (item.startDate === date) {
           return item;
         } else if (item.startDate === upperLimit) {
+          return item;
+        } else if (item.startDate === lowerlimit) {
           return item;
         }
       });

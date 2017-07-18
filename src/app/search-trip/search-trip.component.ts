@@ -26,7 +26,9 @@ export class SearchTripComponent implements OnInit {
   searchDestination: any;
   searchTravelDate: any;
   tdUL: any;
+  tdLL: any;
   rdUL: any;
+  rdLL: any
   searchReturnDate: any;
   searchBudget: any;
   searchNoofpeople: any;
@@ -74,17 +76,19 @@ export class SearchTripComponent implements OnInit {
       if(this.searchTravelDate!=null) {
         var today = new Date (this.searchTravelDate);
         today.setDate(today.getDate() +1);
-        res = today.toISOString().slice(0,10).replace(/-/g,"-");
+        var res = today.toISOString().slice(0,10).replace(/-/g,"-");
         this.tdUL = res;
+        today.setDate(today.getDate() -2);
+        res = today.toISOString().slice(0,10).replace(/-/g,"-");
       }
       if(this.searchReturnDate!=null) {
         var today = new Date(this.searchReturnDate);
-        today.setDate(today.getDate() - 1);
+        today.setDate(today.getDate() + 1);
         var res = today.toISOString().slice(0, 10).replace(/-/g, "-");
-        this.searchReturnDate = res;
+        this.rdUL = res;
         today.setDate(today.getDate() + 2);
         res = today.toISOString().slice(0, 10).replace(/-/g, "-");
-        this.rdUL = res;
+        this.rdLL = res;
       }
       }
 
