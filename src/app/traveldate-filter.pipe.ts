@@ -11,7 +11,9 @@ export class TraveldateFilterPipe implements PipeTransform {
     }
     if (isFlexible ) {
       return value.filter((item) => {
-        if ((item.startDate >= date) && (item.startDate <= upperLimit)) {
+        if (item.startDate === date) {
+          return item;
+        } else if (item.startDate === upperLimit) {
           return item;
         }
       });

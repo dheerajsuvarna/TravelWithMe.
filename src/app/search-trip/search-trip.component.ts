@@ -73,10 +73,7 @@ export class SearchTripComponent implements OnInit {
     {
       if(this.searchTravelDate!=null) {
         var today = new Date (this.searchTravelDate);
-        today.setDate(today.getDate() -1);
-        var res = today.toISOString().slice(0,10).replace(/-/g,"-");
-        this.searchTravelDate = res;
-        today.setDate(today.getDate() +2);
+        today.setDate(today.getDate() +1);
         res = today.toISOString().slice(0,10).replace(/-/g,"-");
         this.tdUL = res;
       }
