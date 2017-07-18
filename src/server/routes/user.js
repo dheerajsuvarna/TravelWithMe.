@@ -60,6 +60,11 @@ router.get('/mytrips',jwt({
   secret: configPassport.secret
 }), trip.mytrips);
 
+router.get('/get-all-participants',jwt({
+  secret: configPassport.secret
+}), trip.getParticipants);
+
+
 router.get('/trips-im-attending',jwt({
   secret: configPassport.secret
 }), trip.tripsImAttending);

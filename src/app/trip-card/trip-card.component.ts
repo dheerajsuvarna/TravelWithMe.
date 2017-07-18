@@ -84,7 +84,7 @@ export class TripCardComponent implements OnInit {
           // window.location.reload();
       },
       error => {
-        this.alertService.error(error);
+        this.alertService.error(error._body);
         // this.trip.joinUser.pop();
         // this.trip.joinUser.pop();
         // console.log('Error=====>', error );
@@ -112,7 +112,7 @@ export class TripCardComponent implements OnInit {
          // window.location.reload();
        },
        error => {
-         this.alertService.error(error);
+         this.alertService.error(error._body);
          // this.trip.joinUser.pop();
          // this.trip.joinUser.pop();
          // console.log('Error=====>', error );
@@ -154,7 +154,7 @@ export class TripCardComponent implements OnInit {
             console.log('******** Current User: ', this.viewUser);
           },
           error => {
-            this.alertService.error(error);
+            this.alertService.error(error._body);
             console.log('Error=====>', error);
           }
         );

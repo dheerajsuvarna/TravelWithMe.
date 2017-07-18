@@ -19,6 +19,7 @@ export class ChatComponent implements OnInit, AfterViewChecked {
   joinned: boolean = false;
   newUser = { nickname: '', room: '' };
   msgData = { room: '', nickname: '', message: '' };
+//  socket = io('http://131.159.206.138:3001');
   socket = io('http://localhost:3001');
   currentUser:User;
 

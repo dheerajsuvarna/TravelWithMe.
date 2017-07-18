@@ -75,6 +75,13 @@ module.exports = {
         });
   },
 
+  getParticipants: function (req,res) {
+
+console.log(req);
+
+  },
+
+
   deletetrip: function (req,res) {
     console.log('we are in the controller')
     Trip.findByIdAndRemove(req.body._id, function(err) {

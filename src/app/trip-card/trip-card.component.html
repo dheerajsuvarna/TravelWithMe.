@@ -1,16 +1,17 @@
 <div >
 
-  <div class="card sticky-action z-depth-3" style="width: 400px" >
+  <div class="card sticky-action" style="width: 400px" >
 
-    <div class="card-image waves-effect waves-block waves-light ">
+    <div class="card-image waves-effect waves-block waves-light">
       <img  class="activator" src="{{imageURI}}" style="height: 300px; width: 400px">
     </div>
 
     <div class="card-content" style="height: 60px">
       <span class="card-title activator grey-text text-darken-4">{{trip.tripName}}
         <i class="material-icons right">more_vert</i></span>
-
+<br>
       <button *ngIf="!isMyTrip && !tripJoined; else  notJoined" class="pull-right" (click)="JoinTrip()"> &nbsp; &nbsp; Join this Trip!</button>
+
       <ng-template #notJoined>
         <button *ngIf="!isMyTrip" (click)="LeaveTrip()" class="pull-right">Leave this Trip</button>
       </ng-template>
@@ -26,7 +27,10 @@
         <p  ><i class="fa fa-calendar" aria-hidden="true">    {{trip.startDate}} →  {{trip.endDate}} </i></p>
         <i class="fa fa-money" aria-hidden="true">    Budget: {{trip.budget}} <i class="fa fa-eur" aria-hidden="true"></i>
         </i>
-        <a class="btn-floating btn-large waves-effect waves-light red pull-right paddingCustom z-depth-5"
+        <p><i class="fa fa-users" aria-hidden="true">   Max. number of participants:{{trip.numOfPeople}}</i>
+        </p>
+        <br>
+        <a class="btn-floating btn-large waves-effect waves-light red pull-right paddingCustom"
            *ngIf="(isMyTrip || tripJoined) && trip.joinUser.length!=0"
            (click)="OpenChat()">
           <i class="material-icons">message</i></a>
@@ -53,15 +57,15 @@
             <div class="card-image small">
               <img src={{viewUser.image}}>
             </div>
-              <div class="card-content">
-                <p>Age: {{viewUser.age}}</p>
-                <p>Gender: {{viewUser.gender}}</p>
-                <p>Country: {{viewUser.nationality}}</p>
-                <p>About: {{viewUser.description}}</p>
-              </div>
-
+            <div class="card-content">
+              <p>Age: {{viewUser.age}}</p>
+              <p>Gender: {{viewUser.gender}}</p>
+              <p>Country: {{viewUser.nationality}}</p>
+              <p>About: {{viewUser.description}}</p>
             </div>
+
           </div>
+        </div>
 
       </h6>
 
