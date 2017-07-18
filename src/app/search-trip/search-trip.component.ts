@@ -4,11 +4,14 @@ import {Interest} from '../../models/Enums/Interest';
 import {User} from '../models/usermodel';
 import { FormBuilder, FormGroup , FormControl} from '@angular/forms';
 import { AddTripService } from '../services/addtrip.service';
+import {routerTransition} from "../router.animations";
 
 @Component({
   selector: 'app-search-trip',
   templateUrl: './search-trip.component.html',
   styleUrls: ['./search-trip.component.css'],
+  animations: [routerTransition()],
+  host: {'[@routerTransition]': ''}
 })
 export class SearchTripComponent implements OnInit {
   userForm = new FormGroup({

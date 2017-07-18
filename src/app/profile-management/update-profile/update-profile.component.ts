@@ -5,13 +5,16 @@ import { UserService } from '../../services/index';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 
 import { AlertService } from '../../services/index';
+import {routerTransition} from "../../router.animations";
 
 // import {NgForm} from '@angular/forms';
 
 @Component({
   moduleId:    module.id,
   selector:    'app-update-profile',
-  templateUrl: './update-profile.component.html'
+  templateUrl: './update-profile.component.html',
+  animations: [routerTransition()],
+  host: {'[@routerTransition]': ''}
 })
 
 export class UpdateProfileComponent implements OnInit {

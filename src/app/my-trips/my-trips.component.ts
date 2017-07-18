@@ -3,11 +3,13 @@ import {Trip} from '../models/tripmodel';
 import {Interest} from '../../models/Enums/Interest';
 import {User} from "../models/usermodel";
 import  {AddTripService} from '../services/addtrip.service';
+import {routerTransition} from "../router.animations";
 
 @Component({
   selector: 'app-my-trips',
   templateUrl: './my-trips.component.html',
   styleUrls: ['./my-trips.component.css'],
+
 })
 export class MyTripsComponent implements OnInit {
 

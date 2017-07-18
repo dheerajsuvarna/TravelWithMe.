@@ -3,11 +3,14 @@ import { Router, ActivatedRoute } from '@angular/router';
 import {Trip} from '../models/tripmodel';
 import {User} from "../models/usermodel";
 import { AlertService, UserService, AddTripService } from '../services/index';
+import {routerTransition} from "../router.animations";
 
 @Component({
   selector: 'app-edit-trip',
   templateUrl: './edit-trip.component.html',
-  styleUrls: ['./edit-trip.component.css']
+  styleUrls: ['./edit-trip.component.css'],
+  animations: [routerTransition()],
+  host: {'[@routerTransition]': ''}
 })
 export class EditTripComponent implements OnInit {
 

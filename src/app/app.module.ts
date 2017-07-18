@@ -30,7 +30,7 @@ import { ResetPasswordChangeComponent } from './reset-password-change/reset-pass
 import {MessagesComponent} from './Messages/messages.component';
 
 
-
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { SourceFilterPipe } from './source-filter.pipe';
 import { DestinationFilterPipe } from './destination-filter.pipe';
 import { TraveldateFilterPipe } from './traveldate-filter.pipe';
@@ -51,7 +51,8 @@ import { EditTripComponent } from './edit-trip/edit-trip.component';
     FormsModule,
     ReactiveFormsModule,
     HttpModule,
-    routing
+    routing,
+    BrowserAnimationsModule
   ],
 
 

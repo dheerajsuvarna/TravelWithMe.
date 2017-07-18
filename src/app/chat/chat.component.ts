@@ -3,11 +3,14 @@ import { ChatService } from '../services/chat.service';
 import * as io from "socket.io-client";
 import {User} from "../models/usermodel";
 import {Router} from "@angular/router";
+import {routerTransition} from "../router.animations";
 
 @Component({
   selector: 'app-chat',
   templateUrl: './chat.component.html',
-  styleUrls: ['./chat.component.css']
+  styleUrls: ['./chat.component.css'],
+  animations: [routerTransition()],
+  host: {'[@routerTransition]': ''}
 })
 export class ChatComponent implements OnInit, AfterViewChecked {
 

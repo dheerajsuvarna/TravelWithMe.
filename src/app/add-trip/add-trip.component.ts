@@ -4,13 +4,16 @@ import {Trip} from '../models/tripmodel';
 import {Interest} from '../../models/Enums/Interest';
 import {User} from "../models/usermodel";
 import { AlertService, UserService, AddTripService } from '../services/index';
+import {routerTransition} from "../router.animations";
 //import { FormBuilder, FormGroup , FormControl} from '@angular/forms';
 
 
 @Component({
   selector: 'app-add-trip',
   templateUrl: './add-trip.component.html',
-  styleUrls: ['./add-trip.component.css']
+  styleUrls: ['./add-trip.component.css'],
+  animations: [routerTransition()],
+  host: {'[@routerTransition]': ''}
 })
 
 
@@ -22,7 +25,7 @@ export class AddTripComponent implements OnInit {
   currentUser: User;
   public trip: Trip =new Trip();
   today: any
-  
+
   constructor(
    /* private router: Router,
     //private userService: UserService,
