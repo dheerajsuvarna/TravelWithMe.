@@ -97,7 +97,7 @@
   </div>
 <div class="card z-depth-2" style="margin:auto; width: 72%; background-color: dimgrey ">
   <div style="horiz-align:center; vertical-align: top; margin-left: 5%;alignment: center">
-    <app-trip-card style="display: inline-block; margin: 10px;" *ngFor="let trip of trips| sourceFilter: searchSource | destinationFilter: searchDestination | traveldateFilter: searchTravelDate:isFlexible|returndateFilter: searchReturnDate: isFlexible | budgetFilter : searchBudget: isFlexible | noofpeopleFilter: searchNoofpeople:isFlexible | interestsFilter: searchInterests"  [trip]="trip"></app-trip-card>
+    <app-trip-card style="display: inline-block; margin: 10px;" *ngFor="let trip of trips| sourceFilter: searchSource | destinationFilter: searchDestination | traveldateFilter: searchTravelDate:isFlexible:tdUL:tdLL|returndateFilter: searchReturnDate: isFlexible: rdUL: rdLL | budgetFilter : searchBudget: isFlexible | noofpeopleFilter: searchNoofpeople:isFlexible | interestsFilter: searchInterests"  [trip]="trip"></app-trip-card>
   </div>
 </div>
 </div>

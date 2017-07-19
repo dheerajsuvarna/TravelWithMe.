@@ -25,6 +25,10 @@ export class SearchTripComponent implements OnInit {
   searchSource: any;
   searchDestination: any;
   searchTravelDate: any;
+  tdUL: any;
+  tdLL: any;
+  rdUL: any;
+  rdLL: any
   searchReturnDate: any;
   searchBudget: any;
   searchNoofpeople: any;
@@ -35,14 +39,7 @@ export class SearchTripComponent implements OnInit {
   public today;
   public trip: Trip = new Trip();
   public trip2: Trip = new Trip();
-  public trip3: Trip = new Trip();
-  public trip4: Trip = new Trip();
-  public trip5: Trip = new Trip();
   user: User = new User();
-  public triptest;
-
-
-  /*public trips: Trip[] = [this.trip, this.trip2, this.trip3, this.trip4, this.trip5];*/
   public trips;
   public tripsIamAttending: Trip[] = [ this.trip2, this.trip];
   onFormSubmit(): void {
@@ -59,19 +56,48 @@ export class SearchTripComponent implements OnInit {
     this.formatAndValidateInput();
   }
   formatAndValidateInput(): void {
-    this.searchSource = this.searchSource.toLowerCase();
-    this.searchDestination = this.searchDestination.toLowerCase();
-    this.searchInterests = this.searchInterests.toLowerCase();
-    this.searchTravelDate = this.searchTravelDate.replace(".","-");
-    if(this.isFlexible.isNull()){
+    if(this.searchSource != null)
+      this.searchSource = this.searchSource.toLowerCase();
+
+    if(this.searchDestination!=null)
+      this.searchDestination = this.searchDestination.toLowerCase();
+
+    if(this.searchInterests!=null)
+      this.searchInterests = this.searchInterests.toLowerCase();
+
+    if(this.searchTravelDate!=null)
+      this.searchTravelDate = this.searchTravelDate.replace(".","-");
+
+    if(this.isFlexible==null)
       this.isFlexible = false;
-      console.log("check this out");
-      console.log(this.isFlexible);
+
+    if(this.isFlexible)
+    {
+      if(this.searchTravelDate!=null) {
+        var today = new Date (this.searchTravelDate);
+        today.setDate(today.getDate() +1);
+        var res = today.toISOString().slice(0,10).replace(/-/g,"-");
+        this.tdUL = res;
+        today.setDate(today.getDate() -2);
+        res = today.toISOString().slice(0,10).replace(/-/g,"-");
+        this.tdLL = res;
+      }
+      if(this.searchReturnDate!=null) {
+        var today = new Date(this.searchReturnDate);
+        today.setDate(today.getDate() + 1);
+        var res = today.toISOString().slice(0, 10).replace(/-/g, "-");
+        this.rdUL = res;
+        today.setDate(today.getDate() - 2);
+        res = today.toISOString().slice(0, 10).replace(/-/g, "-");
+        this.rdLL = res;
+      }
     }
-    if (this.searchBudget.isNumber()) {
-    }else {
-      alert("Please Enter a valid Number for Budget");
-    }
+
+
+    // if (this.searchBudget==null )
+    // {
+    //   this.searchBudget =999999;
+    // }
   }
   constructor(fb: FormBuilder, private  tripService:AddTripService ) {
     this.myForm = fb.group({
@@ -84,8 +110,8 @@ export class SearchTripComponent implements OnInit {
     this.today = new Date().toJSON().slice(0,10).replace(/-/g,'.');
     console.log(this.today);
     /*this.destination.valueChanges.subscribe(value => {
-      this.term = value;
-    });*/
+     this.term = value;
+     });*/
 
 
 
