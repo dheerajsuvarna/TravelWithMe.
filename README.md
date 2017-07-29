@@ -9,3 +9,6 @@
 5. Open terminal . Navigate to the application directory and run the command npm run dev-server
 6. Open up a browser and navigate to http://localhost:4200
 
+TravelWithMe is an online platform that brings lone student travellers together and lets them plan trips. 
+
+This is built on NodeJs and MongoDB with Angular 4 as the front end framework.
