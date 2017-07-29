@@ -1,4 +1,4 @@
-# TravelWithMe
+# TravelWithMe (MEAN Application)
 
 #Installation Steps
 
